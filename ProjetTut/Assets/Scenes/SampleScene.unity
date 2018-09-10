@@ -375,10 +375,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b77d3c380a2a1442972bdb0e4bbe24a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSpeedModifier: 1
+  WalkSpeedModifier: 0.516
+  InAirSpeedModifier: 0.6
   RigidBody: {fileID: 1925465185}
-  Collider: {fileID: 1925465183}
-  JumpForce: 1000
+  JumpForce: 1200
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -398,12 +398,12 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1925465186
 SpriteRenderer:
   m_ObjectHideFlags: 0

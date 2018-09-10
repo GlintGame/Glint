@@ -21,6 +21,6 @@ public class PlayerInputsController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Controller.Move(_movementSpeed, _jumping, false);
+        Controller.Move(_movementSpeed, _jumping, true);
     }
 }
