@@ -2,6 +2,8 @@
 
 just a README file
 
-There just an empty 2d unity project for now
+The Glint video game project.
+
+All the graphic ressources go in the ressources folder.
 
 Unity vertion is 2018.2.6
