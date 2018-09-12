@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Target: {fileID: 1925465187}
-  Offset: {x: 0, y: 2, z: -1}
+  Offset: 2
   Smoothing: 0.152
 --- !u!20 &519420031
 Camera:
@@ -999,7 +999,7 @@ MonoBehaviour:
   WalkSpeedModifier: 0.516
   InAirSpeedModifier: 0.6
   RigidBody: {fileID: 1925465185}
-  JumpForce: 30
+  JumpForce: 25
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -1097,7 +1097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 1925465184}
-  SpeedMultiplier: 25
+  SpeedMultiplier: 20
 --- !u!1 &1952654941
 GameObject:
   m_ObjectHideFlags: 0

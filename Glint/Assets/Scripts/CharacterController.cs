@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharacterController : MonoBehaviour
 {
     [Range(.2f, 1f)] public float WalkSpeedModifier = .8f;
     [Range(.2f, 1f)] public float InAirSpeedModifier = .6f;
-    public Rigidbody2D RigidBody;
+    [Range(0, .3f)] public float MovementSmothing = .05f;
     [Range(0, 40f)] public float JumpForce = 20f;
+    public Rigidbody2D RigidBody;
     public LayerMask GroundLayer;
     public Transform GroundCheck;
 
-    [Range(0, .3f)] public float MovementSmothing = .05f;
+    public UnityEvent OnLanding;
+    
 
     private Vector3 _velocity = Vector3.zero;
     private bool _grounded = true;
@@ -54,6 +57,7 @@ public class CharacterController : MonoBehaviour
             if (collider.gameObject != this.gameObject)
             {
                 IsGrounded = true;
+                this.OnLanding.Invoke();
             }
         }
 
