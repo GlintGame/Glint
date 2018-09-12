@@ -16,10 +16,10 @@ public class CharacterController : MonoBehaviour
 
     public UnityEvent OnLanding;
     
-
     private Vector3 _velocity = Vector3.zero;
     private bool _grounded = true;
-    const float GroundedRadius = 1f;
+    private bool _facingRight = true;
+    private const float GroundedRadius = 1f;
 
     public void Move(float xspeed, bool jump, bool running)
     {
@@ -34,10 +34,19 @@ public class CharacterController : MonoBehaviour
             xspeed *= this.WalkSpeedModifier;
         }
 
+        if (xspeed < 0 && _facingRight)
+        {
+            this.FlipSprite();
+        }
+        else if (xspeed > 0 && !_facingRight)
+        {
+            this.FlipSprite();
+        }
+
         Vector3 targetVelocity = new Vector2(xspeed, this.RigidBody.velocity.y);
         this.RigidBody.velocity = Vector3.SmoothDamp(this.RigidBody.velocity, targetVelocity, ref this._velocity, this.MovementSmothing);
 
-
+        // jump mechanic
         if (jump && this._grounded)
         {
             var jumpVector = new Vector2(this.RigidBody.velocity.x , this.JumpForce);
@@ -49,6 +58,7 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
+        // test if on ground
         Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, GroundLayer);
 
         bool IsGrounded = false;
@@ -56,11 +66,24 @@ public class CharacterController : MonoBehaviour
         {
             if (collider.gameObject != this.gameObject)
             {
-                IsGrounded = true;
-                this.OnLanding.Invoke();
+                IsGrounded = true;                
             }
         }
 
-        this._grounded = IsGrounded;        
+        this._grounded = IsGrounded;
+        if (IsGrounded)
+        {            
+            this.OnLanding.Invoke();
+        }
+    }
+
+    private void FlipSprite()
+    {
+        this._facingRight = !this._facingRight;
+        
+        // cant derectly edit localScale
+        Vector3 scale = transform.localScale;
+        scale.x *= -1;
+        transform.localScale = scale;
     }
 }
