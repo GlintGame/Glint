@@ -27,7 +27,7 @@ public class PlayerInputsController : MonoBehaviour
 
         this._running = !(Input.GetButton("Fire3"));
         this.PlayerAnimator.SetBool("PlayerRunning", this._running);
-        this.PlayerAnimator.SetFloat("PlayerMovement", Mathf.Abs(this._movementSpeed));
+        this.PlayerAnimator.SetFloat("PlayerMovement", Mathf.Abs(this._movementSpeed));        
     }
 
     void FixedUpdate()

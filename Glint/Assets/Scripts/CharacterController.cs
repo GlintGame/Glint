@@ -79,11 +79,9 @@ public class CharacterController : MonoBehaviour
 
     private void FlipSprite()
     {
+
+        SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();
+        renderer.flipX = this._facingRight;
         this._facingRight = !this._facingRight;
-        
-        // cant derectly edit localScale
-        Vector3 scale = transform.localScale;
-        scale.x *= -1;
-        transform.localScale = scale;
     }
 }
