@@ -9,10 +9,9 @@ public class CharacterController : MonoBehaviour
     [Range(.2f, 1f)] public float WalkSpeedModifier = .8f;
     [Range(.2f, 1f)] public float InAirSpeedModifier = .6f;
     [Range(0, .3f)] public float MovementSmothing = .05f;
-    [Range(0, 40f)] public float JumpForce = 20f;
+    [Range(0, 60f)] public float JumpForce = 20f;
     public Rigidbody2D RigidBody;
     public LayerMask GroundLayer;
-    public Transform GroundCheck;
 
     public UnityEvent OnLanding;
     
@@ -20,6 +19,7 @@ public class CharacterController : MonoBehaviour
     private bool _grounded = true;
     private bool _facingRight = true;
     private const float GroundedRadius = 1f;
+    private ContactPoint2D[] _colisionContacts;
 
     public void Move(float xspeed, bool jump, bool running)
     {
@@ -56,30 +56,39 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void Awake()
     {
-        // test if on ground
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, GroundLayer);
+        this._colisionContacts = new ContactPoint2D[200];
+    }
 
-        bool IsGrounded = false;
-        foreach (Collider2D collider in colliders)
+    private void Update()
+    {
+        Debug.Log(this._grounded);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.gameObject.layer == (int) Mathf.Log(this.GroundLayer.value, 2)
+            && collision.relativeVelocity.y > 0)
         {
-            if (collider.gameObject != this.gameObject)
-            {
-                IsGrounded = true;                
-            }
-        }
-
-        this._grounded = IsGrounded;
-        if (IsGrounded)
-        {            
+            this._grounded = true;
             this.OnLanding.Invoke();
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        
+        collision.GetContacts(this._colisionContacts);
+
+        if (collision.collider.gameObject.layer == (int) Mathf.Log(this.GroundLayer.value, 2))
+        {
+            this._grounded = false;
         }
     }
 
     private void FlipSprite()
     {
-
         SpriteRenderer renderer = this.GetComponent<SpriteRenderer>();
         renderer.flipX = this._facingRight;
         this._facingRight = !this._facingRight;
