@@ -7,32 +7,41 @@ using UnityEngine.Events;
 public class CharacterController : MonoBehaviour
 {
     [Range(.2f, 1f)] public float WalkSpeedModifier = .8f;
-    [Range(.2f, 1f)] public float InAirSpeedModifier = .6f;
     [Range(0, .3f)] public float MovementSmothing = .05f;
-    [Range(0, 60f)] public float JumpForce = 20f;
+    [Range(0, 60f)] public float JumpForce = 35f;
     public Rigidbody2D RigidBody;
     public LayerMask GroundLayer;
+    public float AirVelocityToForceFactor = 50;
 
     public UnityEvent OnLanding;
     
     private Vector3 _velocity = Vector3.zero;
     private bool _grounded = true;
     private bool _facingRight = true;
-    private const float GroundedRadius = 1f;
-    private ContactPoint2D[] _colisionContacts;
+    private bool _jumpingRight = false;
+    
 
     public void Move(float xspeed, bool jump, bool running)
     {
 
-        // set the horizontal speed
-        if (!this._grounded)
+        Vector3 targetVelocity = new Vector2(xspeed, this.RigidBody.velocity.y);
+        if (!running)
         {
-            xspeed *= this.InAirSpeedModifier;
+            targetVelocity.x *= this.WalkSpeedModifier;
         }
-        else if(!running)
+
+        if (this._grounded)
         {
-            xspeed *= this.WalkSpeedModifier;
+            this.RigidBody.velocity = Vector3.SmoothDamp(this.RigidBody.velocity, targetVelocity, ref this._velocity, this.MovementSmothing);
+
         }
+        else if ((xspeed > 0 && !this._jumpingRight)
+                || (xspeed < 0 && this._jumpingRight)) 
+        {          
+            // in air there is the body inertia, so we cant just overide the old velocity
+            targetVelocity.x *= this.AirVelocityToForceFactor;
+            this.RigidBody.AddForce(targetVelocity);
+        }        
 
         if (xspeed < 0 && _facingRight)
         {
@@ -43,9 +52,7 @@ public class CharacterController : MonoBehaviour
             this.FlipSprite();
         }
 
-        Vector3 targetVelocity = new Vector2(xspeed, this.RigidBody.velocity.y);
-        this.RigidBody.velocity = Vector3.SmoothDamp(this.RigidBody.velocity, targetVelocity, ref this._velocity, this.MovementSmothing);
-
+        
         // jump mechanic
         if (jump && this._grounded)
         {
@@ -53,18 +60,9 @@ public class CharacterController : MonoBehaviour
             this.RigidBody.velocity = jumpVector;
 
             this._grounded = false;
-        }
-    }
-
-    private void Awake()
-    {
-        this._colisionContacts = new ContactPoint2D[200];
-    }
-
-    private void Update()
-    {
-        Debug.Log(this._grounded);
-    }
+            this._jumpingRight = this._facingRight;
+        }        
+    }     
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -77,13 +75,23 @@ public class CharacterController : MonoBehaviour
     }
 
     private void OnCollisionExit2D(Collision2D collision)
-    {
-        
-        collision.GetContacts(this._colisionContacts);
+    {        
 
         if (collision.collider.gameObject.layer == (int) Mathf.Log(this.GroundLayer.value, 2))
         {
             this._grounded = false;
+        }
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (!this._grounded)
+        {
+            if (collision.collider.gameObject.layer == (int)Mathf.Log(this.GroundLayer.value, 2)
+            && collision.relativeVelocity.y > 0)
+            {
+                this._grounded = true;
+            }
         }
     }
 
