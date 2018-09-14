@@ -6,4 +6,4 @@ The Glint video game project.
 
 All the graphic ressources go in the ressources folder.
 
-Unity vertion is 2018.2.6
+Unity vertion is 2018.2.8f1

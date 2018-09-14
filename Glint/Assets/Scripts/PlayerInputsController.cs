@@ -57,6 +57,6 @@ public class PlayerInputsController : MonoBehaviour
             Debug.Log("lerping");
             this.body.m_LookaheadTime = Mathf.Lerp(this.body.m_LookaheadTime, this._lookaheadTime, 0.1f);
             yield return null;
-        }        
+        }
     }
 }
