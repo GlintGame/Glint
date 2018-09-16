@@ -4,10 +4,10 @@ TextureImporter:
   fileIDToRecycleName:
     21300000: saut_0
     21300002: saut_1
-    21300004: saut_2
-    21300006: saut_3
-    21300008: saut_4
-    21300010: saut_5
+    21300004: saut_1
+    21300006: saut_2
+    21300008: saut_3
+    21300010: saut_4
     21300012: saut_6
   externalObjects: {}
   serializedVersion: 7
@@ -131,8 +131,8 @@ TextureImporter:
         y: 502
         width: 124
         height: 362
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,32 +147,12 @@ TextureImporter:
       name: saut_1
       rect:
         serializedVersion: 2
-        x: 272
-        y: 520
-        width: 160
-        height: 207
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4e0f2ee85a9f5474c92765ede900d92f
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: saut_2
-      rect:
-        serializedVersion: 2
         x: 448
         y: 616
         width: 172
         height: 321
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -184,15 +164,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: saut_3
+      name: saut_2
       rect:
         serializedVersion: 2
         x: 668
         y: 711
         width: 157
         height: 242
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -204,15 +184,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: saut_4
+      name: saut_3
       rect:
         serializedVersion: 2
         x: 871
         y: 596
         width: 173
         height: 417
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -224,41 +204,21 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: saut_5
+      name: saut_4
       rect:
         serializedVersion: 2
         x: 1371
         y: 506
         width: 179
         height: 326
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 4b39a2747e7a8534ab9eb7ee92c45f60
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: saut_6
-      rect:
-        serializedVersion: 2
-        x: 1119
-        y: 504
-        width: 201
-        height: 178
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e7e9ad4f68825ec49a361d7bfaedd4f7
       vertices: []
       indices: 
       edges: []

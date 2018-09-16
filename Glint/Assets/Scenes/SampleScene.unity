@@ -1609,7 +1609,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1758975123}
   m_LocalRotation: {x: -0, y: -0, z: -0.70710707, w: 0.70710653}
-  m_LocalPosition: {x: 59.24, y: 7.8, z: -0.14488642}
+  m_LocalPosition: {x: 59.24, y: 7.2, z: -0.14488642}
   m_LocalScale: {x: 0.90950996, y: 4.57875, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1648,10 +1648,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.05}
+  m_Offset: {x: 0, y: 2.1582758}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.84, y: 4.54}
     newSize: {x: 2.45, y: 4.85}
     adaptiveTilingThreshold: 0.5
@@ -1659,7 +1659,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.13, y: 4.6}
+  m_Size: {x: 2.13, y: 4.3136296}
   m_EdgeRadius: 0
 --- !u!114 &1925465184
 MonoBehaviour:
@@ -1674,12 +1674,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WalkSpeedModifier: 0.5
   MovementSmothing: 0.09
-  JumpForce: 40
-  RigidBody: {fileID: 1925465185}
+  JumpForce: 25
+  fallingForce: 3
+  AirMovementSmothing: 0.05
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
-  AirVelocityToForceFactor: 35
   OnLanding:
     m_PersistentCalls:
       m_Calls:
@@ -1706,11 +1706,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 10.5
+  m_UseAutoMass: 1
+  m_Mass: 19.793201
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 8.5
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 1925465184}
-  SpeedMultiplier: 20
+  SpeedMultiplier: 18
   PlayerAnimator: {fileID: 1925465189}
   CVCamera: {fileID: 857289056}
 --- !u!95 &1925465189
