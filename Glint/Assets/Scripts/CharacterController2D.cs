@@ -16,6 +16,7 @@ public class CharacterController2D : MonoBehaviour
     public LayerMask GroundLayer;
 
     public UnityEvent OnLanding;
+    public UnityEvent OnFalling;
     
     private bool _grounded = true;
     private bool _facingRight = true;
@@ -86,11 +87,14 @@ public class CharacterController2D : MonoBehaviour
     }
 
     private void OnCollisionExit2D(Collision2D collision)
-    {        
-
+    {
         if (collision.collider.gameObject.layer == (int) Mathf.Log(this.GroundLayer.value, 2))
         {
             this._grounded = false;
+            if(collision.otherRigidbody.velocity.y < -0.01f)
+            {
+                this.OnFalling.Invoke();
+            }
         }
     }
 

@@ -1696,6 +1696,22 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  OnFalling:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1925465188}
+        m_MethodName: OnFalling
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!50 &1925465185
 Rigidbody2D:
   serializedVersion: 4
@@ -1787,7 +1803,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 1925465184}
-  SpeedMultiplier: 18
+  SpeedMultiplier: 20
   PlayerAnimator: {fileID: 1925465189}
   CVCamera: {fileID: 857289056}
 --- !u!95 &1925465189

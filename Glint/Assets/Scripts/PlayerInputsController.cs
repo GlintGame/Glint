@@ -25,16 +25,19 @@ public class PlayerInputsController : MonoBehaviour
     {
         this._jumping = Input.GetButton("Jump");
         this._running = !(Input.GetButton("Fire3"));
-        this._movementSpeed = Input.GetAxisRaw("Horizontal") * this.SpeedMultiplier;
 
         if (Input.GetButton("Jump"))
         {
             this._jumping = true;
             this.PlayerAnimator.SetBool("PlayerJump", true);
         }
-        
+
+        this._movementSpeed = Input.GetAxisRaw("Horizontal");
+
         this.PlayerAnimator.SetBool("PlayerRunning", this._running);
         this.PlayerAnimator.SetFloat("PlayerMovement", Mathf.Abs(this._movementSpeed));
+
+        this._movementSpeed *= this.SpeedMultiplier;
 
         Controller.Move(this._movementSpeed, this._jumping, this._running);
     }
@@ -42,5 +45,11 @@ public class PlayerInputsController : MonoBehaviour
     public void OnLanding()
     {
         this.PlayerAnimator.SetBool("PlayerJump", false);
+        this.PlayerAnimator.SetBool("PlayerFalling", false);
     }   
+
+    public void OnFalling()
+    {
+        this.PlayerAnimator.SetBool("PlayerFalling", true);
+    }
 }
