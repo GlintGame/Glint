@@ -5,41 +5,37 @@ using Cinemachine;
 
 public class PlayerInputsController : MonoBehaviour
 {
-    public CharacterController2D Controller;
-    public float SpeedMultiplier = 30;
-    public Animator PlayerAnimator;
-    public CinemachineVirtualCamera CVCamera;
+
+    private CharacterController2D Controller;
+    private Animator PlayerAnimator;
 
     private bool _jumping;
     private float _movementSpeed;
+    private float _absoluteSpeed;
     private bool _running;
-    private float _lookaheadTime;
 
     void Awake()
     {
-        // the body is the first array element cause it's the first in the unity editor...
-        // and fuck thoses class names...
+        this.Controller = gameObject.GetComponent<CharacterController2D>();
+        this.PlayerAnimator = gameObject.GetComponent<Animator>();
     }
 
     void FixedUpdate()
     {
         this._jumping = Input.GetButton("Jump");
-        this._running = !(Input.GetButton("Fire3"));
+        this._running = Input.GetButton("Fire3");
+        this._movementSpeed = Input.GetAxisRaw("Horizontal");
 
-        if (Input.GetButton("Jump"))
+        if (this._jumping)
         {
-            this._jumping = true;
             this.PlayerAnimator.SetBool("PlayerJump", true);
         }
 
-        this._movementSpeed = Input.GetAxisRaw("Horizontal");
+        this._absoluteSpeed = Mathf.Abs(this._movementSpeed);
+        this.PlayerAnimator.SetBool("PlayerRunning", this._absoluteSpeed > 0.6 && this._running);
+        this.PlayerAnimator.SetFloat("PlayerMovement", this._absoluteSpeed);
 
-        this.PlayerAnimator.SetBool("PlayerRunning", this._running);
-        this.PlayerAnimator.SetFloat("PlayerMovement", Mathf.Abs(this._movementSpeed));
-
-        this._movementSpeed *= this.SpeedMultiplier;
-
-        Controller.Move(this._movementSpeed, this._jumping, this._running);
+        this.Controller.Move(this._movementSpeed, this._jumping, this._running);
     }
 
     public void OnLanding()

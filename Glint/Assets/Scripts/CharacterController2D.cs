@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
+    [Range(20f, 40f)]public float SpeedMultiplier = 30;
     [Range(.2f, 1f)] public float WalkSpeedModifier = .8f;
     [Range(0, .3f)] public float MovementSmothing = .05f;
 
@@ -33,10 +34,8 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float xspeed, bool jump, bool running)
     {
-        if (!running)
-        {
-            xspeed *= this.WalkSpeedModifier;
-        }
+        xspeed *= running ? this.SpeedMultiplier : this.SpeedMultiplier * this.WalkSpeedModifier;
+
         Vector2 targetVelocity = new Vector2(xspeed, this.RigidBody.velocity.y);
 
         float currentSmoothing;
@@ -56,7 +55,7 @@ public class CharacterController2D : MonoBehaviour
             this.RigidBody.velocity = new Vector2(this.RigidBody.velocity.x, this.JumpForce);
             this._grounded = false;
         }
-        else if(!(jump || this._grounded) || this.RigidBody.velocity.y < 0)
+        else if( !(jump || this._grounded) || this.RigidBody.velocity.y < 0)
         {
             this.RigidBody.velocity += Vector2.up * Physics2D.gravity.y * this.fallingForce * Time.fixedDeltaTime;
         }
