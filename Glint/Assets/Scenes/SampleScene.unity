@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dashDuration: 0.8
-  dashforce: 100
+  dashforce: 60
   OnDashEnd:
     m_PersistentCalls:
       m_Calls:
