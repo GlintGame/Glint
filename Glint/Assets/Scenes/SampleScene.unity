@@ -322,7 +322,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000009746408, y: 3.270352, z: -20.4397}
+  m_LocalPosition: {x: -0.0000006497605, y: 3.270352, z: -20.4397}
   m_LocalScale: {x: 0.6813233, y: 0.6813233, z: 0.6813233}
   m_Children: []
   m_Father: {fileID: 1551190210}
@@ -520,7 +520,7 @@ GameObject:
   - component: {fileID: 857289056}
   m_Layer: 0
   m_Name: CM vcam1
-  m_TagString: Untagged
+  m_TagString: CinemachineCam
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -568,7 +568,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 857289055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000009746408, y: 3.270352, z: -20.4397}
+  m_LocalPosition: {x: -0.0000006497605, y: 3.270352, z: -20.4397}
   m_LocalScale: {x: 0.6813233, y: 0.6813233, z: 0.6813233}
   m_Children:
   - {fileID: 579837967}
@@ -1632,7 +1632,7 @@ GameObject:
   - component: {fileID: 1925465190}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1834,8 +1834,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2dbeb1466ada042bb2101827658c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDuration: 0.8
-  dashforce: 60
+  dashDuration: 0.2
+  dashforce: 55
+  dashCoolDown: 0.65
   OnDashEnd:
     m_PersistentCalls:
       m_Calls:

@@ -6,6 +6,7 @@ public class PlayerInputsController : MonoBehaviour
 
     private CharacterController2D Controller;
     private Animator PlayerAnimator;
+    private PlayerSkills Skills;
 
     private float _absoluteSpeed;
     private InputsParameters _inputs;
@@ -14,6 +15,7 @@ public class PlayerInputsController : MonoBehaviour
     {
         this.Controller = this.gameObject.GetComponent<CharacterController2D>();
         this.PlayerAnimator = this.gameObject.GetComponent<Animator>();
+        this.Skills = this.gameObject.GetComponent<PlayerSkills>();
         this._inputs = new InputsParameters();
     }
 
@@ -29,7 +31,7 @@ public class PlayerInputsController : MonoBehaviour
             this.PlayerAnimator.SetBool("PlayerJump", true);
         }
 
-        if (this._inputs.Dash)
+        if (this._inputs.Dash && this.Skills.CanDash)
         {
             this.PlayerAnimator.SetBool("PlayerDashing", true);
         }
