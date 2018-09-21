@@ -22,8 +22,8 @@ public class PlayerInputsController : MonoBehaviour
     private void FixedUpdate()
     {
         this._inputs.Jump = Input.GetButton("Jump");
-        this._inputs.Run = Input.GetButton("Fire3");
-        this._inputs.Dash = Input.GetAxis("RT") > 0.9;
+        this._inputs.Run = Input.GetAxis("RT") > 0.9;
+        this._inputs.Dash = Input.GetAxis("LT") > 0.9 || Input.GetButtonDown("Fire2");
         this._inputs.HorizontalMovement = Input.GetAxisRaw("Horizontal");
 
         if (this._inputs.Jump)

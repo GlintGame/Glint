@@ -7,6 +7,7 @@ using utils;
 public class PlayerSkills : MonoBehaviour, ICharacterSkills
 {
     [Range(0f, 1.5f)] public float dashDuration = 0.6f;
+    [Range(0f, 1.5f)] public float dashAddAnimationDuration = 0.6f;
     public float dashforce = 2.5f;
     public float dashCoolDown = 2f;
 
@@ -57,9 +58,12 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
         this.CameraParams.m_LookaheadTime = 0;
         this._currentDashDuration = 0;
 
-        while (this._currentDashDuration < this.dashDuration)
+        while (this._currentDashDuration < this.dashDuration + this.dashAddAnimationDuration)
         {
-            this.Rigidbody.velocity = new Vector2(this.dashforce * dashDirection, 0);
+            if (this._currentDashDuration < this.dashDuration)
+            {
+                this.Rigidbody.velocity = new Vector2(this.dashforce * dashDirection, 0);
+            }
 
             this._currentDashDuration += Time.fixedDeltaTime;
             yield return null;
