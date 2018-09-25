@@ -17,6 +17,14 @@ public class CharacterController2D : MonoBehaviour
     public UnityEvent OnFalling;
 
     private bool _grounded = true;
+    public bool IsInAir
+    {
+        get
+        {
+            return !_grounded;
+        }
+    }
+
     private bool _facingRight = true;
     public int direction
     {

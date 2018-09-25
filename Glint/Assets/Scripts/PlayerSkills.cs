@@ -13,16 +13,22 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
 
     private CinemachineFramingTransposer CameraParams;
     public UnityEvent OnDashEnd;
+    private Animator PlayerAnimator;
 
     private Rigidbody2D Rigidbody;
     private CharacterController2D CharacterController;
     private float _currentDashDuration;
-    private bool isDashing = false;
+    private float _overallDashDuration;
+    private bool _isDashing = false;
+    private bool _hasDashInAir = false;
     public bool CanDash
     {
         get
         {
-            return !this.isDashing;
+            return 
+                !(this._isDashing
+                || (this.CharacterController.IsInAir
+                    && this._hasDashInAir));
         }
     }
 
@@ -32,6 +38,7 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
     {
         this.Rigidbody = this.gameObject.GetComponent<Rigidbody2D>();
         this.CharacterController = this.gameObject.GetComponent<CharacterController2D>();
+        this.PlayerAnimator = this.gameObject.GetComponent<Animator>();
 
         this.CameraParams = GameObject
             .FindGameObjectsWithTag("CinemachineCam")[0]
@@ -44,21 +51,23 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
 
     public void LaunchSkills(InputsParameters inputs)
     {
-        if (!this.isDashing && inputs.Dash)
+        if (this.CanDash
+            && inputs.Dash)
         {
-            this.isDashing = true;
+            this._isDashing = true;
             this.StartCoroutine("Dash");
         }
     }
 
     public IEnumerator Dash()
     {
-
         int dashDirection = this.CharacterController.direction;
         this.CameraParams.m_LookaheadTime = 0;
         this._currentDashDuration = 0;
+        this._overallDashDuration = this.dashDuration + this.dashAddAnimationDuration;
+        this.PlayerAnimator.SetFloat("DashSpeed", 1 / this._overallDashDuration);
 
-        while (this._currentDashDuration < this.dashDuration + this.dashAddAnimationDuration)
+        while (this._currentDashDuration < this._overallDashDuration)
         {
             if (this._currentDashDuration < this.dashDuration)
             {
@@ -70,12 +79,19 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
         }
 
         this.StartCoroutine(Transition.Do.Lerp(new Ref<float>(this.CameraParams.m_LookaheadTime), this._baseLookAheadTime, 0.5f));
-
+        if (this.CharacterController.IsInAir)
+        {
+            this._hasDashInAir = true;
+        }
         this.OnDashEnd.Invoke();
 
         yield return new WaitForSeconds(this.dashCoolDown);
-        this.isDashing = false;
+        this._isDashing = false;
+
     }
 
-
+    public void OnLanding()
+    {
+        this._hasDashInAir = false;
+    }
 }
