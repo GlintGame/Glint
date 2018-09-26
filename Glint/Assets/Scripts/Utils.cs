@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace utils
@@ -8,7 +9,63 @@ namespace utils
 
     public static class Extentions
     {
+        public static string CamelCaseTo_snake_case(this string str)
+        {
+            char[] charArray = str.ToCharArray();
+            for (int i = 0; i < charArray.Length - 1; i++)
+            {
+                if (char.IsUpper(charArray[i]))
+                {
+                    charArray[i] = char.ToLower(charArray[i]);
+                    if (i != 0)
+                    {
+                        char[] newCharArray = new char[charArray.Length + 1];
+                        int offset = 0;
+                        for (int j = 0; j < newCharArray.Length - 1; j++)
+                        {
+                            if (j == i)
+                            {
+                                offset = 1;
+                                newCharArray[j] = "_".ToCharArray()[0];
+                            }
+                            newCharArray[j + offset] = charArray[j];
+                        }
+                        charArray = newCharArray;
+                    }
+                }
+            }
+            return new string(charArray);
+        }
 
+        public static string SnakeToSpace(this string str)
+        {
+            string[] strSplit = str.Split("_".ToCharArray()[0]);
+            string returningString = "";
+            foreach (string sStr in strSplit)
+            {
+                returningString += sStr + " ";
+            }
+            return returningString.TrimEnd(" ".ToCharArray());
+        }
+
+        public static List<T> EnumToList<T>()
+        {
+            Type enumType = typeof(T);
+
+            if (enumType.BaseType != typeof(Enum))
+                throw new ArgumentException("T must be of type System.Enum");
+
+            Array enumValArray = Enum.GetValues(enumType);
+
+            List<T> enumValList = new List<T>(enumValArray.Length);
+
+            foreach (int val in enumValArray)
+            {
+                enumValList.Add((T)Enum.Parse(enumType, val.ToString()));
+            }
+
+            return enumValList;
+        }
     }
 
     // type référence lorsqu'on peut pas utiliser les références.
@@ -63,8 +120,6 @@ namespace utils
             callback();
         }
     }
-
-
-
+    
 }
 

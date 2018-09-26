@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using utils;
+using System;
 
 public class InputMenu : MonoBehaviour {
 
@@ -9,18 +11,32 @@ public class InputMenu : MonoBehaviour {
     private InputManagerManager _inputManagerManager;
     private string _axisName;
     private string _propertyName;
+    private Dictionary<string, string> _convertKeyToStr;
+    private string _alphabetString = "abcdefghijklmnopqrstuvwxyz";
+    private char[] _alphabetCharArray;
 
     void Awake()
     {
         this._inputManagerManager = gameObject.GetComponent<InputManagerManager>();
-        genDictionnary();
+
+        this._alphabetCharArray = this._alphabetString.ToCharArray();
+        
+        this._convertKeyToStr = genDictionnary();
+        Debug.Log("LeftShiftDdqa".CamelCaseTo_snake_case().SnakeToSpace());/*
+        for (int i = 0; i < keyCode.Length; i++)
+            keyCode.IndexOf("L");*/
+
+        List<KeyCode> l = utils.Extentions.EnumToList<KeyCode>();
+        foreach(KeyCode val in l)
+        {
+            Debug.Log(val);
+        }
     }
 
     void OnGUI()
     {
-        Dictionary<KeyCode, string> convertKeyToStr;
         keyEvent = Event.current;
-        if(keyEvent.isKey /*&& _waitingForKey*/)
+        if(keyEvent.isKey && _waitingForKey)
         {
             _waitingForKey = false;
             Debug.Log(keyEvent.keyCode);
@@ -31,12 +47,10 @@ public class InputMenu : MonoBehaviour {
     private Dictionary<string, string> genDictionnary()
     {
         Dictionary<string, string> dictionnary = new Dictionary<string, string>();
-        string[] alphabet = new string[] {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"};
         for(int i = 0; i < 26; i++)
         {
-            dictionnary.Add(alphabet[i], alphabet[i]);
+            dictionnary.Add(_alphabetCharArray[i].ToString(), _alphabetCharArray[i].ToString());
         }
-        Debug.Log(dictionnary);
         return dictionnary;
     }
 }
