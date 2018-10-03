@@ -1,56 +1,62 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using utils;
 using System;
+using System.IO;
 
-public class InputMenu : MonoBehaviour {
+public class InputMenu : MonoBehaviour
+{
 
     Event keyEvent;
-    private bool _waitingForKey = false;
+    TextAsset dictionnary;
+    Text buttonText;
+
     private InputManagerManager _inputManagerManager;
+    private bool _waitingForKey = false;
     private string _axisName;
     private string _propertyName;
-    private Dictionary<string, string> _convertKeyToStr;
-    private string _alphabetString = "abcdefghijklmnopqrstuvwxyz";
-    private char[] _alphabetCharArray;
 
     void Awake()
     {
         this._inputManagerManager = gameObject.GetComponent<InputManagerManager>();
+    }
 
-        this._alphabetCharArray = this._alphabetString.ToCharArray();
-        
-        this._convertKeyToStr = genDictionnary();
-        Debug.Log("LeftShiftDdqa".CamelCaseTo_snake_case().SnakeToSpace());/*
-        for (int i = 0; i < keyCode.Length; i++)
-            keyCode.IndexOf("L");*/
-
-        List<KeyCode> l = utils.Extentions.EnumToList<KeyCode>();
-        foreach(KeyCode val in l)
+    private string Translate(string v)
+    {
+        if(v.Contains("Arrow"))
         {
-            Debug.Log(val);
+            v = v.Substring(0, v.Length - 5);
         }
+        else if(v.Contains("Left") || v.Contains("Right"))
+        {
+            if (v.Contains("Apple"))
+                v.Replace("Apple", "Cmd");
+            v = v.CamelCaseTo_snake_case().SnakeToSpace();
+        }
+        v = v.CamelCaseTo_snake_case().SnakeToSpace();
+        if (v.Contains("keypad"))
+        {
+            v = v.Substring(v.Length - 1);
+            v = "[" + v + "]";
+        }
+        if (v.ToString().Contains("alpha"))
+        {
+            v = v.Substring(v.Length - 1);
+        }
+        return v.ToLower();
     }
 
     void OnGUI()
     {
         keyEvent = Event.current;
-        if(keyEvent.isKey && _waitingForKey)
+        if (keyEvent.type == EventType.KeyDown /*&& _waitingForKey*/)
         {
-            _waitingForKey = false;
             Debug.Log(keyEvent.keyCode);
+            Debug.Log(Translate(keyEvent.keyCode.ToString()));
+            _waitingForKey = false;
             //InputManagerManager.SetProperty(_axisName, _propertyName, keyEvent.keyCode);
         }
-    }
-
-    private Dictionary<string, string> genDictionnary()
-    {
-        Dictionary<string, string> dictionnary = new Dictionary<string, string>();
-        for(int i = 0; i < 26; i++)
-        {
-            dictionnary.Add(_alphabetCharArray[i].ToString(), _alphabetCharArray[i].ToString());
-        }
-        return dictionnary;
     }
 }

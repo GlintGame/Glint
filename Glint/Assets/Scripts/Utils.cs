@@ -39,13 +39,7 @@ namespace utils
 
         public static string SnakeToSpace(this string str)
         {
-            string[] strSplit = str.Split("_".ToCharArray()[0]);
-            string returningString = "";
-            foreach (string sStr in strSplit)
-            {
-                returningString += sStr + " ";
-            }
-            return returningString.TrimEnd(" ".ToCharArray());
+            return str.Replace("_"," ");
         }
 
         public static List<T> EnumToList<T>()
