@@ -2,7 +2,6 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
-using utils;
 
 public class PlayerSkills : MonoBehaviour, ICharacterSkills
 {
@@ -17,6 +16,11 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
     public Vector2 MeleHitboxSize = new Vector2(10,5);
     public int MeleDamages = 5;
 
+    public GameObject fireBallRef;
+    public float FireBallTimeBeforeLaunch = 0.2f;
+    public float FireBallCoolDown = 1f;
+    public int FireBallDamage = 100;
+
     private CinemachineFramingTransposer CameraParams;
     public UnityEvent OnDashEnd;
     private Animator PlayerAnimator;
@@ -24,23 +28,67 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
     private Rigidbody2D Rigidbody;
     private CharacterController2D CharacterController;
     private Transform Transform;
-    private float _currentDashDuration;
+    private float _baseLookAheadTime;
+
+    private float _currentDashDuration; // could be removed using the utils.ref class
     private float _overallDashDuration;
-    private bool _isDashing = false;
-    private bool _hasDashInAir = false;
-    public bool CanDash
+
+    // maybe create an object to handle cooldowns and skills
+    public bool CanAct
     {
         get
         {
-            return 
-                !(this._isDashing
-                || (this.CharacterController.IsInAir
-                    && this._hasDashInAir));
+            return
+                !this._isAttacking
+                && !this._isDashing;
         }
     }
-    private bool CanAttackMele = true;
 
-    private float _baseLookAheadTime;
+    //dash
+    private bool _isDashing = false;
+    private bool _dashCoolDown = false;
+    private bool _hasDashInAir = false;
+    public bool _canDash
+    {
+        get
+        {
+            return
+                !this._isDashing
+                && !this._dashCoolDown
+                && !(this.CharacterController.IsInAir
+                        && this._hasDashInAir);
+        }
+    }
+    
+    // attacks
+    private bool _isAttacking = false;
+
+    // mele
+    private bool _meleCooldown = false;
+    private bool _canAttackMele
+    {
+        get
+        {
+            return
+                !this._isAttacking 
+                && !this._meleCooldown;
+        }
+    }
+
+    // fireBall
+
+    private bool _fireBallCoolDown = false;
+    private bool _canAttackFireBall
+    {
+        get
+        {
+            return
+                !this._isAttacking
+                && !this._fireBallCoolDown;
+        }
+    }
+
+    
 
     public void Awake()
     {
@@ -61,27 +109,36 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
 
     public void LaunchSkills(InputsParameters inputs)
     {
-        if (this.CanDash
+        if (this.CanAct)
+        {
+            if (this._canDash
             && inputs.Dash)
-        {
-            this.StartCoroutine(Dash());
-        }
+            {
+                this.StartCoroutine(Dash());
+            }
 
-        if (this.CanAttackMele
-            && inputs.AttackOne)
-        {
-            this.StartCoroutine(Mele());
+            if (this._canAttackMele
+                && inputs.AttackOne)
+            {
+                this.StartCoroutine(Mele());
+            }
+
+            if (this._canAttackFireBall
+                && inputs.AttackTwo)
+            {
+                this.StartCoroutine(FireBall());
+            }
         }
     }
 
-    public IEnumerator Mele()
+    private IEnumerator Mele()
     {
         // initialisation
-        this.CanAttackMele = false;
+        this._isAttacking = true;
 
         // activation
         yield return new WaitForSeconds(this.MeleTimeBeforeHit);
-        Vector2 center = this.transform.position;
+        Vector2 center = this.Transform.position;
         center.x += this.CharacterController.direction * this.MeleHitboxDistance;
         Collider2D[] collided = Physics2D.OverlapAreaAll(center + this.MeleHitboxSize/2, center - this.MeleHitboxSize/2);
 
@@ -90,25 +147,30 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
             IHitable hitableObject;
             if ((hitableObject = collider.gameObject.GetComponent<IHitable>()) != null)
             {
-                hitableObject.TakeDamages(this.MeleDamages, this.transform.position);
+                hitableObject.TakeDamages(this.MeleDamages, this.Transform.position);
             }
         }
 
+        this._isAttacking = false;
 
         // cooldown
+        this._meleCooldown = true;
         yield return new WaitForSeconds(this.MeleAttackCoolDown);
-        this.CanAttackMele = true;
+        this._meleCooldown = false;
     }
 
-    public IEnumerator Dash()
+    private IEnumerator Dash()
     {
         // initialisation
         this._isDashing = true;
         int dashDirection = this.CharacterController.direction;
-        this.CameraParams.m_LookaheadTime = 0;
+        
         this._currentDashDuration = 0;
         this._overallDashDuration = this.dashDuration + this.dashAddAnimationDuration;
         this.PlayerAnimator.SetFloat("DashSpeed", 1 / this._overallDashDuration);
+
+            // camera shit
+        this.CameraParams.m_LookaheadTime = 0;
 
         // activation
         while (this._currentDashDuration < this._overallDashDuration)
@@ -121,18 +183,42 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
             this._currentDashDuration += Time.fixedDeltaTime;
             yield return null;
         }
+        this._isDashing = false;
 
         // cooldown
-        this.StartCoroutine(Transition.Do.Lerp(new Ref<float>(this.CameraParams.m_LookaheadTime), this._baseLookAheadTime, 0.5f));
+            // camera shit again
+        this.StartCoroutine(utils.Coroutine.Do.Lerp(new utils.Ref<float>(this.CameraParams.m_LookaheadTime), this._baseLookAheadTime, 0.5f));
+
         if (this.CharacterController.IsInAir)
         {
             this._hasDashInAir = true;
         }
         this.OnDashEnd.Invoke();
 
+        this._dashCoolDown = true;
         yield return new WaitForSeconds(this.dashCoolDown);
-        this._isDashing = false;
+        this._dashCoolDown = false;
 
+    }
+
+    private IEnumerator FireBall()
+    {
+        // initialization
+        this._isAttacking = true;
+
+        // activation
+        yield return new WaitForSeconds(this.FireBallTimeBeforeLaunch);
+        GameObject fireBall = Instantiate(this.fireBallRef);
+        fireBall.SetActive(true);
+        Vector3 origin = this.Transform.position;
+        origin.y += 3.5f;
+        fireBall.GetComponent<Transform>().position = origin;
+        this._isAttacking = false;
+
+        // cooldown
+        this._fireBallCoolDown = true;
+        yield return new WaitForSeconds(this.FireBallCoolDown);
+        this._fireBallCoolDown = false;
     }
 
     public void OnLanding()

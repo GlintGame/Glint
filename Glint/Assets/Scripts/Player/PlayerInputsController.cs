@@ -23,6 +23,7 @@ public class PlayerInputsController : MonoBehaviour
     {
         this._inputs.Jump = Input.GetButton("Jump");
         this._inputs.AttackOne = Input.GetButton("Fire1");
+        this._inputs.AttackTwo = Input.GetButton("Fire2");
         this._inputs.Run = Input.GetAxis("LT") > 0.9 || Input.GetButton("LT");
         this._inputs.Dash = Input.GetAxis("RT") > 0.9 || Input.GetButton("RT");
         this._inputs.HorizontalMovement = Input.GetAxisRaw("Horizontal");
@@ -32,7 +33,7 @@ public class PlayerInputsController : MonoBehaviour
             this.PlayerAnimator.SetBool("PlayerJump", true);
         }
 
-        if (this._inputs.Dash && this.Skills.CanDash)
+        if (this._inputs.Dash && this.Skills._canDash)
         {
             this.PlayerAnimator.SetBool("PlayerDashing", true);
         }

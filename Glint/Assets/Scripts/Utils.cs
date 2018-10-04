@@ -73,22 +73,22 @@ namespace utils
     }
 
 
-    // contient des fonction de transition a utiliser dans des coroutines
-    public class Transition
+    // contient des fonction de Coroutine a utiliser dans des coroutines
+    public class Coroutine
     {
         // singleton mechanic
-        public static Transition instance;
-        public static Transition Do
+        public static Coroutine instance;
+        public static Coroutine Do
         {
             get
             {
                 if (instance == null)
-                    instance = new Transition();
+                    instance = new Coroutine();
 
                 return instance;
             }
         }
-        private Transition() { }
+        private Coroutine() { }
         // 
 
         public IEnumerator Lerp(Ref<float> origin, float target, float smoothing)
