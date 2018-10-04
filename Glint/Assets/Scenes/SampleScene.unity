@@ -2271,8 +2271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cae51706743a054aae53729f0175d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 18
-  duration: 3
+  speed: 40
+  duration: 0.65
 --- !u!61 &1805558214
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2731,7 +2731,7 @@ MonoBehaviour:
   MeleHitboxSize: {x: 10, y: 5}
   MeleDamages: 10
   fireBallRef: {fileID: 1805558211}
-  FireBallTimeBeforeLaunch: 0.2
+  FireBallTimeBeforeLaunch: 0
   FireBallCoolDown: 0.5
   FireBallDamage: 10
   OnDashEnd:
