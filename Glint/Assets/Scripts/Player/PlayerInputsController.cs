@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Luminosity.IO;
 
 public class PlayerInputsController : MonoBehaviour
 {
@@ -21,12 +22,12 @@ public class PlayerInputsController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this._inputs.Jump = Input.GetButton("Jump");
-        this._inputs.AttackOne = Input.GetButton("Fire1");
-        this._inputs.AttackTwo = Input.GetButton("Fire2");
-        this._inputs.Run = Input.GetAxis("LT") > 0.9 || Input.GetButton("LT");
-        this._inputs.Dash = Input.GetAxis("RT") > 0.9 || Input.GetButton("RT");
-        this._inputs.HorizontalMovement = Input.GetAxisRaw("Horizontal");
+        this._inputs.Jump = InputManager.GetButton("jump");
+        this._inputs.AttackOne = InputManager.GetButton("mele");
+        this._inputs.AttackTwo = InputManager.GetButton("fireBall");
+        this._inputs.Run = InputManager.GetAxis("run") > 0.9 || InputManager.GetButton("run");
+        this._inputs.Dash = InputManager.GetAxis("dash") > 0.9 || InputManager.GetButton("dash");
+        this._inputs.HorizontalMovement = InputManager.GetAxisRaw("lateral");
 
         if (this._inputs.Jump)
         {
