@@ -27,7 +27,7 @@ public class PlayerInputsController : MonoBehaviour
         this._inputs.AttackTwo = InputManager.GetButton("fireBall");
         this._inputs.Run = InputManager.GetAxis("run") > 0.9 || InputManager.GetButton("run");
         this._inputs.Dash = InputManager.GetAxis("dash") > 0.9 || InputManager.GetButton("dash");
-        this._inputs.HorizontalMovement = InputManager.GetAxisRaw("lateral");
+        this._inputs.HorizontalMovement = InputManager.GetAxis("lateral");
 
         if (this._inputs.Jump)
         {
