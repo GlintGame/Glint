@@ -4,6 +4,7 @@ using Luminosity.IO;
 public class PlayerInputsController : MonoBehaviour
 {
     [Range(0f, 1f)] public float walkSpeedLimit = 0.6f;
+    [Range(0f, 1f)] public float HorizontalDeadZone = 0.15f;
 
     private CharacterController2D Controller;
     private Animator PlayerAnimator;
@@ -27,7 +28,8 @@ public class PlayerInputsController : MonoBehaviour
         this._inputs.AttackTwo = InputManager.GetButton("fireBall");
         this._inputs.Run = InputManager.GetAxis("run") > 0.9 || InputManager.GetButton("run");
         this._inputs.Dash = InputManager.GetAxis("dash") > 0.9 || InputManager.GetButton("dash");
-        this._inputs.HorizontalMovement = InputManager.GetAxis("lateral");
+        this._inputs.HorizontalMovement = InputManager.GetAxisRaw("lateral");
+        this._inputs.HorizontalMovement = Mathf.Abs(this._inputs.HorizontalMovement) > this.HorizontalDeadZone ? this._inputs.HorizontalMovement : 0; // dead zone.
 
         if (this._inputs.Jump)
         {

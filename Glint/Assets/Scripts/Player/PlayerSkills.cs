@@ -116,7 +116,8 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
             {
                 this.StartCoroutine(Dash());
             }
-
+            
+            /* // no attacks needed in sprint one
             if (this._canAttackMele
                 && inputs.AttackOne)
             {
@@ -128,6 +129,7 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
             {
                 this.StartCoroutine(FireBall());
             }
+            */
         }
     }
 

@@ -258,20 +258,6 @@ namespace Luminosity.IO
 		{
 
             if (Input.GetKey(m_positive))
-            {
-                m_value = AXIS_POSITIVE;
-            }
-            else if (Input.GetKey(m_negative))
-            {
-                m_value = AXIS_NEGATIVE;
-            }
-            else
-            {
-                m_value = AXIS_NEUTRAL;
-            }
-
-            /* ____________ modified manualy __________
-            if (Input.GetKey(m_positive))
 			{
 				if(m_value < AXIS_NEUTRAL && m_snap)
 				{
@@ -316,7 +302,6 @@ namespace Luminosity.IO
 					}
 				}
 			}
-            */
 		}
 
 		private void UpdateAnalogButtonValue()
