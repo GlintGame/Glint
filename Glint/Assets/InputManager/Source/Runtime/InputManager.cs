@@ -115,7 +115,7 @@ namespace Luminosity.IO
             DontDestroyOnLoad(this);
             // 
 
-			if(m_instance == null)
+            if(m_instance == null)
 			{
 				m_instance = this;
 				m_scanService = new ScanService();
