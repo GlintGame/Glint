@@ -23,31 +23,6 @@ public class InputMenu : MonoBehaviour
         this._inputManagerManager = gameObject.GetComponent<InputManagerManager>();
     }
 
-    private string Translate(string v)
-    {
-        if(v.Contains("Arrow"))
-        {
-            v = v.Substring(0, v.Length - 5);
-        }
-        else if(v.Contains("Left") || v.Contains("Right"))
-        {
-            if (v.Contains("Apple"))
-                v.Replace("Apple", "Cmd");
-            v = v.CamelCaseTo_snake_case().SnakeToSpace();
-        }
-        v = v.CamelCaseTo_snake_case().SnakeToSpace();
-        if (v.Contains("keypad"))
-        {
-            v = v.Substring(v.Length - 1);
-            v = "[" + v + "]";
-        }
-        if (v.ToString().Contains("alpha"))
-        {
-            v = v.Substring(v.Length - 1);
-        }
-        return v.ToLower();
-    }
-
     void OnGUI()
     {
         keyEvent = Event.current;

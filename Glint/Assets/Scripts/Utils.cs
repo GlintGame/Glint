@@ -9,39 +9,6 @@ namespace utils
 
     public static class Extentions
     {
-        public static string CamelCaseTo_snake_case(this string str)
-        {
-            char[] charArray = str.ToCharArray();
-            for (int i = 0; i < charArray.Length - 1; i++)
-            {
-                if (char.IsUpper(charArray[i]))
-                {
-                    charArray[i] = char.ToLower(charArray[i]);
-                    if (i != 0)
-                    {
-                        char[] newCharArray = new char[charArray.Length + 1];
-                        int offset = 0;
-                        for (int j = 0; j < newCharArray.Length - 1; j++)
-                        {
-                            if (j == i)
-                            {
-                                offset = 1;
-                                newCharArray[j] = "_".ToCharArray()[0];
-                            }
-                            newCharArray[j + offset] = charArray[j];
-                        }
-                        charArray = newCharArray;
-                    }
-                }
-            }
-            return new string(charArray);
-        }
-
-        public static string SnakeToSpace(this string str)
-        {
-            return str.Replace("_"," ");
-        }
-
         public static List<T> EnumToList<T>()
         {
             Type enumType = typeof(T);

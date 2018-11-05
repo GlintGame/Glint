@@ -6,69 +6,121 @@ using UnityEngine;
 
 using Luminosity.IO;
 
-public class KeyBinder : MonoBehaviour {
+public class KeyBinder : MonoBehaviour
+{
 
     public int timeout = 10;
     public string controlScheme = "Player";
+    public KeyCode cancelKey = KeyCode.Escape;
+    public int keyboardBindingIndex = 0;
+    public int joystickBindingIndex = 1;
 
-    // Use this for initialization
-    void Start () {
-        // Load settings to PlayerPrefs
-        PlayerPrefsLoad();
-    }
-	
-	// Update is called once per frame
-	void Update () {
-    }
-
-    public void LogLateral ()
+    public void TranslateButtonParams(string buttonParams)
     {
-        Debug.Log(InputManager.GetAction("Player", "lateral").Bindings[0].Positive);
+        string[] tableParam = buttonParams.Split(' ');
+        string inputType = tableParam[0];
+        string action = tableParam[1];
+        bool negative = tableParam[2] == "negative" ? true : false;
+
+        KeyCode currentKey = (negative ? InputManager.GetAction(this.controlScheme, action).Bindings[inputType == "keyboard" ? 0 : 1].Negative : InputManager.GetAction(this.controlScheme, action).Bindings[inputType == "keyboard" ? 0 : 1].Positive);
+
+        Debug.LogFormat("type : {0}, action : {1}, is negative : {2}, current key : {3}", inputType, action, negative, currentKey);
+
+        KeyBind(inputType, action, negative);
     }
 
-    public void KeyBind(string buttonParam)
+    void KeyBind(string type, string action, bool negative)
     {
-        string[] tableParam = buttonParam.Split(' ');
+        if (type != "keyboard"
+            && type != "gamepad")
+            Debug.LogError(string.Format("A binding type named \'{0}\' does not exist", type));
 
-        string action = tableParam[0];
-
-        bool negative = tableParam[1] == "negative" ? true : false;
-
-        Debug.LogFormat("action : {0}, is negative : {1}", action, negative);
-        Debug.Log(buttonParam);
-
-        //KeyboardKeyBinding(action, negative);
-    }
-
-    public void KeyboardKeyBinding (string action, bool negative)
-    {
+        
         ScanSettings settings = new ScanSettings
         {
-            ScanFlags = ScanFlags.Key,
+            ScanFlags = type == "keyboard" ? ScanFlags.Key : ScanFlags.JoystickButton | ScanFlags.JoystickAxis,
 
-            CancelScanKey = KeyCode.Escape,
+            CancelScanKey = this.cancelKey,
 
-            Timeout = timeout
+            Timeout = this.timeout
         };
-        
 
+        if(type == "keyboard")
+        {
+            StartScanKeyboard(settings, action, negative);
+        }
+        else
+        {
+            StartScanGamepad(settings, action, negative);
+        }        
+    }
+
+
+    void StartScanKeyboard(ScanSettings settings, string action, bool negative)
+    {
         InputManager.StartInputScan(settings, result =>
         {
-            InputAction inputAction = InputManager.GetAction(controlScheme, action);
-            if (!negative)
-            {
-                inputAction.Bindings[0].Positive = result.Key;
-            }
-            else
-            {
-                inputAction.Bindings[0].Negative = result.Key;
-            }
+            int index = this.joystickBindingIndex;
 
-            // Save the settings to PlayerPrefs
+            InputAction inputAction = InputManager.GetAction(this.controlScheme, action);
+            inputBinding(inputAction, index, negative, result);
+            
+            Debug.Log(negative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
+
             PlayerPrefsSave();
             return true;
         });
     }
+
+    void StartScanGamepad(ScanSettings settings, string action, bool negative)
+    {
+        InputManager.StartInputScan(settings, result =>
+        {
+            int index = this.joystickBindingIndex;
+
+            if (result.ScanFlags == ScanFlags.JoystickButton)
+            {
+                if ((int)result.Key < (int)KeyCode.JoystickButton0 || (int)result.Key > (int)KeyCode.JoystickButton19)
+                    return false;
+
+                InputAction inputAction = InputManager.GetAction(this.controlScheme, action);
+                inputAction.Bindings[index].Type = InputType.Button;
+                inputBinding(inputAction, index, negative, result);
+
+                Debug.Log(negative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
+            }
+            else
+            {
+                InputAction inputAction = InputManager.GetAction(this.controlScheme, action);
+                inputAction.Bindings[index].Type = InputType.AnalogButton;
+                inputAction.Bindings[index].Invert = negative ? !(result.JoystickAxisValue < 0.0f) : result.JoystickAxisValue < 0.0f;
+                inputAction.Bindings[index].Axis = result.JoystickAxis;
+
+                Debug.Log(inputAction.Bindings[index].Axis);
+            }
+
+            PlayerPrefsSave();
+            return true;
+        });
+    }
+
+    void inputBinding(InputAction inputAction, int index, bool negative, ScanResult result)
+    {
+        if (!negative)
+        {
+            inputAction.Bindings[index].Positive = result.Key;
+        }
+        else
+        {
+            inputAction.Bindings[index].Negative = result.Key;
+        }
+    }
+
+
+
+
+
+
 
     private void PlayerPrefsSave()
     {
