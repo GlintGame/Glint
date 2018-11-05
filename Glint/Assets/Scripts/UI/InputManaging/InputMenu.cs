@@ -53,7 +53,7 @@ public class InputMenu : MonoBehaviour
         keyEvent = Event.current;
         if (keyEvent.type == EventType.KeyDown /*&& _waitingForKey*/)
         {
-            Debug.Log(keyEvent.keyCode);
+            //Debug.Log(keyEvent.keyCode);
             //Debug.Log(Translate(keyEvent.keyCode.ToString()));
             //_waitingForKey = false;
             //InputManagerManager.SetProperty(_axisName, _propertyName, keyEvent.keyCode);

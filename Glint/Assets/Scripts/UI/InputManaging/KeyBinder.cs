@@ -10,13 +10,11 @@ public class KeyBinder : MonoBehaviour {
 
     public int timeout = 10;
     public string controlScheme = "Player";
-    public UnityEngine.UI.Button btn;
 
     // Use this for initialization
     void Start () {
         // Load settings to PlayerPrefs
         PlayerPrefsLoad();
-        btn.Select();
     }
 	
 	// Update is called once per frame
