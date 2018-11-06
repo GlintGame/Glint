@@ -25,4 +25,6 @@ public class ButtonParam : MonoBehaviour {
         nativeButtonScript.interactable = false;
         buttonText.text = "..."; 
     }
+
+
 }

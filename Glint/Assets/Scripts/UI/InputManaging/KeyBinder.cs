@@ -16,14 +16,27 @@ public class KeyBinder : MonoBehaviour
     public static int joystickBindingIndex = 1;
 
     GameObject[] buttons;
+    GameObject eventSystem;
+    Event keyEvent;
 
     void Awake()
     {
+        PlayerPrefsLoad();
         this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
+        this.eventSystem = GameObject.Find("EventSystem");
 
         foreach (GameObject button in buttons)
         {
             UpdateButton(button);
+        }
+    }
+
+    void OnGUI()
+    {
+        keyEvent = Event.current;
+        if(keyEvent.isKey)
+        {
+            Debug.Log(keyEvent.keyCode);
         }
     }
 
@@ -55,7 +68,8 @@ public class KeyBinder : MonoBehaviour
 
 
     public void KeyBind(BindingButton buttonParams, GameObject button)
-    {        
+    {
+        this.eventSystem.SetActive(false);
         ScanSettings scanSettings = new ScanSettings
         {
             ScanFlags = buttonParams.inputType == CustomInputType.KeyboardButton ? ScanFlags.Key : ScanFlags.JoystickButton | ScanFlags.JoystickAxis,
@@ -80,12 +94,10 @@ public class KeyBinder : MonoBehaviour
     {
         InputManager.StartInputScan(scanSettings, result =>
         {
-            int index = KeyBinder.joystickBindingIndex;
+            int index = KeyBinder.keyboardBindingIndex;
 
             InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
             InputAttribution(inputAction, index, buttonParams.isNegative, result);
-            
-            Debug.Log(buttonParams.isNegative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
             
             EndScan(button);
             return true;
@@ -106,8 +118,6 @@ public class KeyBinder : MonoBehaviour
                 InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
                 inputAction.Bindings[index].Type = InputType.Button;
                 InputAttribution(inputAction, index, buttonParams.isNegative, result);
-
-                Debug.Log(buttonParams.isNegative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
             }
             else
             {
@@ -115,8 +125,6 @@ public class KeyBinder : MonoBehaviour
                 inputAction.Bindings[index].Type = InputType.AnalogButton;
                 inputAction.Bindings[index].Invert = buttonParams.isNegative ? !(result.JoystickAxisValue < 0.0f) : result.JoystickAxisValue < 0.0f;
                 inputAction.Bindings[index].Axis = result.JoystickAxis;
-
-                Debug.Log(inputAction.Bindings[index].Axis);
             }
 
             EndScan(button);
@@ -126,20 +134,27 @@ public class KeyBinder : MonoBehaviour
 
     void InputAttribution(InputAction inputAction, int index, bool negative, ScanResult result)
     {
-        if (!negative)
+        if (negative)
         {
-            inputAction.Bindings[index].Positive = result.Key;
+            inputAction.Bindings[index].Negative = result.Key;
         }
         else
         {
-            inputAction.Bindings[index].Negative = result.Key;
+            inputAction.Bindings[index].Positive = result.Key;
         }
     }
 
     void EndScan(GameObject button)
     {
-        PlayerPrefsSave();
+        Button buttonScript = button.GetComponent<Button>();
+        Debug.Log(button.name);
+        buttonScript.interactable = true;
+        buttonScript.Select();
+
         UpdateButton(button);
+
+        this.eventSystem.SetActive(true);
+        PlayerPrefsSave();
     }
 
 
