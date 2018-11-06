@@ -3,108 +3,128 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 using Luminosity.IO;
 
 public class KeyBinder : MonoBehaviour
 {
+    public static int timeout = 10;
+    public static string controlScheme = "Player";
+    public static KeyCode cancelKey = KeyCode.Escape;
+    public static int keyboardBindingIndex = 0;
+    public static int joystickBindingIndex = 1;
 
-    public int timeout = 10;
-    public string controlScheme = "Player";
-    public KeyCode cancelKey = KeyCode.Escape;
-    public int keyboardBindingIndex = 0;
-    public int joystickBindingIndex = 1;
+    GameObject[] buttons;
 
-    public void TranslateButtonParams(string buttonParams)
+    void Awake()
     {
-        string[] tableParam = buttonParams.Split(' ');
-        string inputType = tableParam[0];
-        string action = tableParam[1];
-        bool negative = tableParam[2] == "negative" ? true : false;
+        this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
 
-        KeyCode currentKey = (negative ? InputManager.GetAction(this.controlScheme, action).Bindings[inputType == "keyboard" ? 0 : 1].Negative : InputManager.GetAction(this.controlScheme, action).Bindings[inputType == "keyboard" ? 0 : 1].Positive);
-
-        Debug.LogFormat("type : {0}, action : {1}, is negative : {2}, current key : {3}", inputType, action, negative, currentKey);
-
-        KeyBind(inputType, action, negative);
+        foreach (GameObject button in buttons)
+        {
+            UpdateButton(button);
+        }
     }
 
-    void KeyBind(string type, string action, bool negative)
+    private void UpdateButton(GameObject button)
     {
-        if (type != "keyboard"
-            && type != "gamepad")
-            Debug.LogError(string.Format("A binding type named \'{0}\' does not exist", type));
+        BindingButton buttonParams = button.GetComponent<ButtonParam>().buttonParams;
+        int index = buttonParams.inputType == CustomInputType.KeyboardButton ? KeyBinder.keyboardBindingIndex : KeyBinder.joystickBindingIndex;
+        Text textComponent = button.GetComponentInChildren<Text>();
+        InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
+        InputBinding binding = inputAction.Bindings[index];
 
-        
-        ScanSettings settings = new ScanSettings
+        string outputText;
+
+        switch(binding.Type)
         {
-            ScanFlags = type == "keyboard" ? ScanFlags.Key : ScanFlags.JoystickButton | ScanFlags.JoystickAxis,
+            case InputType.Button:
+                outputText = buttonParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
+                break;
+            case InputType.AnalogButton:
+                outputText = binding.Axis.ToString();
+                break;
+            default:
+                outputText = "Error";
+                break;
+        }
 
-            CancelScanKey = this.cancelKey,
+        textComponent.text = outputText;
+    }
 
-            Timeout = this.timeout
+
+    public void KeyBind(BindingButton buttonParams, GameObject button)
+    {        
+        ScanSettings scanSettings = new ScanSettings
+        {
+            ScanFlags = buttonParams.inputType == CustomInputType.KeyboardButton ? ScanFlags.Key : ScanFlags.JoystickButton | ScanFlags.JoystickAxis,
+
+            CancelScanKey = cancelKey,
+
+            Timeout = timeout
         };
 
-        if(type == "keyboard")
+        if(buttonParams.inputType == CustomInputType.KeyboardButton)
         {
-            StartScanKeyboard(settings, action, negative);
+            StartScanKeyboard(scanSettings, buttonParams, button);
         }
         else
         {
-            StartScanGamepad(settings, action, negative);
+            StartScanGamepad(scanSettings, buttonParams, button);
         }        
     }
 
 
-    void StartScanKeyboard(ScanSettings settings, string action, bool negative)
+    void StartScanKeyboard(ScanSettings scanSettings, BindingButton buttonParams, GameObject button)
     {
-        InputManager.StartInputScan(settings, result =>
+        InputManager.StartInputScan(scanSettings, result =>
         {
-            int index = this.joystickBindingIndex;
+            int index = KeyBinder.joystickBindingIndex;
 
-            InputAction inputAction = InputManager.GetAction(this.controlScheme, action);
-            inputBinding(inputAction, index, negative, result);
+            InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
+            InputAttribution(inputAction, index, buttonParams.isNegative, result);
             
-            Debug.Log(negative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
-
-            PlayerPrefsSave();
+            Debug.Log(buttonParams.isNegative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
+            
+            EndScan(button);
             return true;
         });
     }
 
-    void StartScanGamepad(ScanSettings settings, string action, bool negative)
+    void StartScanGamepad(ScanSettings scanSettings, BindingButton buttonParams, GameObject button)
     {
-        InputManager.StartInputScan(settings, result =>
+        InputManager.StartInputScan(scanSettings, result =>
         {
-            int index = this.joystickBindingIndex;
+            int index = KeyBinder.joystickBindingIndex;
 
             if (result.ScanFlags == ScanFlags.JoystickButton)
             {
                 if ((int)result.Key < (int)KeyCode.JoystickButton0 || (int)result.Key > (int)KeyCode.JoystickButton19)
                     return false;
 
-                InputAction inputAction = InputManager.GetAction(this.controlScheme, action);
+                InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
                 inputAction.Bindings[index].Type = InputType.Button;
-                inputBinding(inputAction, index, negative, result);
+                InputAttribution(inputAction, index, buttonParams.isNegative, result);
 
-                Debug.Log(negative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
+                Debug.Log(buttonParams.isNegative ? inputAction.Bindings[index].Negative : inputAction.Bindings[index].Positive);
             }
             else
             {
-                InputAction inputAction = InputManager.GetAction(this.controlScheme, action);
+                InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
                 inputAction.Bindings[index].Type = InputType.AnalogButton;
-                inputAction.Bindings[index].Invert = negative ? !(result.JoystickAxisValue < 0.0f) : result.JoystickAxisValue < 0.0f;
+                inputAction.Bindings[index].Invert = buttonParams.isNegative ? !(result.JoystickAxisValue < 0.0f) : result.JoystickAxisValue < 0.0f;
                 inputAction.Bindings[index].Axis = result.JoystickAxis;
 
                 Debug.Log(inputAction.Bindings[index].Axis);
             }
 
-            PlayerPrefsSave();
+            EndScan(button);
             return true;
         });
     }
 
-    void inputBinding(InputAction inputAction, int index, bool negative, ScanResult result)
+    void InputAttribution(InputAction inputAction, int index, bool negative, ScanResult result)
     {
         if (!negative)
         {
@@ -114,6 +134,12 @@ public class KeyBinder : MonoBehaviour
         {
             inputAction.Bindings[index].Negative = result.Key;
         }
+    }
+
+    void EndScan(GameObject button)
+    {
+        PlayerPrefsSave();
+        UpdateButton(button);
     }
 
 

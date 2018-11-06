@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Input version="2">
-  <PlayerOneScheme />
+  <PlayerOneScheme>5860a77196b342cbb803008ab001e968</PlayerOneScheme>
   <PlayerTwoScheme />
   <PlayerThreeScheme />
   <PlayerFourScheme />
@@ -234,7 +234,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI right">
+    <Action name="UI_right">
       <Description />
       <Binding>
         <Positive>RightArrow</Positive>
@@ -297,7 +297,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI left">
+    <Action name="UI_left">
       <Description />
       <Binding>
         <Positive>LeftArrow</Positive>
@@ -360,7 +360,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI up">
+    <Action name="UI_up">
       <Description />
       <Binding>
         <Positive>UpArrow</Positive>
@@ -423,7 +423,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI down">
+    <Action name="UI_down">
       <Description />
       <Binding>
         <Positive>DownArrow</Positive>
@@ -486,7 +486,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI cancel">
+    <Action name="UI_cancel">
       <Description />
       <Binding>
         <Positive>Escape</Positive>
@@ -504,7 +504,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI submit">
+    <Action name="UI_submit">
       <Description />
       <Binding>
         <Positive>Space</Positive>
