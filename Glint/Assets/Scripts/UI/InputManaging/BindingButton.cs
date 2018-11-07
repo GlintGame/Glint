@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Binding Button", fileName = "New Binding Button")]
 public class BindingButton : ScriptableObject {

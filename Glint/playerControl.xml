@@ -234,7 +234,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI_right">
+    <Action name="UI_Right">
       <Description />
       <Binding>
         <Positive>RightArrow</Positive>
@@ -297,7 +297,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI_left">
+    <Action name="UI_Left">
       <Description />
       <Binding>
         <Positive>LeftArrow</Positive>
@@ -360,7 +360,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI_up">
+    <Action name="UI_Up">
       <Description />
       <Binding>
         <Positive>UpArrow</Positive>
@@ -423,7 +423,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI_down">
+    <Action name="UI_Down">
       <Description />
       <Binding>
         <Positive>DownArrow</Positive>
@@ -486,7 +486,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI_cancel">
+    <Action name="UI_Cancel">
       <Description />
       <Binding>
         <Positive>Escape</Positive>
@@ -504,7 +504,7 @@
         <GamepadIndex>GamepadOne</GamepadIndex>
       </Binding>
     </Action>
-    <Action name="UI_submit">
+    <Action name="UI_Submit">
       <Description />
       <Binding>
         <Positive>Space</Positive>

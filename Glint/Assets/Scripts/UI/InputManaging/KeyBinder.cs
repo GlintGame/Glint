@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 using Luminosity.IO;
@@ -21,22 +17,13 @@ public class KeyBinder : MonoBehaviour
 
     void Awake()
     {
-        PlayerPrefsLoad();
+        InputLoader.PlayerPrefsLoad();
         this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
         this.eventSystem = GameObject.Find("EventSystem");
 
         foreach (GameObject button in buttons)
         {
             UpdateButton(button);
-        }
-    }
-
-    void OnGUI()
-    {
-        keyEvent = Event.current;
-        if(keyEvent.isKey)
-        {
-            Debug.Log(keyEvent.keyCode);
         }
     }
 
@@ -154,35 +141,12 @@ public class KeyBinder : MonoBehaviour
         UpdateButton(button);
 
         this.eventSystem.SetActive(true);
-        PlayerPrefsSave();
+        InputLoader.PlayerPrefsSave();
     }
 
 
 
 
 
-
-
-    private void PlayerPrefsSave()
-    {
-        StringBuilder output = new StringBuilder();
-        InputSaverXML saver = new InputSaverXML(output);
-        InputManager.Save(saver);
-
-        PlayerPrefs.SetString("MyGame.InputConfig", output.ToString());
-    }
-
-    private void PlayerPrefsLoad()
-    {
-        if (PlayerPrefs.HasKey("MyGame.InputConfig"))
-        {
-            string xml = PlayerPrefs.GetString("MyGame.InputConfig");
-            using (TextReader reader = new StringReader(xml))
-            {
-                InputLoaderXML loader = new InputLoaderXML(reader);
-                InputManager.Load(loader);
-            }
-        }
-    }
 
 }
