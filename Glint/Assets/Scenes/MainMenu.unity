@@ -387,7 +387,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 463558122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 263.12097, y: 277.7776, z: 7.724059}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -635,19 +635,6 @@ MonoBehaviour:
     - m_name: lateral
       m_description: 
       m_bindings:
-      - m_positive: 100
-        m_negative: 113
-        m_deadZone: 0
-        m_gravity: 1
-        m_sensitivity: 1
-        m_snap: 1
-        m_invert: 0
-        m_type: 2
-        m_axis: 0
-        m_joystick: 0
-        m_gamepadButton: 0
-        m_gamepadAxis: 0
-        m_gamepadIndex: 0
       - m_positive: 275
         m_negative: 276
         m_deadZone: 0
@@ -670,6 +657,19 @@ MonoBehaviour:
         m_invert: 0
         m_type: 6
         m_axis: 5
+        m_joystick: 0
+        m_gamepadButton: 0
+        m_gamepadAxis: 0
+        m_gamepadIndex: 0
+      - m_positive: 100
+        m_negative: 113
+        m_deadZone: 0
+        m_gravity: 1
+        m_sensitivity: 1
+        m_snap: 1
+        m_invert: 0
+        m_type: 2
+        m_axis: 0
         m_joystick: 0
         m_gamepadButton: 0
         m_gamepadAxis: 0
