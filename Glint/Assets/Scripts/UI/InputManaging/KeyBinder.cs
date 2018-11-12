@@ -20,39 +20,7 @@ public class KeyBinder : MonoBehaviour
         InputLoader.PlayerPrefsLoad();
         this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
         this.eventSystem = GameObject.Find("EventSystem");
-
-        foreach (GameObject button in buttons)
-        {
-            UpdateButton(button);
-        }
     }
-
-    private void UpdateButton(GameObject button)
-    {
-        BindingButton buttonParams = button.GetComponent<ButtonParam>().buttonParams;
-        int index = buttonParams.inputType == CustomInputType.KeyboardButton ? KeyBinder.keyboardBindingIndex : KeyBinder.joystickBindingIndex;
-        Text textComponent = button.GetComponentInChildren<Text>();
-        InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
-        InputBinding binding = inputAction.Bindings[index];
-
-        string outputText;
-
-        switch(binding.Type)
-        {
-            case InputType.Button:
-                outputText = buttonParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
-                break;
-            case InputType.AnalogButton:
-                outputText = binding.Axis.ToString();
-                break;
-            default:
-                outputText = "Error";
-                break;
-        }
-
-        textComponent.text = outputText;
-    }
-
 
     public void KeyBind(BindingButton buttonParams, GameObject button)
     {
@@ -66,14 +34,14 @@ public class KeyBinder : MonoBehaviour
             Timeout = timeout
         };
 
-        if(buttonParams.inputType == CustomInputType.KeyboardButton)
+        if (buttonParams.inputType == CustomInputType.KeyboardButton)
         {
             StartScanKeyboard(scanSettings, buttonParams, button);
         }
         else
         {
             StartScanGamepad(scanSettings, buttonParams, button);
-        }        
+        }
     }
 
 
@@ -85,7 +53,7 @@ public class KeyBinder : MonoBehaviour
 
             InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
             InputAttribution(inputAction, index, buttonParams.isNegative, result);
-            
+
             EndScan(button);
             return true;
         });
@@ -138,15 +106,10 @@ public class KeyBinder : MonoBehaviour
         buttonScript.interactable = true;
         buttonScript.Select();
 
-        UpdateButton(button);
+        ButtonParam buttonParam = button.GetComponent<ButtonParam>();
+        buttonParam.UpdateButton();
 
         this.eventSystem.SetActive(true);
         InputLoader.PlayerPrefsSave();
     }
-
-
-
-
-
-
 }
