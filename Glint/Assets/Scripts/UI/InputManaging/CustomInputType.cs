@@ -2,5 +2,6 @@
 {
     KeyboardButton,
     GamepadButton,
-    GamepadAxis
+    GamepadAxis,
+    DigitalAxis
 }

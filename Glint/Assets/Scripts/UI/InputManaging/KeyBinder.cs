@@ -9,7 +9,7 @@ public class KeyBinder : MonoBehaviour
     public static string controlScheme = "Player";
     public static KeyCode cancelKey = KeyCode.Escape;
     public static int keyboardBindingIndex = 0;
-    public static int joystickBindingIndex = 1;
+    public static int gamepadBindingIndex = 1;
 
     GameObject[] buttons;
     GameObject eventSystem;
@@ -25,27 +25,43 @@ public class KeyBinder : MonoBehaviour
     public void KeyBind(BindingButton buttonParams, GameObject button)
     {
         this.eventSystem.SetActive(false);
+
+        ScanFlags scanFlagOut = ScanFlags.Key;
+        switch (buttonParams.inputType)
+        {
+            case CustomInputType.KeyboardButton:
+                scanFlagOut = ScanFlags.Key;
+                break;
+            case CustomInputType.GamepadButton:
+                scanFlagOut = ScanFlags.JoystickButton | ScanFlags.JoystickAxis;
+                break;
+            case CustomInputType.GamepadAxis:
+                scanFlagOut = ScanFlags.JoystickAxis;
+                break;
+            default:
+                Debug.LogErrorFormat("{1} Not implemented yet", buttonParams.inputType);
+                break;
+        }
+
         ScanSettings scanSettings = new ScanSettings
         {
-            ScanFlags = buttonParams.inputType == CustomInputType.KeyboardButton ? ScanFlags.Key : ScanFlags.JoystickButton | ScanFlags.JoystickAxis,
-
+            ScanFlags = scanFlagOut,
             CancelScanKey = cancelKey,
-
             Timeout = timeout
         };
 
         if (buttonParams.inputType == CustomInputType.KeyboardButton)
         {
-            StartScanKeyboard(scanSettings, buttonParams, button);
+            StartScanKBButton(scanSettings, buttonParams, button);
         }
         else
         {
-            StartScanGamepad(scanSettings, buttonParams, button);
+            StartScanGPButton(scanSettings, buttonParams, button);
         }
     }
 
 
-    void StartScanKeyboard(ScanSettings scanSettings, BindingButton buttonParams, GameObject button)
+    void StartScanKBButton(ScanSettings scanSettings, BindingButton buttonParams, GameObject button)
     {
         InputManager.StartInputScan(scanSettings, result =>
         {
@@ -59,11 +75,11 @@ public class KeyBinder : MonoBehaviour
         });
     }
 
-    void StartScanGamepad(ScanSettings scanSettings, BindingButton buttonParams, GameObject button)
+    void StartScanGPButton(ScanSettings scanSettings, BindingButton buttonParams, GameObject button)
     {
         InputManager.StartInputScan(scanSettings, result =>
         {
-            int index = KeyBinder.joystickBindingIndex;
+            int index = KeyBinder.gamepadBindingIndex;
 
             if (result.ScanFlags == ScanFlags.JoystickButton)
             {
@@ -87,6 +103,19 @@ public class KeyBinder : MonoBehaviour
         });
     }
 
+    void StartScanGPAxis(ScanSettings settings, BindingButton buttonParams, GameObject button)
+    {
+        int index = KeyBinder.gamepadBindingIndex;
+
+        InputManager.StartInputScan(settings, result => {
+            InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
+            inputAction.Bindings[index].Axis = result.JoystickAxis;
+
+            EndScan(button);
+            return true;
+        });
+    }
+
     void InputAttribution(InputAction inputAction, int index, bool negative, ScanResult result)
     {
         if (negative)
@@ -102,7 +131,6 @@ public class KeyBinder : MonoBehaviour
     void EndScan(GameObject button)
     {
         Button buttonScript = button.GetComponent<Button>();
-        Debug.Log(button.name);
         buttonScript.interactable = true;
         buttonScript.Select();
 

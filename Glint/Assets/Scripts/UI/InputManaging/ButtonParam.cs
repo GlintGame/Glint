@@ -31,19 +31,20 @@ public class ButtonParam : MonoBehaviour {
 
     public void UpdateButton()
     {
-        int index = buttonParams.inputType == CustomInputType.KeyboardButton ? KeyBinder.keyboardBindingIndex : KeyBinder.joystickBindingIndex;
+        int index = buttonParams.inputType == CustomInputType.KeyboardButton ? KeyBinder.keyboardBindingIndex : KeyBinder.gamepadBindingIndex;
         inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
         binding = inputAction.Bindings[index];
 
         string outputText;
-
-        /*
-        switch (binding.Type)
+        
+        switch (buttonParams.inputType)
         {
-            case InputType.Button:
+            case CustomInputType.KeyboardButton:
+            case CustomInputType.GamepadButton:
+            case CustomInputType.DigitalAxis:
                 outputText = buttonParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
                 break;
-            case InputType.AnalogButton:
+            case CustomInputType.GamepadAxis:
                 outputText = binding.Axis.ToString();
                 break;
             default:
@@ -52,8 +53,8 @@ public class ButtonParam : MonoBehaviour {
         }
 
         buttonText.text = outputText;
-        */
-        outputText = binding.Type.ToString();
+
+        //buttonText.text = binding.Type.ToString();
     }
 
 }
