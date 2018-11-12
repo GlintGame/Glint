@@ -8,7 +8,7 @@ public class GamepadInputModule : MonoBehaviour {
     private GameObject currentButton;
     private AxisEventData currentAxis;
     //timer
-    public float timeBetweenInputs = 0.15f; //in seconds
+    public float timeBetweenInputs = 0.3f; //in seconds
     [Range(0, 1)]
     public float deadZone = 0.15f;
     private float timer = 0;
@@ -19,7 +19,7 @@ public class GamepadInputModule : MonoBehaviour {
         {
             currentAxis = new AxisEventData(EventSystem.current);
             currentButton = EventSystem.current.currentSelectedGameObject;
-
+            
             if (InputManager.GetAxis("UI_GPVertical") > deadZone) // move up
             {
                 currentAxis.moveDir = MoveDirection.Down;
@@ -32,12 +32,12 @@ public class GamepadInputModule : MonoBehaviour {
             }
             else if (InputManager.GetAxis("UI_GPHorizontal") > deadZone) // move right
             {
-                currentAxis.moveDir = MoveDirection.Left;
+                currentAxis.moveDir = MoveDirection.Right;
                 ExecuteEvents.Execute(currentButton, currentAxis, ExecuteEvents.moveHandler);
             }
             else if (InputManager.GetAxis("UI_GPHorizontal") < -deadZone) // move left
             {
-                currentAxis.moveDir = MoveDirection.Right;
+                currentAxis.moveDir = MoveDirection.Left;
                 ExecuteEvents.Execute(currentButton, currentAxis, ExecuteEvents.moveHandler);
             }
             timer = timeBetweenInputs;
