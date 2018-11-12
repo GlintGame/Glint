@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3a6305291385ff4aaf69993c52fd745, type: 3}
   m_Name: DashGamepadButton
   m_EditorClassIdentifier: 
-  inputType: 1
+  inputType: 2
   isNegative: 0
   action: dash

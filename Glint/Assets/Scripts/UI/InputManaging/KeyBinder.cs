@@ -10,6 +10,8 @@ public class KeyBinder : MonoBehaviour
     public static KeyCode cancelKey = KeyCode.Escape;
     public static int keyboardBindingIndex = 0;
     public static int gamepadBindingIndex = 1;
+    public string standardInputSave = "Glint.InputConfig";
+    public string defaultInputSave = "Glint.DefaultInputConfig";
 
     GameObject[] buttons;
     GameObject eventSystem;
@@ -17,9 +19,27 @@ public class KeyBinder : MonoBehaviour
 
     void Awake()
     {
-        InputLoader.PlayerPrefsLoad();
         this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
         this.eventSystem = GameObject.Find("EventSystem");
+        
+        InputLoader.PlayerPrefsLoad(standardInputSave);
+        this.UpdateAllButtons();
+    }
+
+    public void ResetBind()
+    {
+        InputLoader.PlayerPrefsDelete(standardInputSave);
+        InputLoader.PlayerPrefsLoad(defaultInputSave);
+        this.UpdateAllButtons();
+    }
+
+    void UpdateAllButtons()
+    {
+        foreach (GameObject button in this.buttons)
+        {
+            ButtonParam buttonParam = button.GetComponent<ButtonParam>();
+            buttonParam.UpdateButton();
+        }
     }
 
     public void KeyBind(BindingButton buttonParams, GameObject button)
@@ -50,13 +70,21 @@ public class KeyBinder : MonoBehaviour
             Timeout = timeout
         };
 
-        if (buttonParams.inputType == CustomInputType.KeyboardButton)
+        switch (buttonParams.inputType)
         {
-            StartScanKBButton(scanSettings, buttonParams, button);
-        }
-        else
-        {
-            StartScanGPButton(scanSettings, buttonParams, button);
+            case CustomInputType.KeyboardButton:
+            case CustomInputType.DigitalAxis:
+                StartScanKBButton(scanSettings, buttonParams, button);
+                break;
+            case CustomInputType.GamepadButton:
+                StartScanGPButton(scanSettings, buttonParams, button);
+                break;
+            case CustomInputType.GamepadAxis:
+                StartScanGPAxis(scanSettings, buttonParams, button);
+                break;
+            default:
+                Debug.LogErrorFormat("{1} Not implemented yet", buttonParams.inputType);
+                break;
         }
     }
 
@@ -130,6 +158,7 @@ public class KeyBinder : MonoBehaviour
 
     void EndScan(GameObject button)
     {
+        Debug.Log("Scan End");
         Button buttonScript = button.GetComponent<Button>();
         buttonScript.interactable = true;
         buttonScript.Select();
@@ -138,6 +167,6 @@ public class KeyBinder : MonoBehaviour
         buttonParam.UpdateButton();
 
         this.eventSystem.SetActive(true);
-        InputLoader.PlayerPrefsSave();
+        InputLoader.PlayerPrefsSave(standardInputSave);
     }
 }

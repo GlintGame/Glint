@@ -19,7 +19,6 @@ public class ButtonParam : MonoBehaviour {
         this.keyBinder = this.inputSetting.GetComponentInChildren<KeyBinder>();
         this.nativeButtonScript = this.GetComponent<Button>();
         this.buttonText = this.GetComponentInChildren<Text>();
-        this.UpdateButton();
     }
 
     public void KeyBind()
