@@ -7,10 +7,11 @@ public class AudioManager : MonoBehaviour {
 
     public Sound[] sounds;
     public static AudioManager instance;
-
-    // TODO: add dont destroy on load and stopping sounds
+    
     private void Awake()
     {
+        DontDestroyOnLoad(this.gameObject);
+
         if(AudioManager.instance == null)
         {
             AudioManager.instance = this;
@@ -36,12 +37,9 @@ public class AudioManager : MonoBehaviour {
         sound.source.Play();
     }
 
-    // TODO: perhaps optimise this thing a bit
-    public static void Play(string[] names)
+    public static void Stop(string name)
     {
-        foreach(string name in names)
-        {
-            AudioManager.Play(name);
-        }
+        Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
+        sound.source.Stop();
     }
 }
