@@ -1220,6 +1220,8 @@ MonoBehaviour:
   sounds:
   - clip: {fileID: 8300000, guid: f034ae51f0f3770439a41ab26b35c9bd, type: 3}
     volume: 1
+    playDefault: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &805587594
 Transform:
