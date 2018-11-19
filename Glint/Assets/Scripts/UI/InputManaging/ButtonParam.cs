@@ -52,8 +52,6 @@ public class ButtonParam : MonoBehaviour {
         }
 
         buttonText.text = outputText;
-
-        //buttonText.text = binding.Type.ToString();
     }
 
 }
