@@ -6,5 +6,4 @@ We're making this game on the Unity engine version 2018.2.8.f1
 
 Folder organisation :
 
- - The unity game project is 
  - All the ressources go in the ressources folder (cap't obvious) in the root of the project, they will be added to the unity project when needed for dev.
