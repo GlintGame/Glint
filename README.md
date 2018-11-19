@@ -1,9 +1,10 @@
-# Projet_tutore-2e-annee
+# Glint
 
-just a README file
+Glint is a video game develloped by a team of students. It's a plateformer, hack'n slash and puzzle game.
 
-The Glint video game project.
+We're making this game on the Unity engine version 2018.2.8.f1
 
-All the graphic ressources go in the ressources folder.
+Folder organisation :
 
-Unity vertion is 2018.2.8f1
+ - The unity game project is 
+ - All the ressources go in the ressources folder (cap't obvious) in the root of the project, they will be added to the unity project when needed for dev.
