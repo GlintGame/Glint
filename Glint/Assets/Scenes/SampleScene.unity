@@ -437,7 +437,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6639745, y: -4.4479003, z: -17.673527}
+  m_LocalPosition: {x: -2.6639748, y: -4.4479003, z: -17.673527}
   m_LocalScale: {x: 0.6813233, y: 0.6813233, z: 0.6813233}
   m_Children: []
   m_Father: {fileID: 1551190210}
@@ -675,6 +675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PauseMenuUI: {fileID: 1739141254}
+  FirstButtonSelected: {fileID: 777285427}
 --- !u!114 &701780684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -895,11 +896,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 224467779408037336, guid: 4f9604ceadbaad845af9a58574519ecc,
     type: 2}
   m_PrefabInternal: {fileID: 777285424}
---- !u!1 &777285426 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1244439321753072, guid: 4f9604ceadbaad845af9a58574519ecc,
+--- !u!114 &777285427 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
     type: 2}
   m_PrefabInternal: {fileID: 777285424}
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &793408155
 Prefab:
   m_ObjectHideFlags: 0
@@ -1002,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 777285426}
+  m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &801260424
@@ -1119,7 +1121,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 857289055}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.6639745, y: -4.4479003, z: -17.673527}
+  m_LocalPosition: {x: -2.6639748, y: -4.4479003, z: -17.673527}
   m_LocalScale: {x: 0.6813233, y: 0.6813233, z: 0.6813233}
   m_Children:
   - {fileID: 579837967}

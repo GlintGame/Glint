@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Luminosity.IO;
 
 public class PauseMenu : MonoBehaviour {
@@ -9,7 +10,7 @@ public class PauseMenu : MonoBehaviour {
     public GameObject PauseMenuUI;
 
 	void Update () {
-		if(InputManager.GetButtonDown("UI_Menu"))
+        if (InputManager.GetButtonDown("UI_Menu"))
         {
             if(PauseMenu.gameIsPaused)
             {
