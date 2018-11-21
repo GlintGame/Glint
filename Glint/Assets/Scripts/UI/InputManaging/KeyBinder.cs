@@ -21,15 +21,24 @@ public class KeyBinder : MonoBehaviour
     {
         this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
         this.eventSystem = GameObject.Find("EventSystem");
-        
-        InputLoader.PlayerPrefsLoad(standardInputSave);
+
+
+        if (!PlayerPrefs.HasKey(this.defaultInputSave))
+        {
+            InputLoader.PlayerPrefsDelete(this.standardInputSave);
+            InputLoader.PlayerPrefsSave(this.defaultInputSave);
+        } else
+        {
+            InputLoader.PlayerPrefsLoad(this.standardInputSave);
+        }
+
         this.UpdateAllButtons();
     }
 
     public void ResetBind()
     {
-        InputLoader.PlayerPrefsDelete(standardInputSave);
-        InputLoader.PlayerPrefsLoad(defaultInputSave);
+        InputLoader.PlayerPrefsDelete(this.standardInputSave);
+        InputLoader.PlayerPrefsLoad(this.defaultInputSave);
         this.UpdateAllButtons();
     }
 
@@ -135,7 +144,8 @@ public class KeyBinder : MonoBehaviour
     {
         int index = KeyBinder.gamepadBindingIndex;
 
-        InputManager.StartInputScan(settings, result => {
+        InputManager.StartInputScan(settings, result =>
+        {
             InputAction inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
             inputAction.Bindings[index].Axis = result.JoystickAxis;
 
@@ -167,6 +177,6 @@ public class KeyBinder : MonoBehaviour
         buttonParam.UpdateButton();
 
         this.eventSystem.SetActive(true);
-        InputLoader.PlayerPrefsSave(standardInputSave);
+        InputLoader.PlayerPrefsSave(this.standardInputSave);
     }
 }
