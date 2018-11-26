@@ -9,8 +9,7 @@ public class PressionPlat : MonoBehaviour {
     public Transform image;
     public GameObject ToActivate;
     private IActivable activable;
-
-    private bool activated = false;
+    private int ObjectOnPlatform = 0;
 
     private void Awake()
     {
@@ -19,23 +18,21 @@ public class PressionPlat : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        this.activated = true;
-        this.image.position = new Vector2(this.image.position.x, this.image.position.y - this.dep);
-        this.activable.Activate();
+        this.ObjectOnPlatform++;
+        if (this.ObjectOnPlatform == 1)
+        {
+            this.image.position = new Vector2(this.image.position.x, this.image.position.y - this.dep);
+            this.activable.Activate();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        this.activated = false;
-        this.image.position = new Vector2(this.image.position.x, this.image.position.y + this.dep);
-        this.activable.Disactivate();
-    }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (this.activated == false)
+        this.ObjectOnPlatform--;
+        if (this.ObjectOnPlatform == 0)
         {
-            this.OnTriggerEnter2D(collision);
+            this.image.position = new Vector2(this.image.position.x, this.image.position.y + this.dep);
+            this.activable.Disactivate();
         }
     }
 
