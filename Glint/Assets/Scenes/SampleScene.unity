@@ -1386,7 +1386,7 @@ GameObject:
   - component: {fileID: 707558019}
   - component: {fileID: 707558018}
   m_Layer: 0
-  m_Name: BoxRespawner
+  m_Name: BoxKiller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1400,10 +1400,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 707558017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e0309799c34a40438fd2ddb9acc4216, type: 3}
+  m_Script: {fileID: 11500000, guid: 90cd4ae5ea00f1943bd32c64404ec90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawn: {fileID: 1565755721}
+  ToKillTag: box
 --- !u!61 &707558019
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1416,7 +1416,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -34.904156, y: 0}
+  m_Offset: {x: 48.42572, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1427,7 +1427,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 70.80831, y: 1}
+  m_Size: {x: 237.46805, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &707558020
 Transform:
@@ -1436,12 +1436,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 707558017}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 84.2, y: -3.8, z: 0}
+  m_LocalPosition: {x: 84.2, y: -5.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1565755721}
+  m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &775675467
 Prefab:
@@ -3636,7 +3635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1565755721}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: BoxRespawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3648,12 +3647,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1565755720}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 37.6, y: 22.3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 121.799995, y: 18.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 707558020}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1624440439
 GameObject:
@@ -4526,6 +4525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90cd4ae5ea00f1943bd32c64404ec90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ToKillTag: all
 --- !u!61 &1885000306
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4575,26 +4575,14 @@ GameObject:
   - component: {fileID: 1896139079}
   - component: {fileID: 1896139078}
   - component: {fileID: 1896139077}
-  - component: {fileID: 1896139076}
   - component: {fileID: 1896139081}
   m_Layer: 8
-  m_Name: Ennemi
+  m_Name: box
   m_TagString: box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1896139076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1896139075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 371d807cfcee26c4f9974e0ab6525514, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &1896139077
 Rigidbody2D:
   serializedVersion: 4
@@ -4712,6 +4700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   happy: {fileID: 21300000, guid: be9f9d971faf70c4f8f520ea4a3145fa, type: 3}
   sad: {fileID: 21300000, guid: f7efa6a92a93560439ac2421af19c0f2, type: 3}
+  respawn: {fileID: 1565755721}
 --- !u!1 &1925465182
 GameObject:
   m_ObjectHideFlags: 0

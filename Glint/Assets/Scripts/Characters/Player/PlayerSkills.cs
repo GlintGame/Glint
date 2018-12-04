@@ -171,8 +171,8 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
         this._overallDashDuration = this.dashDuration + this.dashAddAnimationDuration;
         this.PlayerAnimator.SetFloat("DashSpeed", 1 / this._overallDashDuration);
 
-            // camera shit
-        this.CameraParams.m_LookaheadTime = 0;
+        // camera shit
+        this.StartCoroutine(utils.Coroutine.Do.StopLookAhead(0f));
 
         // activation
         while (this._currentDashDuration < this._overallDashDuration)
@@ -186,10 +186,6 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
             yield return null;
         }
         this._isDashing = false;
-
-        // cooldown
-            // camera shit again
-        this.StartCoroutine(utils.Coroutine.Do.Lerp(new utils.Ref<float>(this.CameraParams.m_LookaheadTime), this._baseLookAheadTime, 0.5f));
 
         if (this.CharacterController.IsInAir)
         {

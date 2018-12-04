@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
+using utils;
 
 public class PlayerHitable : MonoBehaviour, IHitable, IRespawnable {
 
@@ -17,8 +19,11 @@ public class PlayerHitable : MonoBehaviour, IHitable, IRespawnable {
 
     public void respawn()
     {
-        this.Transform.position = this.respawnPotition;
+        this.StartCoroutine(utils.Coroutine.Do.StopLookAhead(1f));
+
         this.Rigidbody.velocity = Vector2.zero;
+        this.Transform.position = this.respawnPotition;
+
     }
 
     public void setRespawn(Transform position)

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 namespace utils
 {
@@ -80,7 +81,25 @@ namespace utils
             yield return new WaitForSeconds(time);
             callback();
         }
-    }
-    
+
+        public IEnumerator StopLookAhead(float seconds)
+        {
+
+            var CameraParams = GameObject
+                .FindGameObjectsWithTag("CinemachineCam")[0]
+                .GetComponent<CinemachineVirtualCamera>()
+                .GetComponentPipeline()[0]
+                as CinemachineFramingTransposer;
+
+            float baseLookAheadTime = CameraParams.m_LookaheadTime;
+            CameraParams.m_LookaheadTime = 0;
+
+            yield return new WaitForSeconds(seconds);
+
+            CameraParams.m_LookaheadTime = Mathf.Lerp(CameraParams.m_LookaheadTime, baseLookAheadTime, 0.5f);
+
+            yield return null;
+        }
+    }    
 }
 
