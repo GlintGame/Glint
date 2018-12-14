@@ -4649,11 +4649,14 @@ GameObject:
   - component: {fileID: 1925465186}
   - component: {fileID: 1925465185}
   - component: {fileID: 1925465183}
+  - component: {fileID: 1925465189}
   - component: {fileID: 1925465184}
   - component: {fileID: 1925465188}
-  - component: {fileID: 1925465189}
-  - component: {fileID: 1925465190}
   - component: {fileID: 1925465191}
+  - component: {fileID: 1925465190}
+  - component: {fileID: 1925465194}
+  - component: {fileID: 1925465193}
+  - component: {fileID: 1925465192}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4720,7 +4723,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1925465190}
+      - m_Target: {fileID: 1925465193}
         m_MethodName: OnLanding
         m_Mode: 1
         m_Arguments:
@@ -4870,19 +4873,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e2dbeb1466ada042bb2101827658c6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDuration: 0.2
-  dashAddAnimationDuration: 0.08
-  dashforce: 55
-  dashCoolDown: 0.65
+--- !u!114 &1925465191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1925465182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dce82060221c74db2ddfee4f0f27c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1925465192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1925465182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59746b6d00e9bc74bb92c96feae72d7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   MeleTimeBeforeHit: 0.2
   MeleAttackCoolDown: 0.8
   MeleHitboxDistance: 3
   MeleHitboxSize: {x: 10, y: 5}
-  MeleDamages: 10
-  fireBallRef: {fileID: 1805558211}
-  FireBallTimeBeforeLaunch: 0
-  FireBallCoolDown: 0.5
-  FireBallDamage: 10
+  MeleDamages: 5
+  _isMeleAttacking: 0
+--- !u!114 &1925465193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1925465182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e08774badf4c4c942926163840abf204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashDuration: 0.2
+  dashAddAnimationDuration: 0.08
+  dashforce: 55
+  dashCoolDown: 0.65
   OnDashEnd:
     m_PersistentCalls:
       m_Calls:
@@ -4899,7 +4932,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1925465191
+--- !u!114 &1925465194
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4907,9 +4940,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1925465182}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18dce82060221c74db2ddfee4f0f27c8, type: 3}
+  m_Script: {fileID: 11500000, guid: c57a2b4fd630e944ebae4e704275555f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireBallRef: {fileID: 1805558211}
+  FireBallTimeBeforeLaunch: 0.2
+  FireBallCoolDown: 1
+  FireBallDamage: 100
+  _isFireBallAttacking: 0
 --- !u!1001 &1963051699
 Prefab:
   m_ObjectHideFlags: 0

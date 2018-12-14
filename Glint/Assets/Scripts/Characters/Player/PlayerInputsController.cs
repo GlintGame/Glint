@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Luminosity.IO;
+using Characters.Player.Skills;
 
 public class PlayerInputsController : MonoBehaviour
 {
@@ -8,16 +9,17 @@ public class PlayerInputsController : MonoBehaviour
 
     private CharacterController2D Controller;
     private Animator PlayerAnimator;
-    private PlayerSkills Skills;
 
     private float _absoluteSpeed;
     private InputsParameters _inputs;
 
+    private Dash Dash;
+
     private void Awake()
     {
-        this.Controller = this.gameObject.GetComponent<CharacterController2D>();
-        this.PlayerAnimator = this.gameObject.GetComponent<Animator>();
-        this.Skills = this.gameObject.GetComponent<PlayerSkills>();
+        this.Controller = this.GetComponent<CharacterController2D>();
+        this.PlayerAnimator = this.GetComponent<Animator>();
+        this.Dash = this.GetComponent<Dash>();
         this._inputs = new InputsParameters();
     }
 
@@ -36,7 +38,7 @@ public class PlayerInputsController : MonoBehaviour
             this.PlayerAnimator.SetBool("PlayerJump", true);
         }
 
-        if (this._inputs.Dash && this.Skills._canDash)
+        if (this._inputs.Dash && this.Dash._canDash)
         {
             this.PlayerAnimator.SetBool("PlayerDashing", true);
         }

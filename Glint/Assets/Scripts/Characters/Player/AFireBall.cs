@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Characters.Player.Skills;
+using UnityEngine;
 
-public class FireBall : MonoBehaviour {
+public class AFireBall : MonoBehaviour {
 
     private GameObject from;
     public GameObject From
@@ -29,7 +30,7 @@ public class FireBall : MonoBehaviour {
             .direction;
 
         this.damages = this.from
-            .GetComponent<PlayerSkills>()
+            .GetComponent<FireBall>()
             .FireBallDamage;
 
         this.Rigidbody = gameObject.GetComponent<Rigidbody2D>();
@@ -49,5 +50,4 @@ public class FireBall : MonoBehaviour {
             Destroy(gameObject);
         }
     }
-
 }

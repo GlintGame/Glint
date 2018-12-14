@@ -96,9 +96,11 @@ namespace utils
 
             yield return new WaitForSeconds(seconds);
 
-            CameraParams.m_LookaheadTime = Mathf.Lerp(CameraParams.m_LookaheadTime, baseLookAheadTime, 0.5f);
-
-            yield return null;
+            while(CameraParams.m_LookaheadTime < baseLookAheadTime)
+            {
+                CameraParams.m_LookaheadTime = Mathf.Lerp(CameraParams.m_LookaheadTime, baseLookAheadTime, 0.5f);
+                yield return null;
+            }
         }
     }    
 }
