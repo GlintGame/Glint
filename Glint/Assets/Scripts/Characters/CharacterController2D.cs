@@ -21,7 +21,7 @@ public class CharacterController2D : MonoBehaviour
     {
         get
         {
-            return !_grounded;
+            return !this._grounded;
         }
     }
 
@@ -79,7 +79,7 @@ public class CharacterController2D : MonoBehaviour
             bool collidedOnlyOnBottom = false;
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                if (contact.normal.y > 0.01)
+                if (contact.normal.y > 0.15)
                 {
                     collidedOnlyOnBottom = true;
                 }
