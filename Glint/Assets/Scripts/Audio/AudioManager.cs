@@ -20,12 +20,7 @@ public class AudioManager : MonoBehaviour {
         else
         {
             Debug.Log("une instance de l'input manager, merging... ");
-            AudioManager.instance.sounds = this.sounds.Union(AudioManager.instance.sounds).Distinct().ToArray();
-            foreach(Sound sound in AudioManager.instance.sounds)
-            {
-                Debug.Log(sound.Name);
-            }
-            
+            AudioManager.instance.sounds = AudioManager.instance.sounds.Union(this.sounds).Distinct().ToArray();
         }
         
         foreach(Sound sound in this.sounds)
@@ -41,7 +36,10 @@ public class AudioManager : MonoBehaviour {
     public static void Play(string name)
     {
         Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
-        sound.source.Play();
+        if (!sound.source.isPlaying)
+        {
+            sound.source.Play();
+        }
     }
 
     public static void Stop(string name)

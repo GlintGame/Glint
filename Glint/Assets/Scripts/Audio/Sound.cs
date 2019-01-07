@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Sound : IComparable {
+[Serializable]
+public class Sound : IEquatable<Sound> {
 
     public AudioClip clip;
     public string Name
@@ -29,18 +28,15 @@ public class Sound : IComparable {
         source.loop = this.loop;
     }
 
-    public int CompareTo(object other)
+    // equality is based on name.
+    public bool Equals(Sound other)
     {
-        if (other == null) return 1;
+        if (other == null) return false;
+        return this.Name.Equals(other.Name);
+    }
 
-        Sound otherSound = other as Sound;
-        if(otherSound == null)
-        {
-            throw new ArgumentException("object compared to not-a-sound");
-        }
-        else
-        {
-            return this.Name.CompareTo(otherSound.Name);
-        }
+    public override int GetHashCode()
+    {
+        return this.Name.GetHashCode();
     }
 }
