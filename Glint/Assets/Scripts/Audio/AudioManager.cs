@@ -14,11 +14,18 @@ public class AudioManager : MonoBehaviour {
 
         if(AudioManager.instance == null)
         {
+            Debug.Log("pas d'instance de l'audio manager");
             AudioManager.instance = this;
         }
         else
         {
-            AudioManager.instance.sounds = this.sounds.Union(AudioManager.instance.sounds).ToArray();
+            Debug.Log("une instance de l'input manager, merging... ");
+            AudioManager.instance.sounds = this.sounds.Union(AudioManager.instance.sounds).Distinct().ToArray();
+            foreach(Sound sound in AudioManager.instance.sounds)
+            {
+                Debug.Log(sound.Name);
+            }
+            
         }
         
         foreach(Sound sound in this.sounds)

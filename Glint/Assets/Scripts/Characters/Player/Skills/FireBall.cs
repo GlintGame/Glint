@@ -66,7 +66,5 @@ namespace Characters.Player.Skills
             yield return new WaitForSeconds(this.FireBallCoolDown);
             this._fireBallCoolDown = false;
         }
-
-       
     }
 }

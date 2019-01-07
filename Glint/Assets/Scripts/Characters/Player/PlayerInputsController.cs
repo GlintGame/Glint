@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Luminosity.IO;
 using Characters.Player.Skills;
+using Cinemachine;
 
 public class PlayerInputsController : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class PlayerInputsController : MonoBehaviour
         this.PlayerAnimator.SetFloat("PlayerMovement", this._absoluteSpeed);
 
         this.Controller.Behave(this._inputs);
+        
     }
 
     public void OnLanding()

@@ -67,8 +67,6 @@ namespace Characters.Player.Skills
 
         public IEnumerator Launch()
         {
-            Debug.Log("launched");
-
             // initialisation
             this._isDashing = true;
             int dashDirection = this.CharacterController.direction;
@@ -77,7 +75,7 @@ namespace Characters.Player.Skills
             this._overallDashDuration = this.dashDuration + this.dashAddAnimationDuration;
             this.PlayerAnimator.SetFloat("DashSpeed", 1 / this._overallDashDuration);
             
-            this.StartCoroutine(utils.Coroutine.Do.StopLookAhead(0f));
+            this.StartCoroutine(utils.Coroutine.Do.StopLookAhead(this._overallDashDuration * 2));
 
             // activation
             while (this._currentDashDuration < this._overallDashDuration)
