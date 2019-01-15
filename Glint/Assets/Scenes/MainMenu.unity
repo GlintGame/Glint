@@ -988,7 +988,7 @@ MonoBehaviour:
   m_playerTwoDefault: 
   m_playerThreeDefault: 
   m_playerFourDefault: 
-  m_ignoreTimescale: 1
+  m_ignoreTimescale: 0
 --- !u!4 &610188589
 Transform:
   m_ObjectHideFlags: 0
@@ -1089,6 +1089,7 @@ GameObject:
   - component: {fileID: 749286581}
   - component: {fileID: 749286583}
   - component: {fileID: 749286582}
+  - component: {fileID: 749286584}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -1112,7 +1113,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.92456055, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749286582
 MonoBehaviour:
@@ -1148,6 +1149,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 749286580}
   m_CullTransparentMesh: 0
+--- !u!114 &749286584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 749286580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1254083943, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 4
+  m_AspectRatio: 1.7777778
 --- !u!1001 &751050732
 Prefab:
   m_ObjectHideFlags: 0

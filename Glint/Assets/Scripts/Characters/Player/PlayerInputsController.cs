@@ -49,7 +49,6 @@ public class PlayerInputsController : MonoBehaviour
         this.PlayerAnimator.SetFloat("PlayerMovement", this._absoluteSpeed);
 
         this.Controller.Behave(this._inputs);
-        
     }
 
     public void OnLanding()

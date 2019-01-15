@@ -12,7 +12,12 @@ public class UISceneManager : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void LeaveMenu(string sceneName)
+    {
+        GameObject.Find("Canvas").GetComponent<PauseMenu>().Resume();
+        LoadScene(sceneName);
     }
 }
