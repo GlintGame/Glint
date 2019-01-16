@@ -8,6 +8,8 @@ public class PlayerInputsController : MonoBehaviour
     [Range(0f, 1f)] public float walkSpeedLimit = 0.6f;
     [Range(0f, 1f)] public float HorizontalDeadZone = 0.15f;
 
+    private bool _jumpIsLock = false;
+
     private CharacterController2D Controller;
     private Animator PlayerAnimator;
 
@@ -22,11 +24,18 @@ public class PlayerInputsController : MonoBehaviour
         this.PlayerAnimator = this.GetComponent<Animator>();
         this.Dash = this.GetComponent<Dash>();
         this._inputs = new InputsParameters();
+
+        PauseMenu.OnPause += this.LockJump;
+        PauseMenu.OnReleaseButton += this.UnlockJump;
+        PauseMenu.OnResumeEscape += this.UnlockJump;
     }
 
     private void FixedUpdate()
     {
-        this._inputs.Jump = InputManager.GetButton("jump");
+        if(!this._jumpIsLock)
+        {
+            this._inputs.Jump = InputManager.GetButton("jump");
+        }
         this._inputs.AttackOne = InputManager.GetButton("mele");
         this._inputs.AttackTwo = InputManager.GetButton("fireBall");
         this._inputs.Run = InputManager.GetAxis("run") > 0.9 || InputManager.GetButton("run");
@@ -65,5 +74,16 @@ public class PlayerInputsController : MonoBehaviour
     public void OnDashEnd()
     {
         this.PlayerAnimator.SetBool("PlayerDashing", false);
+    }
+
+
+    private void LockJump()
+    {
+        this._jumpIsLock = true;
+    }
+
+    private void UnlockJump()
+    {
+        this._jumpIsLock = false;
     }
 }

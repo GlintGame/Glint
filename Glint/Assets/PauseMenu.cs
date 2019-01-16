@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour {
     private static PauseMenu instance;
 
     private bool gameIsPaused = false;
+    private bool waitForButtonRelease = false;
 
     private GameObject PauseMenuUI;
     private Button FocusButton;
@@ -22,6 +23,12 @@ public class PauseMenu : MonoBehaviour {
     public delegate void ResumeAction();
     public static event ResumeAction OnResume;
 
+    public delegate void ResumeEscapeAction();
+    public static event ResumeEscapeAction OnResumeEscape;
+
+    public delegate void ReleaseButtonAction();
+    public static event ReleaseButtonAction OnReleaseButton;
+
     void Awake()
     {
         if (PauseMenu.instance == null)
@@ -31,6 +38,7 @@ public class PauseMenu : MonoBehaviour {
             GameObject.DontDestroyOnLoad(this);
             PauseMenu.OnPause += this.Focus;
             SceneManager.sceneLoaded += this.GetMenuElements;
+            PauseMenu.OnReleaseButton += this.Useless;
         }
         else
         {
@@ -46,13 +54,27 @@ public class PauseMenu : MonoBehaviour {
             if(this.gameIsPaused)
             {
                 this.Resume();
+
+                if (OnResumeEscape != null)
+                    OnResumeEscape();
             }
             else
             {
                 this.Pause();
             }
         }
+
+        if(this.waitForButtonRelease
+            && InputManager.GetButtonUp("UI_Submit"))
+        {
+            this.waitForButtonRelease = false;
+
+            if (OnReleaseButton != null)
+                OnReleaseButton();
+        }
 	}
+
+
 
 
     void Pause()
@@ -75,16 +97,33 @@ public class PauseMenu : MonoBehaviour {
             OnResume();
     }
 
+    public void StartWaiting()
+    {
+        this.waitForButtonRelease = true;
+    }
+
+
+
+
+
     private void Focus()
     {
         this.eventSystem.SetSelectedGameObject(this.PauseMenuUI);
         this.FocusButton.Select();
     }
 
+
+
+
     private void GetMenuElements(Scene scene, LoadSceneMode loadSceneMode)
     {
         this.eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         this.PauseMenuUI = this.gameObject.transform.Find("Pause Menu").gameObject;
         this.FocusButton = this.PauseMenuUI.transform.Find("Resume").gameObject.GetComponent<Button>();
+    }
+
+    private void Useless()
+    {
+        Debug.Log("OK");
     }
 }
