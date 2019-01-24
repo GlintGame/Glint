@@ -17,6 +17,7 @@ public class UISceneManager : MonoBehaviour {
 
     public void LeaveMenu(string sceneName)
     {
+        Debug.Log(sceneName);
         GameObject.Find("Canvas").GetComponent<PauseMenu>().Resume();
         LoadScene(sceneName);
     }

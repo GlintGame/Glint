@@ -15,7 +15,7 @@ public class ButtonParam : MonoBehaviour {
 
     void Awake()
     {
-        this.inputSetting = GameObject.Find("_InputSettings");
+        this.inputSetting = GameObject.Find("InputSettings");
         this.keyBinder = this.inputSetting.GetComponentInChildren<KeyBinder>();
         this.nativeButtonScript = this.GetComponent<Button>();
         this.buttonText = this.GetComponentInChildren<Text>();
