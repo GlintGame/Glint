@@ -15,25 +15,30 @@ public class ButtonParam : MonoBehaviour {
 
     void Awake()
     {
-        this.inputSetting = GameObject.Find("_InputSettings");
+        this.inputSetting = GameObject.Find("InputSettings");
         this.keyBinder = this.inputSetting.GetComponentInChildren<KeyBinder>();
         this.nativeButtonScript = this.GetComponent<Button>();
+    }
+
+    void OnEnable()
+    {
         this.buttonText = this.GetComponentInChildren<Text>();
     }
 
     public void KeyBind()
     {
-        keyBinder.KeyBind(this.buttonParams, gameObject);
+        this.keyBinder.KeyBind(this.buttonParams, gameObject);
         nativeButtonScript.interactable = false;
         buttonText.text = "...";
     }
 
     public void UpdateButton()
     {
-        int index = buttonParams.inputType == CustomInputType.KeyboardButton ? KeyBinder.keyboardBindingIndex : KeyBinder.gamepadBindingIndex;
-        inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
-        binding = inputAction.Bindings[index];
 
+        int index = buttonParams.inputType == CustomInputType.KeyboardButton ? KeyBinder.keyboardBindingIndex : KeyBinder.gamepadBindingIndex;
+        this.inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
+        binding = inputAction.Bindings[index];
+        
         string outputText;
         
         switch (buttonParams.inputType)
@@ -50,8 +55,7 @@ public class ButtonParam : MonoBehaviour {
                 outputText = "Error";
                 break;
         }
-
-        buttonText.text = outputText;
+        this.buttonText.text = outputText;
     }
 
 }
