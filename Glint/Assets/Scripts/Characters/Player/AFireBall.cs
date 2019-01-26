@@ -43,8 +43,8 @@ public class AFireBall : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        IHitable target;
-        if((target = collision.gameObject.GetComponent<IHitable>()) != null)
+        IHitable target = collision.gameObject.GetComponent<IHitable>();
+        if (collision.gameObject != from && target != null)
         {
             target.TakeDamages(this.damages, this.Transform.position);
             Destroy(gameObject);

@@ -59,8 +59,7 @@ namespace utils
 
             float baseLookAheadTime = CameraParams.m_LookaheadTime;
             CameraParams.m_LookaheadTime = 0;
-
-            Debug.Log(seconds);
+            
             yield return new WaitForSeconds(seconds);
 
             float chrono = 0;

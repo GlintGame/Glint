@@ -19,6 +19,7 @@ public class PlayerHitable : MonoBehaviour, IHitable, IRespawnable {
 
     public void respawn()
     {
+        Debug.Log("respawning");
         this.StartCoroutine(utils.Coroutine.Do.StopLookAhead(1f));
 
         this.Rigidbody.velocity = Vector2.zero;

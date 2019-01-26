@@ -66,10 +66,10 @@ namespace Characters.Player.Skills
 
             foreach (Collider2D collider in collided)
             {
-                IHitable hitableObject;
-                if ((hitableObject = collider.gameObject.GetComponent<IHitable>()) != null)
+                IHitable target = collider.gameObject.GetComponent<IHitable>();
+                if (collider.gameObject != this.gameObject && target != null)
                 {
-                    hitableObject.TakeDamages(this.MeleDamages, this.Transform.position);
+                    target.TakeDamages(this.MeleDamages, this.Transform.position);
                 }
             }
 
