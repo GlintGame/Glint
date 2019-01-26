@@ -32,8 +32,14 @@ public class KeyBinder : MonoBehaviour
             InputLoader.PlayerPrefsLoad(this.standardInputSave);
         }
 
-        this.ResetBind();
     }
+
+    void Start()
+    {
+        this.UpdateAllButtons();
+    }
+
+
 
     public void ResetBind()
     {
