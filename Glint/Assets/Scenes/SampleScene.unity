@@ -5002,6 +5002,7 @@ GameObject:
   - component: {fileID: 1805558214}
   - component: {fileID: 1805558212}
   - component: {fileID: 1805558213}
+  - component: {fileID: 1805558217}
   m_Layer: 0
   m_Name: FireBall
   m_TagString: Untagged
@@ -5058,7 +5059,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.45, y: 4.85}
+    oldSize: {x: 20.75, y: 3.1}
     newSize: {x: 2.45, y: 4.85}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -5102,7 +5103,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 40c16b4759671204e9cc14598faf14eb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b88ee17a2ea238a44a3254684eb0fc2e, type: 3}
   m_Color: {r: 1, g: 0.79175526, b: 0.051886797, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -5126,6 +5127,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1805558217
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1805558211}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5add462305bb68f46817926efa3b1fc1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &1882075870
 Prefab:
   m_ObjectHideFlags: 0
