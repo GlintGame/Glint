@@ -925,6 +925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e391eac76c4a82d4e9d683e10f2de571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SettingsCanvas: {fileID: 0}
+  SelectedButtonSettings: {fileID: 0}
 --- !u!4 &913628285
 Transform:
   m_ObjectHideFlags: 0
@@ -1626,7 +1628,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 88.11261, y: 0}
+  m_SizeDelta: {x: 0, y: 0.41323853}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1587416717
 MonoBehaviour:

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 using Luminosity.IO;
 
@@ -14,14 +15,14 @@ public class KeyBinder : MonoBehaviour
     public string defaultInputSave = "Glint.DefaultInputConfig";
 
     GameObject[] buttons;
-    GameObject eventSystem;
+    public GameObject eventSystemGameObject;
+    private EventSystem eventSystem;
     Event keyEvent;
 
     void Awake()
     {
         this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
-        this.eventSystem = GameObject.Find("EventSystem");
-
+        this.eventSystem = eventSystemGameObject.GetComponent<EventSystem>();
 
         if (!PlayerPrefs.HasKey(this.defaultInputSave))
         {
@@ -59,7 +60,7 @@ public class KeyBinder : MonoBehaviour
 
     public void KeyBind(BindingButton buttonParams, GameObject button)
     {
-        this.eventSystem.SetActive(false);
+        this.eventSystemGameObject.SetActive(false);
 
         ScanFlags scanFlagOut = ScanFlags.Key;
         switch (buttonParams.inputType)
@@ -177,12 +178,13 @@ public class KeyBinder : MonoBehaviour
         Debug.Log("Scan End");
         Button buttonScript = button.GetComponent<Button>();
         buttonScript.interactable = true;
-        buttonScript.Select();
+        //buttonScript.Select();
+        eventSystem.SetSelectedGameObject(button);
 
         ButtonParam buttonParam = button.GetComponent<ButtonParam>();
         buttonParam.UpdateButton();
 
-        this.eventSystem.SetActive(true);
+        this.eventSystemGameObject.SetActive(true);
         InputLoader.PlayerPrefsSave(this.standardInputSave);
     }
 }

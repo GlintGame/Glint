@@ -10,6 +10,7 @@ public class PauseMenu : MonoBehaviour {
 
     private static PauseMenu instance;
 
+    public bool onMainMenu = true;
     private bool gameIsPaused = false;
     private bool waitForButtonRelease = false;
 
@@ -49,7 +50,7 @@ public class PauseMenu : MonoBehaviour {
 
 
     void Update() {
-        if (InputManager.GetButtonDown("UI_Menu"))
+        if (InputManager.GetButtonDown("UI_Menu") && !this.onMainMenu)
         {
             if(this.gameIsPaused)
             {
