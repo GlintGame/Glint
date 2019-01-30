@@ -37,16 +37,21 @@ public class AFireBall : MonoBehaviour {
         this.Transform = gameObject.GetComponent<Transform>();
 
         this.Rigidbody.velocity = Vector2.right * this.direction * speed;
+        if(this.direction == -1)
+        {
+            this.Transform.Rotate(new Vector3(0, 180, 0));
+        }
 
         StartCoroutine(utils.Coroutine.Do.Wait(this.duration, () => Destroy(gameObject)));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         IHitable target = collision.gameObject.GetComponent<IHitable>();
-        if (collision.gameObject != from)
+        if (collision.gameObject != from && collision.gameObject.layer != 11)
         {
-            if(target != null)
+            if (target != null)
             {
                 target.TakeDamages(this.damages, this.Transform.position);
             }

@@ -55,7 +55,6 @@ namespace Characters.Player.Skills
             // activation
             yield return new WaitForSeconds(this.FireBallTimeBeforeLaunch);
             GameObject fireBall = Instantiate(this.fireBallRef);
-            fireBall.SetActive(true);
             Vector3 origin = this.Transform.position;
             origin.y += 3.5f;
             fireBall.GetComponent<Transform>().position = origin;
