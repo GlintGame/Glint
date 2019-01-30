@@ -11,6 +11,7 @@ public class boxHit : MonoBehaviour, IHitable {
     public void TakeDamages(int damages, Vector3 origin)
     {
         this.gameObject.transform.position = respawn.position;
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
