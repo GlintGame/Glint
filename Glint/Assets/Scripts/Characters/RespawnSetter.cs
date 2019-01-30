@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RespawnSetter : MonoBehaviour {
 
-    public Transform Transform;
+    private Transform Transform;
 
     private void Awake()
     {
