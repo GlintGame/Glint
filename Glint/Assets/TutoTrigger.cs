@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Luminosity.IO;
 using UnityEngine.UI;
+using TMPro;
 
 public class TutoTrigger : MonoBehaviour {
 
@@ -10,7 +11,7 @@ public class TutoTrigger : MonoBehaviour {
     public BindingButton keyboardParams;
     public BindingButton gamepadParams;
 
-    private Text text;
+    private TextMeshProUGUI text;
     private string keyboardInputText;
     private string gamepadInputText;
     private string gamepadInputType;
@@ -20,7 +21,7 @@ public class TutoTrigger : MonoBehaviour {
 
     void Awake()
     {
-        this.text = this.tutoCanvas.GetComponentInChildren<Text>();
+        this.text = this.tutoCanvas.GetComponentInChildren<TextMeshProUGUI>();
         getKeyboardInput();
         getGamepadInput();
         this.text.text = this.text.text.Replace("${KB}", keyboardInputText);
@@ -30,7 +31,10 @@ public class TutoTrigger : MonoBehaviour {
     private void getKeyboardInput()
     {
         InputBinding binding = getBinding(0, this.keyboardParams.action);
-        this.keyboardInputText = this.keyboardParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
+        string outputText = this.keyboardParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
+        Debug.Log("text : " + outputText);
+        Debug.Log("key : " + utils.InputsDictionnary.dictionnary[outputText]);
+        this.keyboardInputText = utils.InputsDictionnary.dictionnary[outputText];
     }
 
     private void getGamepadInput()
@@ -43,6 +47,7 @@ public class TutoTrigger : MonoBehaviour {
             case CustomInputType.GamepadButton:
             case CustomInputType.DigitalAxis:
                 outputText = this.gamepadParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
+                outputText = utils.InputsDictionnary.dictionnary[outputText];
                 break;
             case CustomInputType.GamepadAxis:
                 outputText = binding.Axis.ToString();
@@ -51,6 +56,7 @@ public class TutoTrigger : MonoBehaviour {
                 outputText = "Error";
                 break;
         }
+
         this.gamepadInputText = outputText;
     }
 
