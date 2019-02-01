@@ -19,9 +19,22 @@ namespace utils
                 GameObject.DontDestroyOnLoad(this);
 
                 int index = 0;
+                int processedIndex = 0;
                 foreach (string input in InputsDictionnary.inputs)
                 {
-                    InputsDictionnary.dictionnary.Add(input, index.ToString());
+                    if (index >= 102)
+                    {
+                        Debug.Log(index);
+                        processedIndex = 102 + (index - 102) % 20;
+                        Debug.Log(processedIndex);
+                    }
+                    else
+                    {
+                        processedIndex = index;
+                    }
+
+                    InputsDictionnary.dictionnary.Add(input, processedIndex.ToString());
+
                     index++;
                 }
             }
