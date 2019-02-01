@@ -47,7 +47,6 @@ public class TutoTrigger : MonoBehaviour {
             case CustomInputType.GamepadButton:
             case CustomInputType.DigitalAxis:
                 outputText = this.gamepadParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
-                outputText = utils.InputsDictionnary.dictionnary[outputText];
                 break;
             case CustomInputType.GamepadAxis:
                 outputText = binding.Axis.ToString();
@@ -57,7 +56,7 @@ public class TutoTrigger : MonoBehaviour {
                 break;
         }
 
-        this.gamepadInputText = outputText;
+        this.gamepadInputText = utils.InputsDictionnary.dictionnary[outputText];
     }
 
     private InputBinding getBinding(int index, string action)
