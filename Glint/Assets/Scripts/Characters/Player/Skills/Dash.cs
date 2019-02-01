@@ -47,11 +47,15 @@ namespace Characters.Player.Skills
         {
             get
             {
+
                 return
+                    // si le joueur
+                    // ne dash pas
                     !this._isDashing
+                    // n'est pas en cool down
                     && !this._dashCoolDown
-                    && !(this.CharacterController.IsInAir
-                            && this._hasDashInAir);
+                    // n'est pas en l'air alors qu'il a déjà dashé
+                    && !(this.CharacterController.IsInAir && this._hasDashInAir);
             }
         }
 
@@ -74,7 +78,7 @@ namespace Characters.Player.Skills
             this._currentDashDuration = 0;
             this._overallDashDuration = this.dashDuration + this.dashAddAnimationDuration;
             this.PlayerAnimator.SetFloat("DashSpeed", 1 / this._overallDashDuration);
-            
+
             this.StartCoroutine(utils.Coroutine.Do.StopLookAhead(this._overallDashDuration * 2));
 
             // activation
@@ -88,12 +92,13 @@ namespace Characters.Player.Skills
                 this._currentDashDuration += Time.fixedDeltaTime;
                 yield return null;
             }
-            this._isDashing = false;
 
+            this._isDashing = false;
             if (this.CharacterController.IsInAir)
             {
                 this._hasDashInAir = true;
             }
+
             this.OnDashEnd.Invoke();
 
             this._dashCoolDown = true;

@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-guid: c8fcae3d8ca4dc24a93ab4f6d05a5fce
+guid: c188bcf3969e60b4d80d40a5f480428f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: saut_0
-    21300002: saut_1
-    21300004: saut_1
-    21300006: saut_2
-    21300008: saut_3
-    21300010: saut_4
-    21300012: saut_6
+    21300000: breath-colo_0
+    21300002: breath-colo_1
+    21300004: breath-colo_2
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -52,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 80
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -88,17 +84,6 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-  - serializedVersion: 2
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -124,13 +109,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: saut_0
+      name: breath-colo_0
       rect:
         serializedVersion: 2
-        x: 48
-        y: 502
-        width: 124
-        height: 362
+        x: 18
+        y: 313
+        width: 267
+        height: 553
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -138,19 +123,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f833305a15b169c4eaabb0eee76be2e0
+      spriteID: 287e6b2f07f6f5e468bae803f72ac88e
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: saut_1
+      name: breath-colo_1
       rect:
         serializedVersion: 2
-        x: 448
-        y: 616
-        width: 172
-        height: 321
+        x: 292
+        y: 329
+        width: 285
+        height: 537
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,19 +143,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e46175d0e65658f479963dc7a2411ad6
+      spriteID: cac1ba79f03e5794796a53ed89e1c878
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: saut_2
+      name: breath-colo_2
       rect:
         serializedVersion: 2
-        x: 668
-        y: 711
-        width: 157
-        height: 242
+        x: 634
+        y: 322
+        width: 308
+        height: 547
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,47 +163,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a301a83d9cb5a264294b875febff55bd
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: saut_3
-      rect:
-        serializedVersion: 2
-        x: 871
-        y: 596
-        width: 173
-        height: 417
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: dd37be91c6222164f83f92bed01dc76e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: saut_4
-      rect:
-        serializedVersion: 2
-        x: 1371
-        y: 506
-        width: 179
-        height: 326
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b39a2747e7a8534ab9eb7ee92c45f60
+      spriteID: 7720afd67c85f2b48a4883f6511042b0
       vertices: []
       indices: 
       edges: []
@@ -226,7 +171,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: cd0ad2dae5d1ff14d9e0359b6609da40
+    spriteID: e05acf6c90d0b8847a403b6156ec9b36
     vertices: []
     indices: 
     edges: []

@@ -6094,8 +6094,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.752381, y: 4.3238096}
-    newSize: {x: 2.45, y: 4.85}
+    oldSize: {x: 3.0400002, y: 4.88}
+    newSize: {x: 2.96, y: 5.28}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -6226,10 +6226,10 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.45, y: 4.85}
+  m_Size: {x: 2.96, y: 5.28}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &1925465187
@@ -6326,8 +6326,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e08774badf4c4c942926163840abf204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashDuration: 0.2
-  dashAddAnimationDuration: 0.08
+  dashDuration: 0.35
+  dashAddAnimationDuration: 0.2
   dashforce: 55
   dashCoolDown: 0.65
   OnDashEnd:
