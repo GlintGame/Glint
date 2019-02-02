@@ -7,6 +7,9 @@ public class AudioManager : MonoBehaviour {
 
     public Sound[] sounds;
     public static AudioManager instance;
+
+    [Range(0f, 1.5f)]
+    public static float globalSoundMultiplier = 1;
     
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class AudioManager : MonoBehaviour {
         Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
         if (!sound.source.isPlaying)
         {
+            sound.volume *= AudioManager.globalSoundMultiplier;
             sound.source.Play();
         }
     }
