@@ -2429,7 +2429,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 35.466034}
+  m_SizeDelta: {x: 160.11707, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749286582
 MonoBehaviour:
@@ -3094,7 +3094,7 @@ Prefab:
         type: 2}
       propertyPath: m_Navigation.m_SelectOnLeft
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 328245105}
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_FontData.m_FontSize
@@ -3983,7 +3983,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -5929,7 +5929,7 @@ Prefab:
         type: 2}
       propertyPath: m_Navigation.m_SelectOnLeft
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 866502390}
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_FontData.m_FontSize
@@ -6186,6 +6186,7 @@ GameObject:
   - component: {fileID: 2097207121}
   - component: {fileID: 2097207120}
   - component: {fileID: 2097207124}
+  - component: {fileID: 2097207125}
   m_Layer: 5
   m_Name: UI Pack
   m_TagString: Untagged
@@ -6285,6 +6286,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onMainMenu: 1
+--- !u!114 &2097207125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2097207119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abf806683d5abd446839936c6fe75189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2103658962 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114986483678856508, guid: 560f62c414f8cb444857b3ba62f8c97f,
