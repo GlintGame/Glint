@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using TMPro;
 using Luminosity.IO;
 
 public class ButtonParam : MonoBehaviour {
@@ -9,7 +9,7 @@ public class ButtonParam : MonoBehaviour {
     GameObject inputSetting;
     KeyBinder keyBinder;
     Button nativeButtonScript;
-    Text buttonText;
+    TextMeshProUGUI buttonText;
     InputAction inputAction;
     InputBinding binding;
 
@@ -22,7 +22,7 @@ public class ButtonParam : MonoBehaviour {
 
     void OnEnable()
     {
-        this.buttonText = this.GetComponentInChildren<Text>();
+        this.buttonText = this.gameObject.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     public void KeyBind()
@@ -34,28 +34,7 @@ public class ButtonParam : MonoBehaviour {
 
     public void UpdateButton()
     {
-
-        int index = buttonParams.inputType == CustomInputType.KeyboardButton ? KeyBinder.keyboardBindingIndex : KeyBinder.gamepadBindingIndex;
-        this.inputAction = InputManager.GetAction(KeyBinder.controlScheme, buttonParams.action);
-        binding = inputAction.Bindings[index];
-        
-        string outputText;
-        
-        switch (buttonParams.inputType)
-        {
-            case CustomInputType.KeyboardButton:
-            case CustomInputType.GamepadButton:
-            case CustomInputType.DigitalAxis:
-                outputText = buttonParams.isNegative ? binding.Negative.ToString() : binding.Positive.ToString();
-                break;
-            case CustomInputType.GamepadAxis:
-                outputText = binding.Axis.ToString();
-                break;
-            default:
-                outputText = "Error";
-                break;
-        }
-        this.buttonText.text = outputText;
+        this.buttonText.text = "<sprite=" + utils.InputsDictionnary.getSpriteIndex(this.buttonParams) + ">";
     }
 
 }
