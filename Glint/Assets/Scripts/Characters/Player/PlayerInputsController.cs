@@ -47,8 +47,7 @@ public class PlayerInputsController : MonoBehaviour
         {
             this.PlayerAnimator.SetBool("PlayerJump", true);
         }
-
-        Debug.Log(this.Dash._canDash);
+        
 
         if (this._inputs.Dash && this.Dash._canDash)
         {

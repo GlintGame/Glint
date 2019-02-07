@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: 48efa56ef161cc64e9a0f6855bffbac5
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Rosario
+  fontNames:
+  - Rosario
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 28ede498e24439f42beb8a84fb6d3271, type: 3}
+  - {fileID: 12800000, guid: 0445bfdf0a0a45d4ab0e8d080a6b50f8, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

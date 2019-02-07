@@ -33,9 +33,15 @@ public class TutoTrigger : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        StartCoroutine(this.Wait());
+        //StartCoroutine(this.Wait());
         this.ShowText();
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        this.HideText();
+    }
+
 
 
     private IEnumerator Wait()
@@ -62,7 +68,7 @@ public class TutoTrigger : MonoBehaviour {
     private void HideText()
     {
         this.tutoCanvas.gameObject.SetActive(false);
-        Destroy(this.gameObject);
+        //Destroy(this.gameObject);
     }
 
 }

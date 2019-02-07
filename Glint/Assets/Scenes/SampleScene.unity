@@ -91,7 +91,7 @@ LightmapSettings:
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 112000002, guid: 20da28701687b0b4bad2db1c537d1320,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7449,8 +7449,27 @@ Prefab:
     - target: {fileID: 114750200938011710, guid: 95b3bcec386fc5048a2c6196b610575f,
         type: 2}
       propertyPath: m_text
-      value: Tu peux sauter en utlisant la touche <sprite=$/KB/> du clavier, ou <sprite=$/GP/>
-        de ta manette.
+      value: '{Tu peux sauter en utlisant la touche} <sprite=$/KB/> {du clavier, ou}
+        <sprite=$/GP/> {de ta manette.}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114610214499266994, guid: 95b3bcec386fc5048a2c6196b610575f,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1312159172480758, guid: 95b3bcec386fc5048a2c6196b610575f, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114750200938011710, guid: 95b3bcec386fc5048a2c6196b610575f,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 93
+      objectReference: {fileID: 0}
+    - target: {fileID: 114750200938011710, guid: 95b3bcec386fc5048a2c6196b610575f,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 102
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b3bcec386fc5048a2c6196b610575f, type: 2}
@@ -7465,6 +7484,30 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 223242772386550282, guid: 95b3bcec386fc5048a2c6196b610575f,
     type: 2}
   m_PrefabInternal: {fileID: 1965224973}
+--- !u!1 &1965224976 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1788773097834776, guid: 95b3bcec386fc5048a2c6196b610575f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1965224973}
+--- !u!114 &1965224977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1965224976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36944815c1d5003438819270fdfbcfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eng:
+  - You can jump by using
+  - on your keyboard or
+  - on your gamepad
+  fr:
+  - Tu peux sauter en utlisant la touche
+  - du clavier, ou
+  - de ta manette.
 --- !u!1001 &2014353519
 Prefab:
   m_ObjectHideFlags: 0

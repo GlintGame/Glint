@@ -65,8 +65,7 @@ public class CharacterController2D : MonoBehaviour
         else if (!(inputs.Jump || this._grounded) || this.RigidBody.velocity.y < -10)
         {
             // maybe a isFalling parameter
-
-            Debug.Log("falling : " + this.RigidBody.velocity.y);
+            
             this.OnFalling.Invoke();
             this.RigidBody.velocity += Vector2.up * Physics2D.gravity.y * this.fallingForce * Time.fixedDeltaTime;
         }
