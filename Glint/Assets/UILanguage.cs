@@ -10,4 +10,16 @@ public class UILanguage : MonoBehaviour {
     {
         UILanguage.language = Application.systemLanguage;
     }
+
+    /*public void ChangeLanguage(int value)
+    {
+        if(value == 0)
+        {
+            UILanguage.language = SystemLanguage.French;
+        }
+        else
+        {
+            UILanguage.language = SystemLanguage.English;
+        }
+    }*/
 }

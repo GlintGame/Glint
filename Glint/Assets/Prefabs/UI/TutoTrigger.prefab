@@ -81,6 +81,7 @@ MonoBehaviour:
   tutoCanvas: {fileID: 0}
   keyboardParams: {fileID: 0}
   gamepadParams: {fileID: 0}
+  displayDuration: 1
 --- !u!212 &212637707857282388
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -49,4 +49,10 @@ public class AudioManager : MonoBehaviour {
         Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
         sound.source.Stop();
     }
+
+    public void ChangeVolume(float vol)
+    {
+        // vol varie de 0 à 1 et la fonction est appellée à chaque fois que la valeur du slider est changée
+        Debug.Log(vol);
+    }
 }

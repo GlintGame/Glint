@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 224911174353847008}
   - component: {fileID: 222556992770945856}
   - component: {fileID: 114750200938011710}
+  - component: {fileID: 114073812564037624}
   m_Layer: 0
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -101,6 +102,25 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114073812564037624
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788773097834776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36944815c1d5003438819270fdfbcfd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eng:
+  - 1st text
+  - 2nd text
+  - 3rd text
+  fr:
+  - 1er texte
+  - "2\xE8me texte"
+  - "3\xE8me texte"
 --- !u!114 &114309738660327954
 MonoBehaviour:
   m_ObjectHideFlags: 1
