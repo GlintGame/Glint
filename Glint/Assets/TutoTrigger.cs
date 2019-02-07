@@ -11,21 +11,24 @@ public class TutoTrigger : MonoBehaviour {
     public BindingButton keyboardParams;
     public BindingButton gamepadParams;
 
+    private string keyboardString = "$/KB/";
+    private string gamepadString = "$/GP/";
+
     [Range(0f, 5.0f)]
     public float displayDuration = 1.0f;
 
-    private TextMeshProUGUI text;
+    private TextMeshProUGUI textMesh;
 
 
     void Awake()
     {
-        this.text = this.tutoCanvas.GetComponentInChildren<TextMeshProUGUI>();
+        this.textMesh = this.tutoCanvas.GetComponentInChildren<TextMeshProUGUI>();
 
         if (this.keyboardParams)
-                this.text.text = this.text.text.Replace("${KB}", InputsDictionnary.getSpriteIndex(this.keyboardParams));
+                this.textMesh.text = this.textMesh.text.Replace(keyboardString, InputsDictionnary.getSpriteIndex(this.keyboardParams));
 
         if (this.gamepadParams)
-            this.text.text = this.text.text.Replace("${GP}", InputsDictionnary.getSpriteIndex(this.gamepadParams));
+            this.textMesh.text = this.textMesh.text.Replace(gamepadString, InputsDictionnary.getSpriteIndex(this.gamepadParams));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
