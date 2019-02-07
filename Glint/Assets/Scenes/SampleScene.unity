@@ -4656,7 +4656,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &761184713
 GameObject:
@@ -5436,6 +5436,11 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 0bd9dbcee54476e428d16af16cab8a51,
         type: 2}
+    - target: {fileID: 114501448269989134, guid: 2838e4236a1e0ba478adb5230032891d,
+        type: 2}
+      propertyPath: displayDuration
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2838e4236a1e0ba478adb5230032891d, type: 2}
   m_IsPrefabAsset: 0
@@ -6406,7 +6411,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1483955703
 MonoBehaviour:
@@ -6879,6 +6884,11 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 842c229c935e9df4b91118b18f550a2e,
         type: 2}
+    - target: {fileID: 114501448269989134, guid: 2838e4236a1e0ba478adb5230032891d,
+        type: 2}
+      propertyPath: displayDuration
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2838e4236a1e0ba478adb5230032891d, type: 2}
   m_IsPrefabAsset: 0
@@ -8181,6 +8191,11 @@ Prefab:
     - target: {fileID: 1178267758200230, guid: 2838e4236a1e0ba478adb5230032891d, type: 2}
       propertyPath: m_Name
       value: Tuto Saut
+      objectReference: {fileID: 0}
+    - target: {fileID: 114501448269989134, guid: 2838e4236a1e0ba478adb5230032891d,
+        type: 2}
+      propertyPath: displayDuration
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2838e4236a1e0ba478adb5230032891d, type: 2}
