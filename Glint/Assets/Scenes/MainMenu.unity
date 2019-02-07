@@ -222,7 +222,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Resume
+      value: Reprendre
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -326,7 +326,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 160.11719, y: 0}
+  m_SizeDelta: {x: 16.896301, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100533705
 MonoBehaviour:
@@ -1154,7 +1154,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Play
+      value: Jouer
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -1488,7 +1488,7 @@ Prefab:
     - target: {fileID: 114454626132178672, guid: 656b12e051f0eb94a965e429f858a903,
         type: 2}
       propertyPath: m_Text
-      value: Jump
+      value: Saut
       objectReference: {fileID: 0}
     - target: {fileID: 114454626132178672, guid: 656b12e051f0eb94a965e429f858a903,
         type: 2}
@@ -1633,7 +1633,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Gallery
+      value: Galerie
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -1797,7 +1797,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Settings
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -2429,7 +2429,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 56.324097}
+  m_SizeDelta: {x: 16.89624, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749286582
 MonoBehaviour:
@@ -3048,7 +3048,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Back
+      value: Retour
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -3234,7 +3234,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Exit to menu
+      value: Retour au menu
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -3394,7 +3394,7 @@ Prefab:
     - target: {fileID: 114454626132178672, guid: 656b12e051f0eb94a965e429f858a903,
         type: 2}
       propertyPath: m_Text
-      value: Left
+      value: Gauche
       objectReference: {fileID: 0}
     - target: {fileID: 114454626132178672, guid: 656b12e051f0eb94a965e429f858a903,
         type: 2}
@@ -3778,7 +3778,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Settings
+      value: Options
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -5032,7 +5032,7 @@ Prefab:
     - target: {fileID: 114454626132178672, guid: 656b12e051f0eb94a965e429f858a903,
         type: 2}
       propertyPath: m_Text
-      value: Right
+      value: Droite
       objectReference: {fileID: 0}
     - target: {fileID: 1045200682213316, guid: 656b12e051f0eb94a965e429f858a903, type: 2}
       propertyPath: m_Name
@@ -5607,7 +5607,7 @@ Prefab:
     - target: {fileID: 114454626132178672, guid: 656b12e051f0eb94a965e429f858a903,
         type: 2}
       propertyPath: m_Text
-      value: Run
+      value: Course
       objectReference: {fileID: 0}
     - target: {fileID: 114454626132178672, guid: 656b12e051f0eb94a965e429f858a903,
         type: 2}
@@ -5865,7 +5865,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Reset
+      value: "D\xE9faut"
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
@@ -6412,7 +6412,7 @@ Prefab:
     - target: {fileID: 114923302427634806, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
       propertyPath: m_Text
-      value: Leave the game
+      value: Quitter
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 2}
