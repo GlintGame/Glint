@@ -7,8 +7,7 @@ public class AudioManager : MonoBehaviour {
 
     public Sound[] sounds;
     public static AudioManager instance;
-
-    [Range(0f, 1.5f)]
+    
     public static float globalSoundMultiplier = 1;
     
     private void Awake()
@@ -52,7 +51,10 @@ public class AudioManager : MonoBehaviour {
 
     public void ChangeVolume(float vol)
     {
-        // vol varie de 0 à 1 et la fonction est appellée à chaque fois que la valeur du slider est changée
-        Debug.Log(vol);
+        AudioManager.globalSoundMultiplier = vol;
+        foreach(Sound sound in this.sounds)
+        {
+            sound.UpdateVolume(vol);
+        }
     }
 }

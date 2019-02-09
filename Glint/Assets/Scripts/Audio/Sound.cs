@@ -24,8 +24,13 @@ public class Sound : IEquatable<Sound> {
     {
         this.source = source;
         source.clip = this.clip;
-        source.volume = this.volume;
+        this.UpdateVolume(AudioManager.globalSoundMultiplier);
         source.loop = this.loop;
+    }
+
+    public void UpdateVolume(float vol)
+    {
+        source.volume = this.volume * vol;
     }
 
     // equality is based on name.
