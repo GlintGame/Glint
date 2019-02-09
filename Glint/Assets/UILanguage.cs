@@ -11,7 +11,7 @@ public class UILanguage : MonoBehaviour {
         UILanguage.language = Application.systemLanguage;
     }
 
-    /*public void ChangeLanguage(int value)
+    public void ChangeLanguage(int value)
     {
         if(value == 0)
         {
@@ -21,5 +21,5 @@ public class UILanguage : MonoBehaviour {
         {
             UILanguage.language = SystemLanguage.English;
         }
-    }*/
+    }
 }

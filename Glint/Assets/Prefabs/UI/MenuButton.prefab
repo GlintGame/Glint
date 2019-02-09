@@ -66,7 +66,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Button
+  m_text: '{Button}'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4d5d1983d160a624fb988dd97af74f06, type: 2}
   m_sharedMaterial: {fileID: 21820698385668988, guid: 4d5d1983d160a624fb988dd97af74f06,
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 4098
   m_isAlignmentEnumConverted: 1
   m_characterSpacing: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 114289293547448462}
-    characterCount: 6
+    characterCount: 8
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -180,7 +180,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300010, guid: b40c9f035c102654da76293cefce4a82, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eb25b98edac60d84c88961b315ad0072, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -200,13 +200,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eng:
-  - 1st text
-  - 2nd text
-  - 3rd text
+  - ' '
   fr:
-  - 1er texte
-  - "2\xE8me texte"
-  - "3\xE8me texte"
+  - ' '
 --- !u!114 &114932761217897756
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -224,7 +220,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 2
   m_Colors:
     m_NormalColor: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
@@ -233,8 +229,9 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
+    m_HighlightedSprite: {fileID: 21300000, guid: 4ce5b80a6163892448e530e874764154,
+      type: 3}
+    m_PressedSprite: {fileID: 21300000, guid: 4ce5b80a6163892448e530e874764154, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -247,8 +244,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: CloseMainMenu
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -289,7 +286,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -0.0000076293945}
-  m_SizeDelta: {x: 87.4, y: 22.64}
+  m_SizeDelta: {x: 99.05, y: 22.64}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224467779408037336
 RectTransform:
@@ -307,6 +304,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -83.6, y: 172.9}
-  m_SizeDelta: {x: 87.4, y: 22.6}
+  m_AnchoredPosition: {x: -83.60004, y: 171.3}
+  m_SizeDelta: {x: 141.27, y: 36.6}
   m_Pivot: {x: 0.5, y: 0.5}
