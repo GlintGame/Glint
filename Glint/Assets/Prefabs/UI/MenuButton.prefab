@@ -231,8 +231,8 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: 21300000, guid: 4ce5b80a6163892448e530e874764154,
       type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 4ce5b80a6163892448e530e874764154, type: 3}
-    m_DisabledSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 21300000, guid: a2999c2bc604b594f92f7fce086776d8, type: 3}
+    m_DisabledSprite: {fileID: 21300000, guid: 20d2c4a46c1a73041a4edce4980dcf99, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
@@ -305,5 +305,5 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -83.60004, y: 171.3}
-  m_SizeDelta: {x: 141.27, y: 36.6}
+  m_SizeDelta: {x: 1017, y: 293}
   m_Pivot: {x: 0.5, y: 0.5}
