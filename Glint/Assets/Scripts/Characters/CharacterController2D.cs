@@ -64,8 +64,6 @@ public class CharacterController2D : MonoBehaviour
         }
         else if (!(inputs.Jump || this._grounded) || this.RigidBody.velocity.y < -10)
         {
-            // maybe a isFalling parameter
-            
             this.OnFalling.Invoke();
             this.RigidBody.velocity += Vector2.up * Physics2D.gravity.y * this.fallingForce * Time.fixedDeltaTime;
         }
@@ -82,7 +80,7 @@ public class CharacterController2D : MonoBehaviour
             bool collidedOnlyOnBottom = false;
             foreach (ContactPoint2D contact in collision.contacts)
             {
-                if (contact.normal.y > 0.5)
+                if (contact.normal.y > 0.3)
                 {
                     collidedOnlyOnBottom = true;
                 }
@@ -103,7 +101,6 @@ public class CharacterController2D : MonoBehaviour
             this._grounded = false;
             if (collision.otherRigidbody.velocity.y < -0.8f)
             {
-                Debug.Log("exit colision : " + collision.otherRigidbody.velocity.y);
                 this.OnFalling.Invoke();
             }
         }
