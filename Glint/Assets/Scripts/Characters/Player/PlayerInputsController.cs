@@ -30,11 +30,12 @@ public class PlayerInputsController : MonoBehaviour
         PauseMenu.OnResumeEscape += this.UnlockJump;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(!this._jumpIsLock)
         {
-            this._inputs.Jump = InputManager.GetButton("jump");
+            this._inputs.StillJump = InputManager.GetButton("jump");
+            this._inputs.Jump = InputManager.GetButtonDown("jump");
         }
         this._inputs.AttackOne = InputManager.GetButton("mele");
         this._inputs.AttackTwo = InputManager.GetButton("fireBall");
@@ -43,7 +44,7 @@ public class PlayerInputsController : MonoBehaviour
         this._inputs.HorizontalMovement = InputManager.GetAxisRaw("lateral");
         this._inputs.HorizontalMovement = Mathf.Abs(this._inputs.HorizontalMovement) > this.HorizontalDeadZone ? this._inputs.HorizontalMovement : 0; // dead zone.
 
-        if (this._inputs.Jump)
+        if (this._inputs.StillJump)
         {
             this.PlayerAnimator.SetBool("PlayerJump", true);
         }

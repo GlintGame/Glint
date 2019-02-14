@@ -62,7 +62,7 @@ public class CharacterController2D : MonoBehaviour
             this.RigidBody.velocity = new Vector2(this.RigidBody.velocity.x, this.JumpForce);
             this._grounded = false;
         }
-        else if (!(inputs.Jump || this._grounded) || this.RigidBody.velocity.y < -10)
+        else if (!(inputs.StillJump || this._grounded) || this.RigidBody.velocity.y < -10)
         {
             this.OnFalling.Invoke();
             this.RigidBody.velocity += Vector2.up * Physics2D.gravity.y * this.fallingForce * Time.fixedDeltaTime;
