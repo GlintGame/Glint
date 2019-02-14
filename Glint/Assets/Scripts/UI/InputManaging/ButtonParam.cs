@@ -35,6 +35,6 @@ public class ButtonParam : MonoBehaviour {
     public void UpdateButton()
     {
         this.buttonText.text = "<sprite=" + utils.InputsDictionnary.getSpriteIndex(this.buttonParams) + ">";
+        TutoTrigger.UpdateAll();
     }
-
 }

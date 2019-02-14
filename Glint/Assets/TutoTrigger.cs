@@ -5,7 +5,10 @@ using Luminosity.IO;
 using utils;
 using TMPro;
 
-public class TutoTrigger : MonoBehaviour {
+public class TutoTrigger : MonoBehaviour
+{
+
+    public static List<TutoTrigger> instances = new List<TutoTrigger>();
 
     public Canvas tutoCanvas;
     public BindingButton keyboardParams;
@@ -14,26 +17,49 @@ public class TutoTrigger : MonoBehaviour {
     private string keyboardString = "$/KB/";
     private string gamepadString = "$/GP/";
 
+    private string originalString;
+
     [Range(0f, 5.0f)]
     public float displayDuration = 1.0f;
 
     private TextMeshProUGUI textMesh;
 
-
     void Awake()
     {
+        TutoTrigger.instances.Add(this);
+
         this.textMesh = this.tutoCanvas.GetComponentInChildren<TextMeshProUGUI>();
+        originalString = this.textMesh.text;
+
+        UpdateReplace();
+    }
+
+    public static void UpdateAll()
+    {
+        TutoTrigger.instances.ForEach(
+            (instance) => instance.UpdateReplace()
+        );
+    }
+
+    private void UpdateReplace()
+    {
+        string text = this.originalString;
 
         if (this.keyboardParams)
-                this.textMesh.text = this.textMesh.text.Replace(keyboardString, InputsDictionnary.getSpriteIndex(this.keyboardParams));
+            text = text.Replace(this.keyboardString, InputsDictionnary.getSpriteIndex(this.keyboardParams));
 
         if (this.gamepadParams)
-            this.textMesh.text = this.textMesh.text.Replace(gamepadString, InputsDictionnary.getSpriteIndex(this.gamepadParams));
+            text = text.Replace(this.gamepadString, InputsDictionnary.getSpriteIndex(this.gamepadParams));
+
+
+        this.textMesh.text = text;
     }
+
+
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //StartCoroutine(this.Wait());
         this.ShowText();
     }
 
@@ -41,6 +67,7 @@ public class TutoTrigger : MonoBehaviour {
     {
         this.HideText();
     }
+
 
 
 
@@ -64,7 +91,7 @@ public class TutoTrigger : MonoBehaviour {
     {
         this.tutoCanvas.gameObject.SetActive(true);
     }
-    
+
     private void HideText()
     {
         this.tutoCanvas.gameObject.SetActive(false);

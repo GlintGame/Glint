@@ -35,7 +35,7 @@ public class Translator : MonoBehaviour
 
 
 
-    public void UpdateAll()
+    public static void UpdateAll()
     {
 
         Translator.instances.ForEach((instance) =>

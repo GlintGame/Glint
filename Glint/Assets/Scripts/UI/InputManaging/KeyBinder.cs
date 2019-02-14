@@ -30,6 +30,7 @@ public class KeyBinder : MonoBehaviour
             InputLoader.PlayerPrefsSave(this.defaultInputSave);
         } else
         {
+            Debug.Log("Load");
             InputLoader.PlayerPrefsLoad(this.standardInputSave);
         }
 

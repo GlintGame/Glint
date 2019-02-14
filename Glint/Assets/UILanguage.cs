@@ -22,4 +22,9 @@ public class UILanguage : MonoBehaviour {
             UILanguage.language = SystemLanguage.English;
         }
     }
+
+    public void UpdateTranslators()
+    {
+        Translator.UpdateAll();
+    }
 }
