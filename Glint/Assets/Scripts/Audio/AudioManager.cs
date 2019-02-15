@@ -1,4 +1,5 @@
 ﻿using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class AudioManager : MonoBehaviour {
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        SceneManager.sceneUnloaded += this.OnNewScene;
 
         if(AudioManager.instance == null)
         {
@@ -36,7 +38,7 @@ public class AudioManager : MonoBehaviour {
     public static void Play(string name)
     {
         Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
-        if (!sound.source.isPlaying)
+        if (sound != null && !sound.source.isPlaying)
         {
             sound.volume *= AudioManager.globalSoundMultiplier;
             sound.source.Play();
@@ -46,7 +48,10 @@ public class AudioManager : MonoBehaviour {
     public static void Stop(string name)
     {
         Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
-        sound.source.Stop();
+        if(sound != null)
+        {
+            sound.source.Stop();
+        }
     }
 
     public void ChangeVolume(float vol)
@@ -55,6 +60,17 @@ public class AudioManager : MonoBehaviour {
         foreach(Sound sound in this.sounds)
         {
             sound.UpdateVolume(vol);
+        }
+    }
+    
+    public void OnNewScene(Scene aScene)
+    {
+        foreach (Sound sound in this.sounds)
+        {
+            if (sound.onlyOnSetScene)
+            {
+                AudioManager.Stop(sound.Name);
+            }
         }
     }
 }

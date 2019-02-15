@@ -17,6 +17,7 @@ public class Sound : IEquatable<Sound> {
     public float volume = 0.5f;
     public bool playDefault = false;
     public bool loop = true;
+    public bool onlyOnSetScene = false;
 
     [HideInInspector]
     public AudioSource source;
