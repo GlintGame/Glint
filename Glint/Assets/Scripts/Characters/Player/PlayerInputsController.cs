@@ -35,7 +35,7 @@ public class PlayerInputsController : MonoBehaviour
         if(!this._jumpIsLock)
         {
             this._inputs.StillJump = InputManager.GetButton("jump");
-            this._inputs.Jump = InputManager.GetButtonDown("jump");
+            this._inputs.Jump = InputManager.GetButton("jump");
         }
         this._inputs.AttackOne = InputManager.GetButton("mele");
         this._inputs.AttackTwo = InputManager.GetButton("fireBall");
