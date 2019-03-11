@@ -3378,7 +3378,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 55.602234}
+  m_SizeDelta: {x: 52.364746, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749286582
 MonoBehaviour:
@@ -3696,7 +3696,7 @@ MonoBehaviour:
     m_NormalColor: {r: 0.67058825, g: 0.53333336, b: 0.3019608, a: 1}
     m_HighlightedColor: {r: 0.9294118, g: 0.68235296, b: 0.023529414, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -3716,7 +3716,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.9
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -3760,7 +3760,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 763322903}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7458e968b4c65d44a8890fe8f78b7b6b, type: 3}
   m_Name: 
@@ -3792,7 +3792,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: VolumeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  PlayerPrefsLocation: volume
+  PlayerPrefsLocation: Glint.Volume
 --- !u!1 &784089204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3921,7 +3921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ee30db1a26b0f244877bf4b8d00418d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefsLocation: volume
+  PlayerPrefsLocation: Glint.Volume
   sounds:
   - clip: {fileID: 8300000, guid: f034ae51f0f3770439a41ab26b35c9bd, type: 3}
     volume: 1
@@ -9629,7 +9629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638589fc0d9024041aedc8c348b38e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefLocation: language
+  PlayerPrefLocation: Glint.Language
   dropdown: {fileID: 1839166547}
 --- !u!114 &2103658962 stripped
 MonoBehaviour:

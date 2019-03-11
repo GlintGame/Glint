@@ -10,8 +10,6 @@ public class ButtonParam : MonoBehaviour {
     KeyBinder keyBinder;
     Button nativeButtonScript;
     TextMeshProUGUI buttonText;
-    InputAction inputAction;
-    InputBinding binding;
 
     void Awake()
     {

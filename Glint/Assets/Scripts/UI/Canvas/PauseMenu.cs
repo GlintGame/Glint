@@ -83,6 +83,7 @@ public class PauseMenu : MonoBehaviour {
         this.PauseMenuUI.SetActive(true);
         this.gameIsPaused = true;
         Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0f;
 
         if (OnPause != null)
             OnPause();
@@ -93,6 +94,7 @@ public class PauseMenu : MonoBehaviour {
         this.PauseMenuUI.SetActive(false);
         this.gameIsPaused = false;
         Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f;
 
         if (OnResume != null)
             OnResume();

@@ -10,7 +10,7 @@ public class AudioManager : MonoBehaviour {
 
     public Sound[] sounds;
     public static AudioManager instance;
-    public static float globalSoundMultiplier = 1;
+    public static float globalSoundMultiplier = 0.9f;
     
     private void Awake()
     {

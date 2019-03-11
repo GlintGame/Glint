@@ -11,6 +11,8 @@ public class VolumeUpdater : MonoBehaviour {
 
     public VolumeEvent OnVolumeChange;
 
+    private float minVolume;
+    private float maxVolume;
     private float volume;
     public float Volume
     {
@@ -18,10 +20,12 @@ public class VolumeUpdater : MonoBehaviour {
             return volume;
         }
         set {
-            if(volume != value)
-            {
-                PlayerPrefs.SetFloat(this.PlayerPrefsLocation, value);
-            }
+            if(value <= this.minVolume)
+                value = this.minVolume;
+            if (value >= this.maxVolume)
+                value = this.maxVolume;
+
+            PlayerPrefs.SetFloat(this.PlayerPrefsLocation, value);
             this.OnVolumeChange.Invoke(value);
             volume = value;
         }
@@ -33,11 +37,18 @@ public class VolumeUpdater : MonoBehaviour {
     void Awake()
     {
         this.slider = this.gameObject.GetComponent<Slider>();
+        this.minVolume = this.slider.minValue;
+        this.maxVolume = this.slider.maxValue;
 
-        if(PlayerPrefs.HasKey(this.PlayerPrefsLocation))
+        if (PlayerPrefs.HasKey(this.PlayerPrefsLocation))
         {
             this.Volume = PlayerPrefs.GetFloat(this.PlayerPrefsLocation);
-            this.slider.value = this.Volume;
+            this.UpdateSliderGUI();
         }
+    }
+
+    public void UpdateSliderGUI()
+    {
+        this.slider.value = this.Volume;
     }
 }
