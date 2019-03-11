@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using Luminosity.IO;
 using Characters.Player.Skills;
-using Cinemachine;
 
 public class PlayerInputsController : MonoBehaviour
 {
@@ -29,7 +28,7 @@ public class PlayerInputsController : MonoBehaviour
 
     private void Update()
     {
-        var inputs = new InputsParameters(); 
+        var inputs = new InputsParameters();
 
         if (!this._jumpIsLock)
         {
@@ -52,27 +51,20 @@ public class PlayerInputsController : MonoBehaviour
             horizontalMovement,
             isRunning
         );
-        
+
         inputs.AttackOne = InputManager.GetButton("mele");
         inputs.AttackTwo = InputManager.GetButton("fireBall");
-        inputs.Dash = InputManager.GetAxis("dash") > 0.9 || InputManager.GetButton("dash");
-
-        this.CharacterSkills.LaunchSkills(inputs);
-
-        // animator
-        if (inputs.Dash && this.Dash._canDash)
-        {
-            this.PlayerAnimator.SetBool("PlayerDashing", true);
-        }
+        inputs.Dash = this.Dash._canDash && ( InputManager.GetAxis("dash") > 0.9 || InputManager.GetButton("dash") );
 
         float absoluteSpeed = Mathf.Abs(horizontalMovement);
         this.PlayerAnimator.SetBool("PlayerRunning", absoluteSpeed > this.walkSpeedLimit && isRunning);
         this.PlayerAnimator.SetFloat("PlayerMovement", absoluteSpeed);
+
+        this.CharacterSkills.LaunchSkills(inputs);
     }
 
     public void OnLanding()
     {
-        Debug.Log("landed");
         this.PlayerAnimator.SetBool("PlayerJump", false);
         this.PlayerAnimator.SetBool("PlayerFalling", false);
     }
@@ -80,6 +72,11 @@ public class PlayerInputsController : MonoBehaviour
     public void OnFalling()
     {
         this.PlayerAnimator.SetBool("PlayerFalling", true);
+    }
+
+    public void OnDashStart()
+    {
+        this.PlayerAnimator.SetBool("PlayerDashing", true);
     }
 
     public void OnDashEnd()

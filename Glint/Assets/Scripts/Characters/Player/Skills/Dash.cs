@@ -26,6 +26,7 @@ namespace Characters.Player.Skills
         }
 
         // giving events
+        public UnityEvent OnDashStart;
         public UnityEvent OnDashEnd;
 
         // given events
@@ -70,6 +71,8 @@ namespace Characters.Player.Skills
 
         public IEnumerator Launch()
         {
+            this.OnDashStart.Invoke();
+
             // initialisation
             this._isDashing = true;
             int dashDirection = this.CharacterController.Direction;
