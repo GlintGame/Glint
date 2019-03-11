@@ -12,18 +12,15 @@ public class PlayerInputsController : MonoBehaviour
 
     private CharacterController2D Controller;
     private Animator PlayerAnimator;
-
-    private float _absoluteSpeed;
-    private InputsParameters _inputs;
-
     private Dash Dash;
+    private ICharacterSkills CharacterSkills;
 
     private void Awake()
     {
         this.Controller = this.GetComponent<CharacterController2D>();
         this.PlayerAnimator = this.GetComponent<Animator>();
         this.Dash = this.GetComponent<Dash>();
-        this._inputs = new InputsParameters();
+        this.CharacterSkills = this.GetComponent<ICharacterSkills>();
 
         PauseMenu.OnPause += this.LockJump;
         PauseMenu.OnReleaseButton += this.UnlockJump;
@@ -32,38 +29,50 @@ public class PlayerInputsController : MonoBehaviour
 
     private void Update()
     {
-        if(!this._jumpIsLock)
-        {
-            this._inputs.StillJump = InputManager.GetButton("jump");
-            this._inputs.Jump = InputManager.GetButton("jump");
-        }
-        this._inputs.AttackOne = InputManager.GetButton("mele");
-        this._inputs.AttackTwo = InputManager.GetButton("fireBall");
-        this._inputs.Run = InputManager.GetAxis("run") > 0.9 || InputManager.GetButton("run");
-        this._inputs.Dash = InputManager.GetAxis("dash") > 0.9 || InputManager.GetButton("dash");
-        this._inputs.HorizontalMovement = InputManager.GetAxisRaw("lateral");
-        this._inputs.HorizontalMovement = Mathf.Abs(this._inputs.HorizontalMovement) > this.HorizontalDeadZone ? this._inputs.HorizontalMovement : 0; // dead zone.
+        var inputs = new InputsParameters(); 
 
-        if (this._inputs.StillJump)
+        if (!this._jumpIsLock)
         {
-            this.PlayerAnimator.SetBool("PlayerJump", true);
+            if (InputManager.GetButtonDown("jump"))
+            {
+                this.Controller.StartJump();
+            }
+            else if (InputManager.GetButtonUp("jump"))
+            {
+                this.Controller.EndJump();
+            }
         }
+
+        bool isRunning = InputManager.GetAxis("run") > 0.9 || InputManager.GetButton("run");
+        float horizontalMovement = InputManager.GetAxisRaw("lateral");
+        // dead zone
+        horizontalMovement = Mathf.Abs(horizontalMovement) > this.HorizontalDeadZone ? horizontalMovement : 0;
+
+        this.Controller.Move(
+            horizontalMovement,
+            isRunning
+        );
         
+        inputs.AttackOne = InputManager.GetButton("mele");
+        inputs.AttackTwo = InputManager.GetButton("fireBall");
+        inputs.Dash = InputManager.GetAxis("dash") > 0.9 || InputManager.GetButton("dash");
 
-        if (this._inputs.Dash && this.Dash._canDash)
+        this.CharacterSkills.LaunchSkills(inputs);
+
+        // animator
+        if (inputs.Dash && this.Dash._canDash)
         {
             this.PlayerAnimator.SetBool("PlayerDashing", true);
         }
 
-        this._absoluteSpeed = Mathf.Abs(this._inputs.HorizontalMovement);
-        this.PlayerAnimator.SetBool("PlayerRunning", this._absoluteSpeed > this.walkSpeedLimit && this._inputs.Run);
-        this.PlayerAnimator.SetFloat("PlayerMovement", this._absoluteSpeed);
-
-        this.Controller.Behave(this._inputs);
+        float absoluteSpeed = Mathf.Abs(horizontalMovement);
+        this.PlayerAnimator.SetBool("PlayerRunning", absoluteSpeed > this.walkSpeedLimit && isRunning);
+        this.PlayerAnimator.SetFloat("PlayerMovement", absoluteSpeed);
     }
 
     public void OnLanding()
     {
+        Debug.Log("landed");
         this.PlayerAnimator.SetBool("PlayerJump", false);
         this.PlayerAnimator.SetBool("PlayerFalling", false);
     }
@@ -76,6 +85,11 @@ public class PlayerInputsController : MonoBehaviour
     public void OnDashEnd()
     {
         this.PlayerAnimator.SetBool("PlayerDashing", false);
+    }
+
+    public void OnJumping()
+    {
+        this.PlayerAnimator.SetBool("PlayerJump", true);
     }
 
 

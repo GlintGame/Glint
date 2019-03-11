@@ -47,7 +47,6 @@ namespace Characters.Player.Skills
         {
             get
             {
-
                 return
                     // si le joueur
                     // ne dash pas
@@ -55,7 +54,7 @@ namespace Characters.Player.Skills
                     // n'est pas en cool down
                     && !this._dashCoolDown
                     // n'est pas en l'air alors qu'il a déjà dashé
-                    && !(this.CharacterController.IsInAir && this._hasDashInAir);
+                    && !(!this.CharacterController.Grounded && this._hasDashInAir);
             }
         }
 
@@ -73,7 +72,7 @@ namespace Characters.Player.Skills
         {
             // initialisation
             this._isDashing = true;
-            int dashDirection = this.CharacterController.direction;
+            int dashDirection = this.CharacterController.Direction;
 
             this._currentDashDuration = 0;
             this._overallDashDuration = this.dashDuration + this.dashAddAnimationDuration;
@@ -94,7 +93,7 @@ namespace Characters.Player.Skills
             }
 
             this._isDashing = false;
-            if (this.CharacterController.IsInAir)
+            if (!this.CharacterController.Grounded)
             {
                 this._hasDashInAir = true;
             }

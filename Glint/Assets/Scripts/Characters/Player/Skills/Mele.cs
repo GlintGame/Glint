@@ -61,7 +61,7 @@ namespace Characters.Player.Skills
             // activation
             yield return new WaitForSeconds(this.MeleTimeBeforeHit);
             Vector2 center = this.Transform.position;
-            center.x += this.CharacterController.direction * this.MeleHitboxDistance;
+            center.x += this.CharacterController.Direction * this.MeleHitboxDistance;
             Collider2D[] collided = Physics2D.OverlapAreaAll(center + this.MeleHitboxSize / 2, center - this.MeleHitboxSize / 2);
 
             foreach (Collider2D collider in collided)

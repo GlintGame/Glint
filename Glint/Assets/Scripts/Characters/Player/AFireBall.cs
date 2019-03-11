@@ -27,7 +27,7 @@ public class AFireBall : MonoBehaviour {
 
         this.direction = this.from
             .GetComponent<CharacterController2D>()
-            .direction;
+            .Direction;
 
         this.damages = this.from
             .GetComponent<FireBall>()
