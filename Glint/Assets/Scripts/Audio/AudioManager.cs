@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
 
+    public string PlayerPrefsLocation;
+
     public Sound[] sounds;
     public static AudioManager instance;
-    
     public static float globalSoundMultiplier = 1;
     
     private void Awake()
@@ -18,6 +19,10 @@ public class AudioManager : MonoBehaviour {
 
         if(AudioManager.instance == null)
         {
+            if(PlayerPrefs.HasKey(this.PlayerPrefsLocation))
+            {
+                AudioManager.globalSoundMultiplier = PlayerPrefs.GetFloat(this.PlayerPrefsLocation);
+            }
             AudioManager.instance = this;
         }
         else
