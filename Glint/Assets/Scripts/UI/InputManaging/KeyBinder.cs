@@ -30,7 +30,6 @@ public class KeyBinder : MonoBehaviour
             InputLoader.PlayerPrefsSave(this.defaultInputSave);
         } else
         {
-            Debug.Log("Load");
             InputLoader.PlayerPrefsLoad(this.standardInputSave);
         }
 
@@ -176,10 +175,8 @@ public class KeyBinder : MonoBehaviour
 
     void EndScan(GameObject button)
     {
-        Debug.Log("Scan End");
         Button buttonScript = button.GetComponent<Button>();
         buttonScript.interactable = true;
-        //buttonScript.Select();
         eventSystem.SetSelectedGameObject(button);
 
         ButtonParam buttonParam = button.GetComponent<ButtonParam>();

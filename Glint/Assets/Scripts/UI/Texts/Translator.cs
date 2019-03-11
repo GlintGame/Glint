@@ -46,7 +46,7 @@ public class Translator : MonoBehaviour
 
 
 
-    string Translate(string str)
+    public string Translate(string str)
     {
 
         int startChar = str.IndexOf("{");

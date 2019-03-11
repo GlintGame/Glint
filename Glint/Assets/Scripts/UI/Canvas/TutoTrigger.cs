@@ -23,13 +23,15 @@ public class TutoTrigger : MonoBehaviour
     public float displayDuration = 1.0f;
 
     private TextMeshProUGUI textMesh;
+    private Translator translator;
 
     void Awake()
     {
         TutoTrigger.instances.Add(this);
 
         this.textMesh = this.tutoCanvas.GetComponentInChildren<TextMeshProUGUI>();
-        originalString = this.textMesh.text;
+        this.originalString = this.textMesh.text;
+        this.translator = this.textMesh.GetComponent<Translator>();
 
         UpdateReplace();
     }
@@ -51,8 +53,7 @@ public class TutoTrigger : MonoBehaviour
         if (this.gamepadParams)
             text = text.Replace(this.gamepadString, InputsDictionnary.getSpriteIndex(this.gamepadParams));
 
-
-        this.textMesh.text = text;
+        this.textMesh.text = this.translator.Translate(text);
     }
 
 
