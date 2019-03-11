@@ -90,7 +90,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -643,7 +643,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 84.60202}
+  m_SizeDelta: {x: 0, y: 55.602173}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100533705
 MonoBehaviour:
@@ -3378,7 +3378,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 98.245605, y: 0}
+  m_SizeDelta: {x: 0, y: 55.602234}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749286582
 MonoBehaviour:
@@ -8716,7 +8716,6 @@ GameObject:
   - component: {fileID: 1839166549}
   - component: {fileID: 1839166548}
   - component: {fileID: 1839166547}
-  - component: {fileID: 1839166550}
   m_Layer: 5
   m_Name: Dropdown
   m_TagString: Untagged
@@ -8854,17 +8853,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1839166545}
   m_CullTransparentMesh: 0
---- !u!114 &1839166550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839166545}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 887248cfa822da840b203cb3282d0724, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1857231835 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224601187520463968, guid: 560f62c414f8cb444857b3ba62f8c97f,
@@ -9612,6 +9600,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 638589fc0d9024041aedc8c348b38e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerPrefLocation: language
+  dropdown: {fileID: 1839166547}
 --- !u!114 &2103658962 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114986483678856508, guid: 560f62c414f8cb444857b3ba62f8c97f,
