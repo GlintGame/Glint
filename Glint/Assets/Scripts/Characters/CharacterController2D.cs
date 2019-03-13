@@ -9,17 +9,33 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, .3f)] public float MovementSmothing = .05f;
 
     [Range(0, 60f)] public float JumpForce = 35f;
-    [Range(0, 8f)] public float fallingForce = 3;
+    [Range(0, 8f)] public float FallingForce = 3;
     [Range(0, .3f)] public float AirMovementSmothing = .05f;
+
+
+    [Range(-5f, 5f)] public float GroundRaycastOrigin = -0.5f;
+    [Range(-5f, 5f)] public float GroundRaycastDist = 1f;
 
     public LayerMask GroundLayer;
 
     public UnityEvent OnLanding;
     public UnityEvent OnFalling;
-    public UnityEvent OnJumping;
+    public UnityEvent OnLeaveGround;
 
-    public bool Grounded { get; private set; }
-    private bool _jumping = false;
+    private bool grounded;
+    public bool Grounded
+    {
+        get { return this.grounded; }
+        set
+        {
+            if(value)   this.OnLanding.Invoke();
+            else        this.OnLeaveGround.Invoke();
+
+            this.grounded = value;
+        }
+    }
+
+    private bool _jumpingInput = false;
     private float _horizintalTargetSpeed = 0f;
 
     private bool _facingRight = true;
@@ -42,11 +58,13 @@ public class CharacterController2D : MonoBehaviour
     // component references and init
     private Rigidbody2D RigidBody;
     private SpriteRenderer Renderer;
+    private Transform Transform;
 
     public void Awake()
     {
         this.Renderer = this.GetComponent<SpriteRenderer>();
         this.RigidBody = this.GetComponent<Rigidbody2D>();
+        this.Transform = this.GetComponent<Transform>();
     }
 
     // incoming Events triggers
@@ -55,15 +73,13 @@ public class CharacterController2D : MonoBehaviour
         if (this.Grounded)
         {
             this.RigidBody.velocity = new Vector2(this.RigidBody.velocity.x, this.JumpForce);
-            this._jumping = true;
-            this.Grounded = false;
-            this.OnJumping.Invoke();
+            this._jumpingInput = true;
         }
     }
 
     public void EndJump()
     {
-        this._jumping = false;
+        this._jumpingInput = false;
     }
 
     public void Move(float speed, bool isRunning)
@@ -89,18 +105,38 @@ public class CharacterController2D : MonoBehaviour
     // physics update
     private void FixedUpdate()
     {
+        this.Grounded = this.CheckGround();
+
         this.RigidBody.velocity = Vector2.Lerp(
                 this.RigidBody.velocity, 
-                this._frameVelocity, 
+                this._frameVelocity,
                 this._currentSmooting
             );
         
         // falling mass acceleration
-        if (!(!this.Grounded && this._jumping) && this.RigidBody.velocity.y < -10)
+        if (!(!this.Grounded && this._jumpingInput) && this.RigidBody.velocity.y < -10)
         {
             this.OnFalling.Invoke();
-            this.RigidBody.velocity += Vector2.up * Physics2D.gravity.y * this.fallingForce * Time.fixedDeltaTime;
+            this.RigidBody.velocity += Vector2.up * Physics2D.gravity.y * this.FallingForce * Time.fixedDeltaTime;
         }
+    }
+
+    private bool CheckGround()
+    {
+        Vector2 raycastOrigin = (Vector2)this.Transform.position - new Vector2(0, this.GroundRaycastOrigin);
+
+        // debugin' things to see the raycast
+        Debug.DrawLine(
+            raycastOrigin,
+            raycastOrigin - new Vector2(0, this.GroundRaycastDist)
+        );
+        
+        return Physics2D.Raycast(
+            raycastOrigin,
+            Vector2.down,
+            this.GroundRaycastDist,
+            this.GroundLayer
+        );
     }
 
     private void FlipSprite(float xspeed)
@@ -110,39 +146,6 @@ public class CharacterController2D : MonoBehaviour
         {
             this.Renderer.flipX = this._facingRight;
             this._facingRight = !this._facingRight;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.gameObject.layer == (int)Mathf.Log(this.GroundLayer.value, 2))
-        {
-            bool collidedOnlyOnBottom = false;
-            foreach (ContactPoint2D contact in collision.contacts)
-            {
-                if (contact.normal.y > 0.3)
-                {
-                    collidedOnlyOnBottom = true;
-                }
-            }
-
-            if (collidedOnlyOnBottom)
-            {
-                this.Grounded = true;
-                this.OnLanding.Invoke();
-            }
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.collider.gameObject.layer == (int)Mathf.Log(this.GroundLayer.value, 2))
-        {
-            this.Grounded = false;
-            if (collision.otherRigidbody.velocity.y < -0.8f)
-            {
-                this.OnFalling.Invoke();
-            }
         }
     }
 }
