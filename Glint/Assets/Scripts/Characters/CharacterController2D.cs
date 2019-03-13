@@ -11,8 +11,7 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, 60f)] public float JumpForce = 35f;
     [Range(0, 8f)] public float FallingForce = 3;
     [Range(0, .3f)] public float AirMovementSmothing = .05f;
-
-
+    
     [Range(-5f, 5f)] public float GroundRaycastOrigin = -0.5f;
     [Range(-5f, 5f)] public float GroundRaycastDist = 1f;
 
