@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, 60f)] public float JumpForce = 35f;
     [Range(0, 8f)] public float FallingForce = 3;
     [Range(0, .3f)] public float AirMovementSmothing = .05f;
-    
+
+    [Range(0f, 10f)] public float GroundRaycastsWidth = 1.5f;
     [Range(-5f, 5f)] public float GroundRaycastOrigin = -0.5f;
     [Range(-5f, 5f)] public float GroundRaycastDist = 1f;
 
@@ -113,7 +115,7 @@ public class CharacterController2D : MonoBehaviour
             );
         
         // falling mass acceleration
-        if (!(!this.Grounded && this._jumpingInput) && this.RigidBody.velocity.y < -10)
+        if ((!this.Grounded && !this._jumpingInput) || this.RigidBody.velocity.y < -10)
         {
             this.OnFalling.Invoke();
             this.RigidBody.velocity += Vector2.up * Physics2D.gravity.y * this.FallingForce * Time.fixedDeltaTime;
@@ -122,20 +124,33 @@ public class CharacterController2D : MonoBehaviour
 
     private bool CheckGround()
     {
-        Vector2 raycastOrigin = (Vector2)this.Transform.position - new Vector2(0, this.GroundRaycastOrigin);
-
-        // debugin' things to see the raycast
-        Debug.DrawLine(
-            raycastOrigin,
-            raycastOrigin - new Vector2(0, this.GroundRaycastDist)
-        );
+        Vector2 rightCheckOrigin = (Vector2)this.Transform.position - new Vector2(this.GroundRaycastsWidth / 2, this.GroundRaycastOrigin);
+        Vector2 leftCheckOrigin = (Vector2)this.Transform.position - new Vector2(-this.GroundRaycastsWidth / 2, this.GroundRaycastOrigin);
         
-        return Physics2D.Raycast(
-            raycastOrigin,
+        Debug.DrawLine(
+            rightCheckOrigin,
+            rightCheckOrigin - new Vector2(0, this.GroundRaycastDist)
+        );
+        Debug.DrawLine(
+            leftCheckOrigin,
+            leftCheckOrigin - new Vector2(0, this.GroundRaycastDist)
+        );
+
+        RaycastHit2D rightRay =  Physics2D.Raycast(
+            rightCheckOrigin,
             Vector2.down,
             this.GroundRaycastDist,
             this.GroundLayer
         );
+
+        RaycastHit2D leftRay = Physics2D.Raycast(
+            leftCheckOrigin,
+            Vector2.down,
+            this.GroundRaycastDist,
+            this.GroundLayer
+        );
+
+        return rightRay || leftRay;
     }
 
     private void FlipSprite(float xspeed)
