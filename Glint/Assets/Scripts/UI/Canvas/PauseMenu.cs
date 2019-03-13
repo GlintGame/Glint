@@ -39,7 +39,6 @@ public class PauseMenu : MonoBehaviour {
             GameObject.DontDestroyOnLoad(this);
             PauseMenu.OnPause += this.Focus;
             SceneManager.sceneLoaded += this.GetMenuElements;
-            PauseMenu.OnReleaseButton += this.Useless;
         }
         else
         {
@@ -123,10 +122,5 @@ public class PauseMenu : MonoBehaviour {
         this.eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         this.PauseMenuUI = this.gameObject.transform.Find("Pause Menu").gameObject;
         this.FocusButton = this.PauseMenuUI.transform.Find("Resume").gameObject.GetComponent<Button>();
-    }
-
-    private void Useless()
-    {
-        Debug.Log("OK");
     }
 }

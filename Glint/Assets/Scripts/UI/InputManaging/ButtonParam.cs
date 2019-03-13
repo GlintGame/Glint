@@ -13,7 +13,7 @@ public class ButtonParam : MonoBehaviour {
 
     void Awake()
     {
-        this.inputSetting = GameObject.Find("InputSettings");
+        this.inputSetting = GameObject.FindGameObjectWithTag("SettingsCanvas");
         this.keyBinder = this.inputSetting.GetComponentInChildren<KeyBinder>();
         this.nativeButtonScript = this.GetComponent<Button>();
     }
@@ -33,6 +33,5 @@ public class ButtonParam : MonoBehaviour {
     public void UpdateButton()
     {
         this.buttonText.text = "<sprite=" + utils.InputsDictionnary.getSpriteIndex(this.buttonParams) + ">";
-        TutoTrigger.UpdateAll();
     }
 }

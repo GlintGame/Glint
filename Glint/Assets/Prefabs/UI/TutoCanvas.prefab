@@ -56,7 +56,9 @@ GameObject:
   - component: {fileID: 224911174353847008}
   - component: {fileID: 222556992770945856}
   - component: {fileID: 114750200938011710}
+  - component: {fileID: 114744088834138978}
   - component: {fileID: 114073812564037624}
+  - component: {fileID: 114239510214133528}
   m_Layer: 0
   m_Name: TextMeshPro Text
   m_TagString: Untagged
@@ -121,6 +123,17 @@ MonoBehaviour:
   - ' '
   - ' '
   - ' '
+--- !u!114 &114239510214133528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788773097834776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541a752834123a84aae70b6329993d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114309738660327954
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -194,6 +207,21 @@ MonoBehaviour:
   m_canvasRenderer: {fileID: 222580152866955556}
   m_TextComponent: {fileID: 114750200938011710}
   m_materialReferenceIndex: 1
+--- !u!114 &114744088834138978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1788773097834776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66fb00f6a4cf544baeecfb75cd0143e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyboardString: $/KB/
+  keyboardParams: {fileID: 0}
+  gamepadString: $/GP/
+  gamepadParams: {fileID: 0}
 --- !u!114 &114750200938011710
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 222306249694738764}
   - component: {fileID: 114162633010552586}
   - component: {fileID: 114120383635252026}
+  - component: {fileID: 114214494187038696}
   m_Layer: 5
   m_Name: Bind description
   m_TagString: Untagged
@@ -40,7 +41,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36944815c1d5003438819270fdfbcfd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  array: 050000000300000002000000
+  eng:
+  - 1st text
+  - 2nd text
+  - 3rd text
+  fr:
+  - 1er texte
+  - "2\xE8me texte"
+  - "3\xE8me texte"
 --- !u!114 &114162633010552586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -155,6 +163,17 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &114214494187038696
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1045200682213316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541a752834123a84aae70b6329993d9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222306249694738764
 CanvasRenderer:
   m_ObjectHideFlags: 1

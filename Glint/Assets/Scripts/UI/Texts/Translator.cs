@@ -5,46 +5,8 @@ using TMPro;
 
 public class Translator : MonoBehaviour
 {
-
-    public static List<Translator> instances = new List<Translator>();
-
     public string[] eng = new string[] { "1st text", "2nd text", "3rd text" };
     public string[] fr = new string[] { "1er texte", "2ème texte", "3ème texte" };
-    private TMP_Text textMesh;
-
-    private string originalText;
-
-    void Awake()
-    {
-        Translator.instances.Add(this);
-        this.textMesh = this.gameObject.GetComponent<TMP_Text>();
-        this.originalText = this.textMesh.text;
-    }
-
-    void Start()
-    {
-        UpdateText();
-    }
-
-
-
-    void UpdateText()
-    {
-        this.textMesh.text = this.Translate(this.originalText);
-    }
-
-
-
-    public static void UpdateAll()
-    {
-
-        Translator.instances.ForEach((instance) =>
-        {
-            instance.UpdateText();
-        });
-    }
-
-
 
     public string Translate(string str)
     {
@@ -73,6 +35,7 @@ public class Translator : MonoBehaviour
             index++;
         }
 
+        Debug.LogWarning(str);
         return str;
     }
 }
