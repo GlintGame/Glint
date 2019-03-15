@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using utils;
 
-public class InputSpriteGenerator : MonoBehaviour {
+// Replace a group of char by sprites
+public class InputSpriteGenerator : MonoBehaviour, ITextModifier
+{
 
     public string keyboardString = "$/KB/";
     public BindingButton keyboardParams;
@@ -12,7 +13,7 @@ public class InputSpriteGenerator : MonoBehaviour {
     public string gamepadString = "$/GP/";
     public BindingButton gamepadParams;
 
-    public string ReplaceToSprite(string text)
+    public string ModifyText(string text)
     {
         if (this.keyboardParams)
             text = text.Replace(this.keyboardString, "<sprite=" + InputsDictionnary.getSpriteIndex(this.keyboardParams) + ">");

@@ -40,6 +40,6 @@ public class UILanguage : MonoBehaviour {
 
     public void UpdateTranslators()
     {
-        TextTransformManager.UpdateTranslatable();
+        TextManager.UpdateAllText();
     }
 }

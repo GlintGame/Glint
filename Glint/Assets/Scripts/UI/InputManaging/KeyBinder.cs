@@ -182,7 +182,7 @@ public class KeyBinder : MonoBehaviour
         ButtonParam buttonParam = button.GetComponent<ButtonParam>();
         buttonParam.UpdateButton();
 
-        TextTransformManager.UpdateSpriteable();
+        TextManager.UpdateAllText();
 
         this.eventSystemGameObject.SetActive(true);
         InputLoader.PlayerPrefsSave(this.standardInputSave);

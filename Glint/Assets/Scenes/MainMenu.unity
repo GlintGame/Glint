@@ -713,7 +713,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 210.56555, y: 0}
+  m_SizeDelta: {x: 0, y: 44.236237}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100533705
 MonoBehaviour:
@@ -3832,7 +3832,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0.09173584}
+  m_SizeDelta: {x: 0, y: 44.236298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &749286582
 MonoBehaviour:
@@ -8189,7 +8189,7 @@ MonoBehaviour:
     lineCount: 2
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}

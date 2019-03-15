@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
-public class Translator : MonoBehaviour
+// Translate text between curly brackets
+public class Translator : MonoBehaviour, ITextModifier
 {
     public string[] eng = new string[] { "1st text", "2nd text", "3rd text" };
     public string[] fr = new string[] { "1er texte", "2ème texte", "3ème texte" };
 
-    public string Translate(string str)
+    public string ModifyText(string str)
     {
 
         int startChar = str.IndexOf("{");
@@ -34,8 +34,6 @@ public class Translator : MonoBehaviour
             endChar = str.IndexOf("}");
             index++;
         }
-
-        Debug.LogWarning(str);
         return str;
     }
 }
