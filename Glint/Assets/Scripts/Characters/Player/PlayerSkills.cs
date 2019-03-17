@@ -7,7 +7,7 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
 {
     private ISkill[] skills;
 
-    // handling cooldowns 
+    // handling cooldowns
     public bool CanAct
     {
         get
@@ -17,7 +17,7 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
                 if (!skill.PlayerCanAct())
                 {
                     return false;
-                }                
+                }
             }
             return true;
         }
@@ -32,6 +32,7 @@ public class PlayerSkills : MonoBehaviour, ICharacterSkills
     {
         foreach (ISkill skill in this.skills)
         {
+            // sum metaprograming TODO : refactor this using a decorator patern
             // get the input info as a string
             // getting the type, the prop of the typy and getting the value on the object
             Type inputType = inputs.GetType();

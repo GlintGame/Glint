@@ -1,4 +1,4 @@
-﻿public class InputsParameters
+﻿public struct InputsParameters
 {
     public bool Dash { get; set; }
     public bool AttackOne { get; set; }
