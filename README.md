@@ -2,7 +2,7 @@
 
 Glint is a video game develloped by a team of students. It's a plateformer, hack'n slash and puzzle game.
 
-We're making this game on the Unity engine version 2018.2.8.f1
+We're making this game on the Unity engine version 2018.3.8.f1
 
 Folder organisation :
 
