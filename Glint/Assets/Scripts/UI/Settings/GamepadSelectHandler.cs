@@ -3,25 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using Luminosity.IO;
 
-public class GamepadSlider : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class GamepadSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
 
     private bool isFocused = false;
     private bool isSelected = false;
 
-    private Slider slider;
-
-    private VolumeUpdater volumeUpdater;
+    private Selectable slider;
 
     public GameObject eventSystemGameObject;
     private EventSystem eventSystem;
 
+    public UnityEvent onLeft;
+    public UnityEvent onRight;
+
     void Awake()
     {
-        this.volumeUpdater = this.gameObject.GetComponent<VolumeUpdater>();
-        this.slider = this.gameObject.GetComponent<Slider>();
+        this.slider = this.gameObject.GetComponent<Selectable>();
         this.eventSystem = this.eventSystemGameObject.GetComponent<EventSystem>();
     }
 
@@ -44,18 +45,14 @@ public class GamepadSlider : MonoBehaviour, ISelectHandler, IDeselectHandler
             && (InputManager.GetAxis("UI_GPHorizontal") > 0
             || InputManager.GetButton("UI_Right")))
         {
-            Debug.Log(this.volumeUpdater.Volume);
-            this.volumeUpdater.Volume = this.volumeUpdater.Volume + 0.01f;
-            this.volumeUpdater.UpdateSliderGUI();
+            this.onRight.Invoke();
         }
         
         if (this.isSelected
             && (InputManager.GetAxis("UI_GPHorizontal") < 0
             || InputManager.GetButton("UI_Left")))
         {
-            Debug.Log(this.volumeUpdater.Volume);
-            this.volumeUpdater.Volume = this.volumeUpdater.Volume - 0.01f;
-            this.volumeUpdater.UpdateSliderGUI();
+            this.onLeft.Invoke();
         }
     }
 

@@ -51,4 +51,16 @@ public class VolumeUpdater : MonoBehaviour {
     {
         this.slider.value = this.Volume;
     }
+
+    public void IncreaseVolume(float amount)
+    {
+        this.Volume += amount;
+        this.UpdateSliderGUI();
+    }
+
+    public void DecreaseVolume(float amount)
+    {
+        this.Volume -= amount;
+        this.UpdateSliderGUI();
+    }
 }
