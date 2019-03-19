@@ -19,6 +19,7 @@ public class GamepadSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHand
 
     public UnityEvent onLeft;
     public UnityEvent onRight;
+    public UnityEvent onSubmit;
 
     void Awake()
     {
@@ -39,6 +40,7 @@ public class GamepadSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHand
                 || InputManager.GetButtonDown("UI_Cancel")))
         {
             this.Deselect();
+            this.onSubmit.Invoke();
         }
 
         if(this.isSelected
