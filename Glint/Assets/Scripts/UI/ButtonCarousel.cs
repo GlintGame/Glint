@@ -9,13 +9,15 @@ using TMPro;
 [Serializable]
 public class ButtonCarouselEvent : UnityEvent<int> { }
 
-public class ButtonCarousel : MonoBehaviour
+public class ButtonCarousel : CustomSelectableButton
 {
+    public ButtonCarouselEvent onChange;
+
     public TMP_Text textMesh;
     public Button leftButton;
     public Button rightButton;
+
     public string[] TextArray;
-    public ButtonCarouselEvent onChange;
 
     private string text
     {
@@ -45,24 +47,27 @@ public class ButtonCarousel : MonoBehaviour
         this.UpdateText();
     }
 
-    public void PreviousLanguage()
+
+    public override void Previous()
     {
         this.CurrentIndex -= 1;
         this.onChange.Invoke(this.CurrentIndex);
+        this.onPrevious.Invoke();
     }
 
-    public void NextLanguage()
+    public override void Next()
     {
         this.CurrentIndex += 1;
         this.onChange.Invoke(this.CurrentIndex);
+        this.onNext.Invoke();
     }
 
-    public void UpdateText()
+    private void UpdateText()
     {
         this.text = this.TextArray[this.CurrentIndex];
     }
 
-    public void UpdateButtons()
+    private void UpdateButtons()
     {
         if (this.CurrentIndex == 0)
             this.leftButton.interactable = false;

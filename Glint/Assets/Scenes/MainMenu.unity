@@ -831,7 +831,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 66.58981}
+  m_SizeDelta: {x: 0, y: 0.25689697}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &100533705
 MonoBehaviour:
@@ -3787,7 +3787,6 @@ GameObject:
   - component: {fileID: 706390597}
   - component: {fileID: 706390596}
   - component: {fileID: 706390595}
-  - component: {fileID: 706390599}
   - component: {fileID: 706390600}
   - component: {fileID: 706390601}
   m_Layer: 5
@@ -3918,7 +3917,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &706390599
+--- !u!114 &706390600
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3927,40 +3926,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 706390593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7458e968b4c65d44a8890fe8f78b7b6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 385215bcd6635f54285d35925bbd384e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   eventSystemGameObject: {fileID: 1091839090}
-  onLeft:
+  onPrevious:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 706390600}
-        m_MethodName: PreviousLanguage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onRight:
+  onNext:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 706390600}
-        m_MethodName: NextLanguage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onSubmit:
@@ -3979,24 +3956,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &706390600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706390593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 385215bcd6635f54285d35925bbd384e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textMesh: {fileID: 93184113}
-  leftButton: {fileID: 1164308650}
-  rightButton: {fileID: 1652059841}
-  TextArray:
-  - "Fran\xE7ais"
-  - English
   onChange:
     m_PersistentCalls:
       m_Calls:
@@ -4013,6 +3972,12 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: ButtonCarouselEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  textMesh: {fileID: 93184113}
+  leftButton: {fileID: 1164308650}
+  rightButton: {fileID: 1652059841}
+  TextArray:
+  - "Fran\xE7ais"
+  - English
 --- !u!114 &706390601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7198,7 +7163,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1164308651}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 706390600}
+        m_MethodName: Previous
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 706390600}
+        m_MethodName: Submit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1164308651
@@ -7672,7 +7659,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventSystemGameObject: {fileID: 1091839090}
-  onLeft:
+  onPrevious:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1226048180}
@@ -7688,7 +7675,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  onRight:
+  onNext:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1226048180}
@@ -10195,7 +10182,29 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1652059842}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 706390600}
+        m_MethodName: Next
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 706390600}
+        m_MethodName: Submit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1652059842

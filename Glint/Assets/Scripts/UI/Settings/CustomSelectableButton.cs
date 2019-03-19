@@ -6,28 +6,28 @@ using UnityEngine.EventSystems;
 using UnityEngine.Events;
 using Luminosity.IO;
 
-public class GamepadSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class CustomSelectableButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
 
     private bool isFocused = false;
     private bool isSelected = false;
 
-    private Selectable slider;
+    private Selectable selectable;
 
     public GameObject eventSystemGameObject;
     private EventSystem eventSystem;
 
-    public UnityEvent onLeft;
-    public UnityEvent onRight;
+    public UnityEvent onPrevious;
+    public UnityEvent onNext;
     public UnityEvent onSubmit;
 
     void Awake()
     {
-        this.slider = this.gameObject.GetComponent<Selectable>();
+        this.selectable = this.gameObject.GetComponent<Selectable>();
         this.eventSystem = this.eventSystemGameObject.GetComponent<EventSystem>();
     }
 
-    void Update ()
+    void Update()
     {
         if (this.isFocused
             && !this.isSelected
@@ -40,37 +40,52 @@ public class GamepadSelectHandler : MonoBehaviour, ISelectHandler, IDeselectHand
                 || InputManager.GetButtonDown("UI_Cancel")))
         {
             this.Deselect();
-            this.onSubmit.Invoke();
+            this.Submit();
         }
 
         if(this.isSelected
             && (InputManager.GetAxis("UI_GPHorizontal") > 0
             || InputManager.GetButton("UI_Right")))
         {
-            this.onRight.Invoke();
+            this.Next();
         }
         
         if (this.isSelected
             && (InputManager.GetAxis("UI_GPHorizontal") < 0
             || InputManager.GetButton("UI_Left")))
         {
-            this.onLeft.Invoke();
+            this.Previous();
         }
     }
 
     private void Select()
     {
-        this.slider.interactable = false;
+        this.selectable.interactable = false;
         this.eventSystemGameObject.SetActive(false);
         this.isSelected = true;
     }
 
     private void Deselect()
     {
-        this.slider.interactable = true;
+        this.selectable.interactable = true;
         this.eventSystemGameObject.SetActive(true);
         this.eventSystem.SetSelectedGameObject(this.gameObject);
         this.isSelected = false;
+    }
+
+    public virtual void Previous()
+    {
+        this.onPrevious.Invoke();
+    }
+
+    public virtual void Next()
+    {
+        this.onNext.Invoke();
+    }
+
+    public virtual void Submit()
+    {
+        this.onSubmit.Invoke();
     }
 
     public void OnSelect(BaseEventData baseEventData)
