@@ -36,7 +36,7 @@ public class TextManager : MonoBehaviour {
             text = textModifier.ModifyText(text);
         }
 
-        Debug.Log(text);
+        // Debug.Log(text);
         this.textMesh.text = text;
     }
     
