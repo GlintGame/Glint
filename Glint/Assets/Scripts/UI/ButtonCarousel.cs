@@ -13,17 +13,10 @@ public class ButtonCarousel : CustomSelectableButton
 {
     public ButtonCarouselEvent onChange;
 
-    public TMP_Text textMesh;
     public Button leftButton;
     public Button rightButton;
 
-    public string[] TextArray;
-
-    private string text
-    {
-        get { return this.textMesh.text; }
-        set { this.textMesh.text = value; }
-    }
+    public GameObject[] OptionArray;
 
     private int currentIndex = 0;
     public int CurrentIndex
@@ -33,8 +26,8 @@ public class ButtonCarousel : CustomSelectableButton
             if (value < 0)
                 value = 0;
 
-            if (value > this.TextArray.Length - 1)
-                value = this.TextArray.Length - 1;
+            if (value > this.OptionArray.Length - 1)
+                value = this.OptionArray.Length - 1;
 
             currentIndex = value;
             this.UpdateText();
@@ -64,7 +57,12 @@ public class ButtonCarousel : CustomSelectableButton
 
     private void UpdateText()
     {
-        this.text = this.TextArray[this.CurrentIndex];
+        foreach(GameObject TMPOption in this.OptionArray)
+        {
+            TMPOption.SetActive(false);
+        }
+
+        this.OptionArray[this.CurrentIndex].SetActive(true);
     }
 
     private void UpdateButtons()
@@ -74,7 +72,7 @@ public class ButtonCarousel : CustomSelectableButton
         else
             this.leftButton.interactable = true;
 
-        if (this.CurrentIndex == this.TextArray.Length - 1)
+        if (this.CurrentIndex == this.OptionArray.Length - 1)
             this.rightButton.interactable = false;
         else
             this.rightButton.interactable = true;

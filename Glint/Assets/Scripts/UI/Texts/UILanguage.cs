@@ -8,7 +8,7 @@ public class UILanguage : MonoBehaviour {
 
     public string PlayerPrefLocation;
     public static SystemLanguage language;
-    public TMP_Dropdown dropdown;
+    public ButtonCarousel LanguageButton;
 
     [Serializable]
     public struct LanguageAssoc
@@ -40,7 +40,7 @@ public class UILanguage : MonoBehaviour {
             PlayerPrefs.SetInt(this.PlayerPrefLocation, (int)UILanguage.language);
         }
 
-        this.dropdown.value = UILanguage.language == SystemLanguage.French ? 0 : 1;
+        this.LanguageButton.CurrentIndex = UILanguage.language == SystemLanguage.French ? 0 : 1;
     }
 
     public void ChangeLanguage(int value)

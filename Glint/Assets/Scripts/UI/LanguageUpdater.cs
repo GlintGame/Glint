@@ -11,7 +11,7 @@ public class LanguageUpdater : MonoBehaviour
     {
         this.buttonCarousel = this.GetComponent<ButtonCarousel>();
         this.buttonCarousel.CurrentIndex = UILanguage.GetIndexFromSystemLanguage(UILanguage.language);
-        this.buttonCarousel.TextArray = this.GetArrayFromUILanguages();
+        //this.buttonCarousel.OptionArray = this.GetArrayFromUILanguages();
     }
 
     string[] GetArrayFromUILanguages()
