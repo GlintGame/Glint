@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 using Luminosity.IO;
 
-public class GamepadSlider : MonoBehaviour, ISelectHandler, IDeselectHandler
+public class CustomSelectableButton : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
 
     private bool isFocused = false;
     private bool isSelected = false;
 
-    private Slider slider;
-
-    private VolumeUpdater volumeUpdater;
+    private Selectable selectable;
 
     public GameObject eventSystemGameObject;
     private EventSystem eventSystem;
 
+    public UnityEvent onPrevious;
+    public UnityEvent onNext;
+    public UnityEvent onSubmit;
+
     void Awake()
     {
-        this.volumeUpdater = this.gameObject.GetComponent<VolumeUpdater>();
-        this.slider = this.gameObject.GetComponent<Slider>();
+        this.selectable = this.gameObject.GetComponent<Selectable>();
         this.eventSystem = this.eventSystemGameObject.GetComponent<EventSystem>();
     }
 
-    void Update ()
+    void Update()
     {
         if (this.isFocused
             && !this.isSelected
@@ -38,40 +40,52 @@ public class GamepadSlider : MonoBehaviour, ISelectHandler, IDeselectHandler
                 || InputManager.GetButtonDown("UI_Cancel")))
         {
             this.Deselect();
+            this.Submit();
         }
 
         if(this.isSelected
             && (InputManager.GetAxis("UI_GPHorizontal") > 0
             || InputManager.GetButton("UI_Right")))
         {
-            Debug.Log(this.volumeUpdater.Volume);
-            this.volumeUpdater.Volume = this.volumeUpdater.Volume + 0.01f;
-            this.volumeUpdater.UpdateSliderGUI();
+            this.Next();
         }
         
         if (this.isSelected
             && (InputManager.GetAxis("UI_GPHorizontal") < 0
             || InputManager.GetButton("UI_Left")))
         {
-            Debug.Log(this.volumeUpdater.Volume);
-            this.volumeUpdater.Volume = this.volumeUpdater.Volume - 0.01f;
-            this.volumeUpdater.UpdateSliderGUI();
+            this.Previous();
         }
     }
 
     private void Select()
     {
-        this.slider.interactable = false;
+        this.selectable.interactable = false;
         this.eventSystemGameObject.SetActive(false);
         this.isSelected = true;
     }
 
     private void Deselect()
     {
-        this.slider.interactable = true;
+        this.selectable.interactable = true;
         this.eventSystemGameObject.SetActive(true);
         this.eventSystem.SetSelectedGameObject(this.gameObject);
         this.isSelected = false;
+    }
+
+    public virtual void Previous()
+    {
+        this.onPrevious.Invoke();
+    }
+
+    public virtual void Next()
+    {
+        this.onNext.Invoke();
+    }
+
+    public virtual void Submit()
+    {
+        this.onSubmit.Invoke();
     }
 
     public void OnSelect(BaseEventData baseEventData)

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using TMPro;
 
 public class UILanguage : MonoBehaviour {
@@ -8,6 +9,24 @@ public class UILanguage : MonoBehaviour {
     public string PlayerPrefLocation;
     public static SystemLanguage language;
     public TMP_Dropdown dropdown;
+
+    [Serializable]
+    public struct LanguageAssoc
+    {
+        public string language;
+        public SystemLanguage system;
+
+        public LanguageAssoc(string p1, SystemLanguage p2)
+        {
+            this.language = p1;
+            this.system = p2;
+        }
+    }
+
+    public static LanguageAssoc[] Languages = {
+        new LanguageAssoc("Français", SystemLanguage.French),
+        new LanguageAssoc("English", SystemLanguage.English)
+    };
 
     void Awake()
     {
@@ -41,5 +60,16 @@ public class UILanguage : MonoBehaviour {
     public void UpdateTranslators()
     {
         TextManager.UpdateAllText();
+    }
+
+    public static int GetIndexFromSystemLanguage(SystemLanguage system)
+    {
+        for (int i = 0; i < UILanguage.Languages.Length; i++)
+        {
+            if (UILanguage.Languages[i].system == system)
+                return i;
+        }
+
+        return 0;
     }
 }
