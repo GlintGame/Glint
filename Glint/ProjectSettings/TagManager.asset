@@ -8,6 +8,9 @@ TagManager:
   - InputButton
   - box
   - SettingsCanvas
+  - UIPack
+  - UIOnlyScene
+  - PauseMenu
   layers:
   - Default
   - TransparentFX

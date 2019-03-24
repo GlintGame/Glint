@@ -8,15 +8,13 @@ using Luminosity.IO;
 
 public class PauseMenu : MonoBehaviour {
 
-    private static PauseMenu instance;
-
-    public bool onMainMenu = true;
+    public bool isScenePausable = false;
     private bool gameIsPaused = false;
     private bool waitForButtonRelease = false;
 
-    private GameObject PauseMenuUI;
-    private Button FocusButton;
-    private EventSystem eventSystem;
+    public GameObject PauseMenuUI;
+    public Button FocusButton;
+    public EventSystem eventSystem;
 
     public delegate void PauseAction();
     public static event PauseAction OnPause;
@@ -30,26 +28,9 @@ public class PauseMenu : MonoBehaviour {
     public delegate void ReleaseButtonAction();
     public static event ReleaseButtonAction OnReleaseButton;
 
-    void Awake()
-    {
-        if (PauseMenu.instance == null)
-        {
-            PauseMenu.instance = this;
-
-            GameObject.DontDestroyOnLoad(this);
-            PauseMenu.OnPause += this.Focus;
-            SceneManager.sceneLoaded += this.GetMenuElements;
-        }
-        else
-        {
-            GameObject.Destroy(this.gameObject);
-        }
-    }
-
-
-
     void Update() {
-        if (InputManager.GetButtonDown("UI_Menu") && !this.onMainMenu)
+
+        if (InputManager.GetButtonDown("UI_Menu") && this.isScenePausable)
         {
             if(this.gameIsPaused)
             {
@@ -75,14 +56,15 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 
-
-
     void Pause()
     {
         this.PauseMenuUI.SetActive(true);
         this.gameIsPaused = true;
+
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0f;
+
+        this.Focus();
 
         if (OnPause != null)
             OnPause();
@@ -92,6 +74,7 @@ public class PauseMenu : MonoBehaviour {
     {
         this.PauseMenuUI.SetActive(false);
         this.gameIsPaused = false;
+
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
 
@@ -99,16 +82,7 @@ public class PauseMenu : MonoBehaviour {
             OnResume();
     }
 
-    public void StartWaiting()
-    {
-        this.waitForButtonRelease = true;
-    }
-
-
-
-
-
-    private void Focus()
+    public void Focus()
     {
         this.eventSystem.SetSelectedGameObject(this.PauseMenuUI);
         this.FocusButton.Select();
@@ -116,11 +90,8 @@ public class PauseMenu : MonoBehaviour {
 
 
 
-
-    private void GetMenuElements(Scene scene, LoadSceneMode loadSceneMode)
+    public void StartWaiting()
     {
-        this.eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
-        this.PauseMenuUI = this.gameObject.transform.Find("Pause Menu").gameObject;
-        this.FocusButton = this.PauseMenuUI.transform.Find("Resume").gameObject.GetComponent<Button>();
+        this.waitForButtonRelease = true;
     }
 }
