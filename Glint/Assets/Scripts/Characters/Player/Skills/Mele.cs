@@ -14,22 +14,40 @@ namespace Characters.Player.Skills
         // skill options
         public float MeleTimeBeforeHit = 0.2f;
         public float MeleAttackCoolDown = 0.8f;
-        public float MeleHitboxDistance = 3;
-        public Vector2 MeleHitboxSize = new Vector2(10, 5);
-        public int MeleDamages = 5;
+        public Vector2 MeleHitBoxOffset = new Vector2(3, 4);
+        public Vector2 MeleHitboxSize = new Vector2(5, 6);
+        public int MeleDamages = 15;
+        public float PushForce = 5f;
 
         // needed components
         private PlayerSkills SkillManager;
         private CharacterController2D CharacterController;
         private Transform Transform;
+        private Rigidbody2D Rigidbody;
+        private PlayerStats PlayerStats;
+
         private void Awake()
         {
             this.SkillManager = this.GetComponent<PlayerSkills>();
             this.CharacterController = this.GetComponent<CharacterController2D>();
             this.Transform = this.GetComponent<Transform>();
+            this.Rigidbody = this.GetComponent<Rigidbody2D>();
+            this.PlayerStats = this.GetComponent<PlayerStats>();
         }
 
+        // 0: not attacking
+        // 1: first attack
+        // 2: second attack
+        private uint _attackState = 0;
+
         public bool _isMeleAttacking;
+        public bool CanNextAttack
+        {
+            get
+            {
+                return this._attackState == 1 || this._attackState == 0;
+            }
+        }
 
         // availability
         private bool _meleCooldown = false;
@@ -38,7 +56,7 @@ namespace Characters.Player.Skills
             get
             {
                 return
-                    !this.SkillManager.CanAct
+                    this.SkillManager.CanAct
                     && !this._meleCooldown;
             }
         }
@@ -55,14 +73,23 @@ namespace Characters.Player.Skills
 
         public IEnumerator Launch()
         {
+            if (!_canAttackMele)
+                yield break;
+
             // initialisation
             this._isMeleAttacking = true;
+            this.PlayerStats.IsInvicible = true;
 
             // activation
+            this.Rigidbody.velocity = Vector2.right * this.PushForce * this.CharacterController.Direction;
             yield return new WaitForSeconds(this.MeleTimeBeforeHit);
+
             Vector2 center = this.Transform.position;
-            center.x += this.CharacterController.Direction * this.MeleHitboxDistance;
-            Collider2D[] collided = Physics2D.OverlapAreaAll(center + this.MeleHitboxSize / 2, center - this.MeleHitboxSize / 2);
+            var offset = new Vector2(this.MeleHitBoxOffset.x * this.CharacterController.Direction, this.MeleHitBoxOffset.y);
+            center += offset;
+
+            Collider2D[] collided = Physics2D.OverlapAreaAll(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2);
+            Debug.DrawLine(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2, Color.green);
 
             foreach (Collider2D collider in collided)
             {
@@ -74,6 +101,8 @@ namespace Characters.Player.Skills
             }
 
             this._isMeleAttacking = false;
+            
+            this.PlayerStats.IsInvicible = false;
 
             // cooldown
             this._meleCooldown = true;

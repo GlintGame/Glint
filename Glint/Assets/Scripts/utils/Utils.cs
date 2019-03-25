@@ -14,6 +14,11 @@ namespace utils
         {
             this.Value = reference;
         }
+
+        public Ref(ref T reference)
+        {
+            this.Value = reference;
+        }
     }
 }
 

@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHp: 100
+  pushForce: {x: 40, y: 20}
   onPvChange:
     m_PersistentCalls:
       m_Calls: []
@@ -361,11 +362,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59746b6d00e9bc74bb92c96feae72d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleTimeBeforeHit: 0.2
+  MeleTimeBeforeHit: 0.4
   MeleAttackCoolDown: 0.8
-  MeleHitboxDistance: 3
-  MeleHitboxSize: {x: 10, y: 5}
+  MeleHitBoxOffset: {x: 3, y: 4}
+  MeleHitboxSize: {x: 5, y: 6}
   MeleDamages: 5
+  PushForce: 12
   _isMeleAttacking: 0
 --- !u!1 &7455681498740243662
 GameObject:

@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour, IHitable, IRespawnable {
     private Transform Transform;
 
     public int MaxHp = 100;
+    public Vector2 pushForce = new Vector2(40, 20);
 
     [System.Serializable]
     public class PlayerHPChange : UnityEvent<int, int> { }
@@ -26,6 +27,8 @@ public class PlayerStats : MonoBehaviour, IHitable, IRespawnable {
             this.onPvChange.Invoke(value, this.MaxHp);
         }
     }
+
+    public bool IsInvicible { get; set; }
 
     private void Awake()
     {
@@ -51,8 +54,11 @@ public class PlayerStats : MonoBehaviour, IHitable, IRespawnable {
 
     public void TakeDamages(int damages, Vector3 origin)
     {
+        if (this.IsInvicible)
+            return;
+
         int pushDirection = (this.Transform.position.x - origin.x) > 0 ? 1 : -1;
-        Vector2 push = Vector2.right * damages * pushDirection;
+        var push = new Vector2(this.pushForce.x * pushDirection, this.pushForce.y);
         this.Rigidbody.velocity += push;
 
         this.Hp -= damages;

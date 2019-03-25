@@ -3,14 +3,7 @@ using UnityEngine;
 
 public class AFireBall : MonoBehaviour {
 
-    private GameObject from;
-    public GameObject From
-    {
-        get
-        {
-            return this.from;
-        }
-    }
+    public GameObject From { get; private set; }
 
     public float speed = 5f;
     public float duration = 5f;
@@ -22,14 +15,14 @@ public class AFireBall : MonoBehaviour {
 
     private void Awake()
     {
-        this.from = GameObject
+        this.From = GameObject
             .FindGameObjectWithTag("Player");
 
-        this.direction = this.from
+        this.direction = this.From
             .GetComponent<CharacterController2D>()
             .Direction;
 
-        this.damages = this.from
+        this.damages = this.From
             .GetComponent<FireBall>()
             .FireBallDamage;
 
@@ -49,7 +42,7 @@ public class AFireBall : MonoBehaviour {
     {
         
         IHitable target = collision.gameObject.GetComponent<IHitable>();
-        if (collision.gameObject != from && collision.gameObject.layer != 11)
+        if (collision.gameObject != From && collision.gameObject.layer != 11)
         {
             if (target != null)
             {

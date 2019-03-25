@@ -12,6 +12,7 @@ TagManager:
   - UIOnlyScene
   - PauseMenu
   - GalleryView
+  - CamTarget
   layers:
   - Default
   - TransparentFX

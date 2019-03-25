@@ -7,18 +7,21 @@ public class EnemyStats : MonoBehaviour, IHitable
 
     public int MaxHp = 100;
 
-    public UnityEvent onPvChange;
+    [System.Serializable]
+    public class EnemyHpChange : UnityEvent<int, int> { }
+    public EnemyHpChange onPvChange;
+    public UnityEvent onDie;
 
     private int hp;
-    private int Hp
+    public int Hp
     {
         get
         {
             return this.hp;
         }
-        set
+        private set
         {
-            this.onPvChange.Invoke();
+            this.onPvChange.Invoke(value, this.MaxHp);
             this.hp = value;
         }
     }
@@ -38,8 +41,6 @@ public class EnemyStats : MonoBehaviour, IHitable
         this.GetComponent<Rigidbody2D>().velocity += push;
         
         this.Hp -= damages;
-        
-        Debug.Log("enemy was has taken" + damages + "damages, it has " + this.Hp + "hp");
 
         if (this.Hp <= 0)
             this.Kill();
@@ -57,7 +58,7 @@ public class EnemyStats : MonoBehaviour, IHitable
 
     public void Kill()
     {
-        Debug.Log("enemy was killed");
         Destroy(this.gameObject);
+        this.onDie.Invoke();
     }
 }

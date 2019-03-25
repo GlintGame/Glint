@@ -29,7 +29,7 @@ namespace Characters.Player.Skills
             get
             {
                 return
-                    !this.SkillManager.CanAct
+                    this.SkillManager.CanAct
                     && !this._fireBallCoolDown;
             }
         }
@@ -49,6 +49,10 @@ namespace Characters.Player.Skills
 
         public IEnumerator Launch()
         {
+            Debug.Log(_canAttackFireBall);
+            if (!_canAttackFireBall)
+                yield break;
+
             // initialization
             this._isFireBallAttacking = true;
 
