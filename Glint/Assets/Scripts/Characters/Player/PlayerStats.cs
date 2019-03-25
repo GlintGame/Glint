@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour, IHitable, IRespawnable {
         this.Transform = this.GetComponent<Transform>();
         this.Rigidbody = this.GetComponent<Rigidbody2D>();
         this.respawnPotition = this.Transform.position;
-        this.hp = this.MaxHp;
+        this.Hp = this.MaxHp;
     }
 
     public void respawn()
@@ -55,9 +55,9 @@ public class PlayerStats : MonoBehaviour, IHitable, IRespawnable {
         Vector2 push = Vector2.right * damages * pushDirection;
         this.Rigidbody.velocity += push;
 
-        this.hp -= damages;
+        this.Hp -= damages;
 
-        if(this.hp <= 0)
+        if(this.Hp <= 0)
         {
             this.respawn();
         }

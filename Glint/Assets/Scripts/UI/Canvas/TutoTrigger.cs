@@ -8,12 +8,14 @@ public class TutoTrigger : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        this.ShowText();
+        if(collision.gameObject.layer == 9)
+            this.ShowText();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        this.HideText();
+        if(collision.gameObject.layer == 9)
+            this.HideText();
     }
 
     private void ShowText()
