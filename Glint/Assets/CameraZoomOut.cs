@@ -47,13 +47,20 @@ public class CameraZoomOut : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        this.ZoomTarget = this.ZoomTo;
-        this.Target = this.TargetTo;
+        if(collision.gameObject.layer == 9)
+        {
+            this.ZoomTarget = this.ZoomTo;
+            this.Target = this.TargetTo;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        this.ZoomTarget = this.OriginZoom;
-        this.Target = this.OriginTarget;
+        if (collision.gameObject.layer == 9)
+        {
+            this.ZoomTarget = this.OriginZoom;
+            this.Target = this.OriginTarget;
+        }
+        
     }
 }
