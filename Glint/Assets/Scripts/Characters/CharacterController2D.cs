@@ -82,16 +82,16 @@ public class CharacterController2D : MonoBehaviour
         this._jumpingInput = false;
     }
 
-    public void Move(float speed, bool isRunning)
+    public void Move(float hMove, bool isRunning)
     {
-        this._horizintalTargetSpeed = speed * this.SpeedMultiplier;
+        this._horizintalTargetSpeed = hMove * this.SpeedMultiplier;
 
         if (!isRunning)
         {
             this._horizintalTargetSpeed *= this.WalkSpeedModifier;
         }
 
-        this.FlipSprite(speed);
+        this.FlipSprite(hMove);
     }
 
     // velocity wrapper
