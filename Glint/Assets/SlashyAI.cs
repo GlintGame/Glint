@@ -47,6 +47,10 @@ public class SlashyAI : MonoBehaviour
             float hmove = this.Transform.position.x < this.target.position.x ? 1 : -1;
             this.CharacterController.Move(hmove, true);
         }
+        else
+        {
+            this.CharacterController.Move(0, true);
+        }
     }
 
     public IEnumerator Slash()
