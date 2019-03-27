@@ -104,7 +104,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 2.4325266}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2.45, y: 4.85}
     newSize: {x: 2.45, y: 4.85}
     adaptiveTilingThreshold: 0.5
@@ -231,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3257082538481798342}
   - component: {fileID: 3257082538481798336}
-  - component: {fileID: 3257082538481798337}
+  - component: {fileID: 4790332536320883829}
   m_Layer: 11
   m_Name: DetectionObserver
   m_TagString: Untagged
@@ -269,7 +269,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 14.172961
---- !u!114 &3257082538481798337
+--- !u!114 &4790332536320883829
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -278,10 +278,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 3257082538481798343}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b60d01535bf065409fd62d12920700b, type: 3}
+  m_Script: {fileID: 11500000, guid: e1db41a817f66cd419e628271728d22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI: {fileID: 3257082538371887613}
+  detectionLayer: 9
+  OnDetectOut:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDetectIn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3257082538371887613}
+        m_MethodName: OnDetected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDetectStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &3257082538503692812
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +368,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1db41a817f66cd419e628271728d22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI: {fileID: 3257082538371887613}
+  detectionLayer: 9
+  OnDetectOut:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3257082538371887613}
+        m_MethodName: OnEscape
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDetectIn:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDetectStay:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &3257082538577810989
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +405,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3257082538577810988}
   - component: {fileID: 3257082538577810990}
-  - component: {fileID: 3257082538577810991}
+  - component: {fileID: 146088311998448639}
   m_Layer: 11
   m_Name: ReachObserver
   m_TagString: Untagged
@@ -391,7 +443,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.870553
---- !u!114 &3257082538577810991
+--- !u!114 &146088311998448639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -400,10 +452,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 3257082538577810989}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc0003ed0ed264f46a81d1ab84eea3ef, type: 3}
+  m_Script: {fileID: 11500000, guid: e1db41a817f66cd419e628271728d22d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AI: {fileID: 3257082538371887613}
+  detectionLayer: 9
+  OnDetectOut:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDetectIn:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnDetectStay:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3257082538371887613}
+        m_MethodName: OnReach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: DetectionObserver+DetectionEvent, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &7880358878009641150
 PrefabInstance:
   m_ObjectHideFlags: 0
