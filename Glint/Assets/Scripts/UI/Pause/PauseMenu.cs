@@ -45,6 +45,8 @@ public class PauseMenu : MonoBehaviour {
             }
         }
 
+        // Invoke an event when the submit button is released
+        // this is in the case that the submit button also trigger another action like jumping
         if(this.waitForButtonRelease
             && InputManager.GetButtonUp("UI_Submit"))
         {
