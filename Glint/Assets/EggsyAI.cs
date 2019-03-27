@@ -5,11 +5,15 @@ using utils;
 
 public class EggsyAI : MonoBehaviour
 {
+    public int Damages = 10;
+
     private BoxCollider2D Collider;
+    private Transform Transform;
 
     private void Awake()
     {
         this.Collider = this.GetComponent<BoxCollider2D>();
+        this.Transform = this.GetComponent<Transform>();
         this.Collider.enabled = false;
     }
 
@@ -17,7 +21,11 @@ public class EggsyAI : MonoBehaviour
     {
         this.Collider.enabled = true;
 
-        StartCoroutine(utils.Coroutine.Do.Wait(3f, () => this.Collider.enabled = false));
+        StartCoroutine(
+            utils.Coroutine.Do.Wait(3f, 
+                () => this.Collider.enabled = false
+            )
+        );
     }
 
     public void OffDetected()
@@ -27,6 +35,11 @@ public class EggsyAI : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // make dmg
+        var other = collision.gameObject.GetComponent<IHitable>();
+
+        if (other != null && !(other is EnemyStats))
+        {
+            other.TakeDamages(this.Damages, this.Transform.position);
+        }
     }
 }

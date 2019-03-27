@@ -46,16 +46,6 @@ public class EnemyStats : MonoBehaviour, IHitable
             this.Kill();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var other = collision.gameObject.GetComponent<IHitable>();
-
-        if(other != null && !(other is EnemyStats))
-        {
-            other.TakeDamages(this.Damages, this.transform.position);
-        }
-    }
-
     public void Kill()
     {
         Destroy(this.gameObject);
