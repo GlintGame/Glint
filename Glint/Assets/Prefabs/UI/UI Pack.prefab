@@ -2585,7 +2585,7 @@ PrefabInstance:
         type: 3}
       propertyPath: buttonParams
       value: 
-      objectReference: {fileID: 11400000, guid: 6f18451f9ee82fb40a1fe184bb579494,
+      objectReference: {fileID: 11400000, guid: e412d59cadc030f4ea38db2a0f309cae,
         type: 2}
     - target: {fileID: 224601187520463968, guid: 560f62c414f8cb444857b3ba62f8c97f,
         type: 3}
@@ -8703,6 +8703,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 114576449292651712, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
       propertyPath: fr.Array.size
@@ -8773,21 +8788,6 @@ PrefabInstance:
       propertyPath: m_subTextObjects.Array.data[1]
       value: 
       objectReference: {fileID: 7366610296047999633}
-    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f9604ceadbaad845af9a58574519ecc, type: 3}
 --- !u!224 &7288853575910247655 stripped

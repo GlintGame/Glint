@@ -112,7 +112,7 @@ namespace Luminosity.IO
 		{
 
             // remove in case of any bugs
-            DontDestroyOnLoad(this);
+            //DontDestroyOnLoad(this);
             // 
 
             if(m_instance == null)

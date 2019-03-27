@@ -44,7 +44,7 @@ public class GamepadInputModule : MonoBehaviour {
         }
 
         //timer counting down
-        timer -= Time.fixedDeltaTime;
+        timer -= Time.fixedUnscaledDeltaTime;
 
     }
 }
