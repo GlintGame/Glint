@@ -8,10 +8,8 @@ namespace utils
     {
         public delegate void ColorDelegate(Color32 color);
 
-        public static IEnumerator DoFade(ColorDelegate colorDelegate, uint fromOpacity, uint toOpacity, float fadeDuration)
+        public static IEnumerator DoFade(ColorDelegate colorDelegate, Color32 fromColor, Color32 toColor, float fadeDuration)
         {
-            Color32 fromColor = new Color32(0, 0, 0, Convert.ToByte(fromOpacity));
-            Color32 toColor = new Color32(0, 0, 0, Convert.ToByte(toOpacity));
             float currentTime = 0f;
 
             while (currentTime <= fadeDuration)

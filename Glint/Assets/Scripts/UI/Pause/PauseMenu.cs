@@ -3,15 +3,12 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Luminosity.IO;
 
-public class PauseMenu : MonoBehaviour {
+public class PauseMenu : SelectableScreen {
 
     public bool isScenePausable = false;
-    private bool gameIsPaused = false;
     private bool waitForButtonRelease = false;
 
     public GameObject PauseMenuUI;
-    public Button FocusButton;
-    public EventSystem eventSystem;
 
     public delegate void PauseAction();
     public static event PauseAction OnPause;
@@ -29,16 +26,16 @@ public class PauseMenu : MonoBehaviour {
 
         if (InputManager.GetButtonDown("UI_Menu") && this.isScenePausable)
         {
-            if(this.gameIsPaused)
+            if(this.isActive)
             {
-                this.Resume();
+                this.Desactivate();
 
                 if (OnResumeEscape != null)
                     OnResumeEscape();
             }
             else
             {
-                this.Pause();
+                this.Activate();
             }
         }
 
@@ -55,40 +52,36 @@ public class PauseMenu : MonoBehaviour {
 	}
 
 
-    void Pause()
+    override public void Activate()
     {
         this.PauseMenuUI.SetActive(true);
-        this.gameIsPaused = true;
+        this.isActive = true;
 
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0f;
-
-        FadeCanvas.getInstance().FadeOut(0.2f);
-
+        
         this.Focus();
 
         if (OnPause != null)
             OnPause();
     }
 
-    public void Resume()
+    override public void Desactivate()
     {
         this.PauseMenuUI.SetActive(false);
-        this.gameIsPaused = false;
+        this.isActive = false;
 
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
-
-        FadeCanvas.getInstance().FadeIn(0.2f);
-
+        
         if (OnResume != null)
             OnResume();
     }
 
-    public void Focus()
+    public override void Focus()
     {
         this.eventSystem.SetSelectedGameObject(this.PauseMenuUI);
-        this.FocusButton.Select();
+        this.focusButton.Select();
     }
 
 

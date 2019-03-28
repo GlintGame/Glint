@@ -24,11 +24,11 @@ public class FadeCanvas : MonoBehaviour
 
     public void FadeIn(float fadeDuration)
     {
-        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color, 255, 0, fadeDuration));
+        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color,new Color32(0,0,0,255), new Color32(0,0,0,0), fadeDuration));
     }
 
     public void FadeOut(float fadeDuration)
     {
-        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color, 0, 255, fadeDuration));
+        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color, new Color32(0,0,0,0), new Color32(0,0,0,255), fadeDuration));
     }
 }

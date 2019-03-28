@@ -48,6 +48,15 @@ namespace utils
             callback();
         }
 
+        public static IEnumerator WaitForRealSeconds(float time)
+        {
+            float start = Time.realtimeSinceStartup;
+            while (Time.realtimeSinceStartup < start + time)
+            {
+                yield return null;
+            }
+        }
+
         public IEnumerator StopLookAhead(float seconds)
         {
 

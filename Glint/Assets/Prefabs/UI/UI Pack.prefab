@@ -456,7 +456,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 7.8125
   m_canvasRenderer: {fileID: 7366610295097982452}
   m_TextComponent: {fileID: 9173269006092362685}
   m_materialReferenceIndex: 1
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 7.8125
   m_canvasRenderer: {fileID: 7366610295724638364}
   m_TextComponent: {fileID: 7470622497868198421}
   m_materialReferenceIndex: 1
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 7.8125
   m_canvasRenderer: {fileID: 7366610296112677817}
   m_TextComponent: {fileID: 7470622497131071210}
   m_materialReferenceIndex: 1
@@ -1835,7 +1835,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 7.8125
   m_canvasRenderer: {fileID: 7366610296540061585}
   m_TextComponent: {fileID: 5391788761425904433}
   m_materialReferenceIndex: 1
@@ -2126,7 +2126,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 0.5
+  m_padding: 7.8125
   m_canvasRenderer: {fileID: 7366610296685353311}
   m_TextComponent: {fileID: 9173269006536046101}
   m_materialReferenceIndex: 1
@@ -2274,10 +2274,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1507c051b420ecc478205ee32fb0ddeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  focusButton: {fileID: 7467856262596270215}
+  eventSystem: {fileID: 0}
+  isActive: 0
   isScenePausable: 0
   PauseMenuUI: {fileID: 7366610295075775557}
-  FocusButton: {fileID: 7467856262596270215}
-  eventSystem: {fileID: 0}
 --- !u!114 &7512511557264156148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,9 +2291,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d770bc066842b0478474814ce379803, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SettingsUI: {fileID: 7366610296229340750}
-  FocusButton: {fileID: 7468083713018472773}
+  focusButton: {fileID: 7468083713018472773}
   eventSystem: {fileID: 0}
+  isActive: 0
+  SettingsUI: {fileID: 7366610296229340750}
 --- !u!1 &7366610296741430870
 GameObject:
   m_ObjectHideFlags: 0
@@ -4687,7 +4689,7 @@ PrefabInstance:
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Resume
+      value: Desactivate
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
@@ -5319,7 +5321,7 @@ PrefabInstance:
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseSettings
+      value: Desactivate
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
@@ -5799,11 +5801,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7366610296699181902}
+      objectReference: {fileID: 7512511557264156148}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Resume
+      value: Desactivate
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
@@ -6043,7 +6045,7 @@ PrefabInstance:
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OpenSettings
+      value: Activate
       objectReference: {fileID: 0}
     - target: {fileID: 114932761217897756, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
