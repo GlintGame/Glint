@@ -1,32 +1,34 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using utils;
 
-public class FadeCanvas
+public class FadeCanvas : MonoBehaviour
 {
     private static Image fadePanel;
+    private static FadeCanvas instance;
+    private static Ref<Color32> refColor;
 
-    public static void FadeIn()
+    public static FadeCanvas getInstance()
     {
-        FadeCanvas.getPanel();
-
-        FadeCanvas.fadePanel.color = new Color32(255, 255, 225, 100);
-    }
-
-    public static void FadeOut()
-    {
-        FadeCanvas.getPanel();
-
-        FadeCanvas.fadePanel.color = new Color32(255, 255, 225, 0);
-    }
-
-    public static void getPanel()
-    {
-        if(FadeCanvas.fadePanel == null)
+        if (FadeCanvas.instance == null)
         {
             GameObject FadeCanvasGO = (GameObject)MonoBehaviour.Instantiate(Resources.Load("UI/Fade Canvas"));
             FadeCanvas.fadePanel = FadeCanvasGO.transform.GetChild(0).GetComponent<Image>();
+            FadeCanvas.instance = FadeCanvasGO.GetComponent<FadeCanvas>();
         }
+
+        return FadeCanvas.instance;
+    }
+
+    public void FadeIn(float fadeDuration)
+    {
+        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color, 255, 0, fadeDuration));
+    }
+
+    public void FadeOut(float fadeDuration)
+    {
+        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color, 0, 255, fadeDuration));
     }
 }

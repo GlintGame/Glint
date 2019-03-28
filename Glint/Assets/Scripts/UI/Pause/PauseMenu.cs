@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Luminosity.IO;
 
@@ -66,6 +63,8 @@ public class PauseMenu : MonoBehaviour {
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0f;
 
+        FadeCanvas.getInstance().FadeOut(0.2f);
+
         this.Focus();
 
         if (OnPause != null)
@@ -79,6 +78,8 @@ public class PauseMenu : MonoBehaviour {
 
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;
+
+        FadeCanvas.getInstance().FadeIn(0.2f);
 
         if (OnResume != null)
             OnResume();

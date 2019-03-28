@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5455028135894366584}
   - component: {fileID: 5455028135894366583}
   - component: {fileID: 5455028135894366582}
+  - component: {fileID: 2520444705455377023}
   m_Layer: 5
   m_Name: Fade Canvas
   m_TagString: Untagged
@@ -58,7 +59,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &5455028135894366583
 MonoBehaviour:
@@ -99,6 +100,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2520444705455377023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5455028135894366581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e79c2cd0ec7ef49b0f5c0dd6ffa842, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5455028136053151034
 GameObject:
   m_ObjectHideFlags: 0
