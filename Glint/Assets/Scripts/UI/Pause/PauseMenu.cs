@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using Luminosity.IO;
 
 public class PauseMenu : SelectableScreen {
@@ -24,7 +22,9 @@ public class PauseMenu : SelectableScreen {
 
     void Update() {
 
-        if (InputManager.GetButtonDown("UI_Menu") && this.isScenePausable)
+        if (InputManager.GetButtonDown("UI_Menu")
+            && this.isScenePausable
+            && !base.AnotherIsActive(this))
         {
             if(this.isActive)
             {
@@ -54,6 +54,8 @@ public class PauseMenu : SelectableScreen {
 
     override public void Activate()
     {
+        base.AddToActiveScreens(this);
+
         this.PauseMenuUI.SetActive(true);
         this.isActive = true;
 
@@ -68,6 +70,8 @@ public class PauseMenu : SelectableScreen {
 
     override public void Desactivate()
     {
+        base.RemoveFromActiveScreens(this);
+
         this.PauseMenuUI.SetActive(false);
         this.isActive = false;
 

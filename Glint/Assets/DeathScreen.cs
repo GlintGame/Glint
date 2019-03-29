@@ -1,7 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using utils;
@@ -15,27 +13,33 @@ public class DeathScreen : SelectableScreen
     public TextMeshProUGUI retryButtonText;
     public TextMeshProUGUI giveupButtonText;
 
-    Color32 white = new Color32(255, 255, 255, 255);
     Color32 whiteT = new Color32(255, 255, 255, 0);
-    Color32 black = new Color32(0, 0, 0, 255);
     Color32 blackT = new Color32(0, 0, 0, 0);
 
     public void CheckDeath(int curHealth, int maxHealth)
     {
         if (curHealth <= 0)
-        {
+        { 
             this.Activate();
         }
     }
 
-    public override void Activate()
+    public override void Activate() 
     {
+        base.AddToActiveScreens(this);
+
+        Time.timeScale = 0f;
+        Time.fixedDeltaTime = 0f;
+        this.canvas.SetActive(true);
         this.SetBaseColors();
+
         StartCoroutine(this.ShowScreen());
     }
 
     public override void Desactivate()
     {
+        base.RemoveFromActiveScreens(this);
+
         this.SetBaseColors();
         this.canvas.SetActive(false);
 
@@ -60,18 +64,14 @@ public class DeathScreen : SelectableScreen
 
     private IEnumerator ShowScreen()
     {
-        Time.timeScale = 0f;
-        Time.fixedDeltaTime = 0f;
-        this.canvas.SetActive(true);
-
-        yield return StartCoroutine(FadeFunc.DoFade((Color32 color) => { this.panel.color = color; }, blackT, black, 1.5f));
+        yield return StartCoroutine(FadeFunc.DoFadeOutBlack((Color32 color) => { this.panel.color = color; }, 1.5f));
         yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(1.0f));
-        StartCoroutine(FadeFunc.DoFade((Color32 color) => { this.deathText.color = color; }, whiteT, white, 1f));
+        StartCoroutine(FadeFunc.DoFadeOutWhite((Color32 color) => { this.deathText.color = color; }, 1f));
         yield return StartCoroutine(FadeFunc.DoFade((Color32 color) => { this.deathImage.color = color; }, whiteT, new Color32(255, 255, 255, 75), 1f));
         yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(0.5f));
-        yield return StartCoroutine(FadeFunc.DoFade((Color32 color) => { this.retryButtonText.color = color; }, whiteT, white, 0.5f));
+        yield return StartCoroutine(FadeFunc.DoFadeOutWhite((Color32 color) => { this.retryButtonText.color = color; }, 0.5f));
         yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(0.3f));
-        yield return StartCoroutine(FadeFunc.DoFade((Color32 color) => { this.giveupButtonText.color = color; }, whiteT, white, 0.5f));
+        yield return StartCoroutine(FadeFunc.DoFadeOutWhite((Color32 color) => { this.giveupButtonText.color = color; }, 0.5f));
         yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(0.1f));
 
         this.Focus();

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using utils;
 
@@ -8,7 +6,6 @@ public class FadeCanvas : MonoBehaviour
 {
     private static Image fadePanel;
     private static FadeCanvas instance;
-    private static Ref<Color32> refColor;
 
     public static FadeCanvas getInstance()
     {
@@ -24,11 +21,11 @@ public class FadeCanvas : MonoBehaviour
 
     public void FadeIn(float fadeDuration)
     {
-        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color,new Color32(0,0,0,255), new Color32(0,0,0,0), fadeDuration));
+        this.StartCoroutine(FadeFunc.DoFadeInBlack((Color32 color) => FadeCanvas.fadePanel.color = color, fadeDuration));
     }
 
     public void FadeOut(float fadeDuration)
     {
-        this.StartCoroutine(FadeFunc.DoFade((Color32 color) => FadeCanvas.fadePanel.color = color, new Color32(0,0,0,0), new Color32(0,0,0,255), fadeDuration));
+        this.StartCoroutine(FadeFunc.DoFadeOutBlack((Color32 color) => FadeCanvas.fadePanel.color = color, fadeDuration));
     }
 }

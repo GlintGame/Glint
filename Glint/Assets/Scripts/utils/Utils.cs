@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Cinemachine;
-
-namespace utils
+﻿namespace utils
 {
     // type référence lorsqu'on peut pas utiliser les références.
     public class Ref<T>

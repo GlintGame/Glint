@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class SettingsMenu : SelectableScreen
 {
@@ -16,6 +12,8 @@ public class SettingsMenu : SelectableScreen
 
     public override void Activate()
     {
+        base.AddToActiveScreens(this);
+
         this.SettingsUI.SetActive(true);
         this.isActive = true;
 
@@ -27,6 +25,8 @@ public class SettingsMenu : SelectableScreen
 
     public override void Desactivate()
     {
+        base.RemoveFromActiveScreens(this);
+
         this.SettingsUI.SetActive(false);
         this.isActive = false;
 
