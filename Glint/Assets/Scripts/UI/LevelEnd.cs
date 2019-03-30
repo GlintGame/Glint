@@ -3,23 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelEnd : MonoBehaviour, IActivable
+public class LevelEnd : MonoBehaviour
 {
-    public Text text;
-
-    public void Activate()
-    {
-        this.gameObject.SetActive(true);
-    }
-
-    public void Disactivate()
-    {
-        this.gameObject.SetActive(false);
-    }
+    public EndScreen endSceen;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        this.text.gameObject.SetActive(true);
-        this.gameObject.SetActive(false);
+        if (collision.gameObject.layer == 9)
+            this.endSceen.Activate();
     }
 }

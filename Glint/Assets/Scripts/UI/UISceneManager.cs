@@ -16,7 +16,7 @@ public class UISceneManager : MonoBehaviour {
             UISceneManager.instance = this;
         }
 
-        FadeCanvas.getInstance().FadeIn(0.5f);
+        TransitionCanvas.getInstance().FadeIn(0.5f);
     }
 
     public void ExitGame()
@@ -31,7 +31,7 @@ public class UISceneManager : MonoBehaviour {
 
     private IEnumerator LoadSceneCoroutine(string sceneName)
     {
-        FadeCanvas.getInstance().FadeOut(0.5f);
+        TransitionCanvas.getInstance().FadeOut(0.5f);
         yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(0.5f));
         SceneManager.LoadScene(sceneName);
     }
