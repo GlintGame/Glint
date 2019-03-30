@@ -4,7 +4,7 @@ using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
     // components params
-    [Range(20f, 40f)] public float SpeedMultiplier = 30;
+    [Range(5f, 40f)] public float SpeedMultiplier = 30;
     [Range(.2f, 1f)] public float WalkSpeedModifier = .8f;
     [Range(0, .3f)] public float MovementSmothing = .05f;
 
@@ -82,7 +82,7 @@ public class CharacterController2D : MonoBehaviour
         this._jumpingInput = false;
     }
 
-    public void Move(float hMove, bool isRunning)
+    public void SetMove(float hMove, bool isRunning)
     {
         this._horizintalTargetSpeed = hMove * this.SpeedMultiplier;
 

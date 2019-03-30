@@ -47,7 +47,7 @@ public class PlayerInputsController : MonoBehaviour
         // dead zone
         horizontalMovement = Mathf.Abs(horizontalMovement) > this.HorizontalDeadZone ? horizontalMovement : 0;
 
-        this.Controller.Move(
+        this.Controller.SetMove(
             horizontalMovement,
             isRunning
         );

@@ -13,6 +13,7 @@ namespace Characters.Player.Skills
     {
         // skill options
         public float MeleTimeBeforeHit = 0.2f;
+        public float MeleTimeBetweenHits = 0.1f;
         public float MeleAttackCoolDown = 0.8f;
         public Vector2 MeleHitBoxOffset = new Vector2(3, 4);
         public Vector2 MeleHitboxSize = new Vector2(5, 6);
@@ -25,6 +26,7 @@ namespace Characters.Player.Skills
         private Transform Transform;
         private Rigidbody2D Rigidbody;
         private PlayerStats PlayerStats;
+        private Animator Animator;
 
         private void Awake()
         {
@@ -33,6 +35,7 @@ namespace Characters.Player.Skills
             this.Transform = this.GetComponent<Transform>();
             this.Rigidbody = this.GetComponent<Rigidbody2D>();
             this.PlayerStats = this.GetComponent<PlayerStats>();
+            this.Animator = this.GetComponent<Animator>();
         }
 
         // 0: not attacking
@@ -61,6 +64,7 @@ namespace Characters.Player.Skills
             }
         }
 
+
         public bool PlayerCanAct()
         {
             return !this._isMeleAttacking;
@@ -80,6 +84,9 @@ namespace Characters.Player.Skills
             this._isMeleAttacking = true;
             this.PlayerStats.IsInvicible = true;
 
+            // animate
+            this.Animator.SetBool("PlayerMele", true);
+
             // activation
             this.Rigidbody.velocity = Vector2.right * this.PushForce * this.CharacterController.Direction;
             yield return new WaitForSeconds(this.MeleTimeBeforeHit);
@@ -89,7 +96,19 @@ namespace Characters.Player.Skills
             center += offset;
 
             Collider2D[] collided = Physics2D.OverlapAreaAll(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2);
-            Debug.DrawLine(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2, Color.green);
+
+            foreach (Collider2D collider in collided)
+            {
+                IHitable target = collider.gameObject.GetComponent<IHitable>();
+                if (collider.gameObject != this.gameObject && target != null)
+                {
+                    target.TakeDamages(this.MeleDamages, this.Transform.position);
+                }
+            }
+
+            yield return new WaitForSeconds(this.MeleTimeBetweenHits);
+
+            collided = Physics2D.OverlapAreaAll(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2);
 
             foreach (Collider2D collider in collided)
             {
@@ -102,6 +121,7 @@ namespace Characters.Player.Skills
 
             this._isMeleAttacking = false;
             
+            this.Animator.SetBool("PlayerMele", false);
             this.PlayerStats.IsInvicible = false;
 
             // cooldown

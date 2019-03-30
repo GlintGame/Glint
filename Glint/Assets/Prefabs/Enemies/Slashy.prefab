@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3257082538371887590}
   - component: {fileID: 3257082538371887612}
   - component: {fileID: 3257082538371887613}
+  - component: {fileID: 5755377859249450258}
   m_Layer: 0
   m_Name: Slashy
   m_TagString: Untagged
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 5671d32299e760b4c9f70bf258f4309c, type: 3}
+  m_Sprite: {fileID: 21300004, guid: f6dab0a44011e4c4eb2e1b6953f62560, type: 3}
   m_Color: {r: 1, g: 0.7783019, b: 0.7783019, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -101,18 +102,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.4325266}
+  m_Offset: {x: 0.016605258, y: 2.8641915}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.45, y: 4.85}
+    oldSize: {x: 5.266667, y: 6.6749997}
     newSize: {x: 2.45, y: 4.85}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.45, y: 4.8548365}
+  m_Size: {x: 5.007574, y: 5.7181664}
   m_EdgeRadius: 0
 --- !u!50 &3257082538371887585
 Rigidbody2D:
@@ -126,7 +127,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 24.288752
+  m_Mass: 58.47209
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -167,7 +168,18 @@ MonoBehaviour:
       PublicKeyToken=null
   onDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3257082538371887613}
+        m_MethodName: OnDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &3257082538371887612
@@ -221,6 +233,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f66d06304ef90784195dca8b382bdf16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &5755377859249450258
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3257082538371887591}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f53bbe7e81bd2834999414742f826033, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3257082538481798343
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,12 +528,12 @@ PrefabInstance:
     - target: {fileID: 3149940558700263340, guid: 74b5d366e7803b54aa57ffeae4a99f82,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.05
+      value: -0.02
       objectReference: {fileID: 0}
     - target: {fileID: 3149940558700263340, guid: 74b5d366e7803b54aa57ffeae4a99f82,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.2
+      value: 6.47
       objectReference: {fileID: 0}
     - target: {fileID: 3149940558700263340, guid: 74b5d366e7803b54aa57ffeae4a99f82,
         type: 3}

@@ -10,12 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 6672867999356782645}
   - component: {fileID: 6672867999356782644}
-  - component: {fileID: 6672867999356782643}
+  - component: {fileID: 1271341947513953934}
   - component: {fileID: 6672867999356782640}
+  - component: {fileID: 1314064989731137541}
+  - component: {fileID: 1552126679676189510}
   - component: {fileID: 6672867999356782647}
   - component: {fileID: 6672867999356782642}
   m_Layer: 0
-  m_Name: eggzy
+  m_Name: Eggsy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5671d32299e760b4c9f70bf258f4309c, type: 3}
+  m_Sprite: {fileID: 21300004, guid: a37427106f55eb347b392e9d3e3a179e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &6672867999356782643
+--- !u!61 &1271341947513953934
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,22 +96,22 @@ BoxCollider2D:
   m_GameObject: {fileID: 6672867999356782646}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e9e4bb4e2a4b24d49bd9be0c8da338f7, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 2.425}
+  m_Offset: {x: 0, y: 2.850109}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2.45, y: 4.85}
+    oldSize: {x: 3.48, y: 4.08}
     newSize: {x: 2.45, y: 4.85}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.45, y: 4.85}
+  m_Size: {x: 3.48, y: 5.700218}
   m_EdgeRadius: 0
 --- !u!50 &6672867999356782640
 Rigidbody2D:
@@ -119,19 +121,77 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6672867999356782646}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 11.8825
+  m_Mass: 19.83676
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: ff8895b33d7e8674982dcf0fc2935cba, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!95 &1314064989731137541
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672867999356782646}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b0f80058986d8743a9e510b6bd529b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1552126679676189510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6672867999356782646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b77d3c380a2a1442972bdb0e4bbe24a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedMultiplier: 15
+  WalkSpeedModifier: 1
+  MovementSmothing: 0.05
+  JumpForce: 0
+  FallingForce: 0
+  AirMovementSmothing: 0
+  GroundRaycastsWidth: 1.5
+  GroundRaycastOrigin: -0.5
+  GroundRaycastDist: 1
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  OnLanding:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnFalling:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  OnLeaveGround:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &6672867999356782647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbf4f9f654dafe4aa65cbc4e76ab67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Damages: 10
 --- !u!114 &6672867999356782642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +237,18 @@ MonoBehaviour:
       PublicKeyToken=null
   onDie:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6672867999356782647}
+        m_MethodName: OnDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &6672867999842442729
@@ -226,7 +298,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 18.255615
+  m_Radius: 10.89914
 --- !u!114 &6672867999842442727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +333,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6672867999356782647}
         m_MethodName: OnDetected
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -292,12 +364,12 @@ PrefabInstance:
     - target: {fileID: 3149940558700263340, guid: 74b5d366e7803b54aa57ffeae4a99f82,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3149940558700263340, guid: 74b5d366e7803b54aa57ffeae4a99f82,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.28
+      value: 6.61
       objectReference: {fileID: 0}
     - target: {fileID: 3149940558700263340, guid: 74b5d366e7803b54aa57ffeae4a99f82,
         type: 3}

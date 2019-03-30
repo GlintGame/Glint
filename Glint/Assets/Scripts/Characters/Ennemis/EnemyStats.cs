@@ -48,7 +48,6 @@ public class EnemyStats : MonoBehaviour, IHitable
 
     public void Kill()
     {
-        Destroy(this.gameObject);
         this.onDie.Invoke();
     }
 }
