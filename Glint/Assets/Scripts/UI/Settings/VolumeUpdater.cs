@@ -25,13 +25,10 @@ public class VolumeUpdater : MonoBehaviour {
             if (value >= this.maxVolume)
                 value = this.maxVolume;
 
-            PlayerPrefs.SetFloat(this.PlayerPrefsLocation, value);
             this.OnVolumeChange.Invoke(value);
             volume = value;
         }
     }
-
-    public string PlayerPrefsLocation;
     private Slider slider;
 
     void Awake()
@@ -39,12 +36,9 @@ public class VolumeUpdater : MonoBehaviour {
         this.slider = this.gameObject.GetComponent<Slider>();
         this.minVolume = this.slider.minValue;
         this.maxVolume = this.slider.maxValue;
-
-        if (PlayerPrefs.HasKey(this.PlayerPrefsLocation))
-        {
-            this.Volume = PlayerPrefs.GetFloat(this.PlayerPrefsLocation);
-            this.UpdateSliderGUI();
-        }
+        this.volume = AudioManager.globalSoundMultiplier;
+        this.UpdateSliderGUI();
+        Debug.Log(AudioManager.globalSoundMultiplier);
     }
 
     public void UpdateSliderGUI()

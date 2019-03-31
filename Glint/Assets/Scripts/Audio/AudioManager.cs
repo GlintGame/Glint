@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour {
 
-    public string PlayerPrefsLocation;
+    public string PlayerPrefsLocation = "Glint.Volume";
 
     public Sound[] sounds;
     public static AudioManager instance;
@@ -19,10 +19,6 @@ public class AudioManager : MonoBehaviour {
 
         if(AudioManager.instance == null)
         {
-            if(PlayerPrefs.HasKey(this.PlayerPrefsLocation))
-            {
-                AudioManager.globalSoundMultiplier = PlayerPrefs.GetFloat(this.PlayerPrefsLocation);
-            }
             AudioManager.instance = this;
         }
         else
@@ -37,6 +33,11 @@ public class AudioManager : MonoBehaviour {
             {
                 AudioManager.Play(sound.Name);
             }
+        }
+
+        if (PlayerPrefs.HasKey(this.PlayerPrefsLocation))
+        {
+            this.ChangeVolume(PlayerPrefs.GetFloat(this.PlayerPrefsLocation));
         }
     }
 
@@ -66,6 +67,7 @@ public class AudioManager : MonoBehaviour {
         {
             sound.UpdateVolume(vol);
         }
+        PlayerPrefs.SetFloat(this.PlayerPrefsLocation, vol);
     }
     
     public void OnNewScene(Scene aScene)
