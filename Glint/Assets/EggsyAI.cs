@@ -60,6 +60,7 @@ public class EggsyAI : MonoBehaviour
     public void OnDie()
     {
         this.Animator.SetTrigger("die");
+        PlayerScore.Kills++;
         StartCoroutine( utils.Coroutine.Do.Wait(0.3f, () => Destroy(this.gameObject) ) );
     }
 

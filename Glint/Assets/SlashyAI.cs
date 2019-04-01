@@ -42,6 +42,7 @@ public class SlashyAI : MonoBehaviour
 
     public void OnDie()
     {
+        PlayerScore.Kills++;
         Destroy(this.gameObject);
     }
 

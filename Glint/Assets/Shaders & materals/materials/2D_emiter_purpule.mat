@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 2D_emiter_purpule
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6015c0abc3e7b5c45910438268ec58f5, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _ALPHATEST_ON _EMISSION
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
@@ -44,6 +44,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - Vector1_357BFFFC: 1
+    - Vector1_35A978E6: 1
+    - Vector1_543B5954: 0.388
+    - Vector1_8F8DAF43: 1
     - _AlphaClip: 1
     - _Blend: 0
     - _BumpScale: 1
@@ -63,6 +67,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
+    - Color_24FFB2E9: {r: 0, g: 1, b: 0.07041359, a: 0}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 15.094339, g: 0.07119989, b: 8.329882, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
