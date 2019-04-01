@@ -1,16 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TitleMenu : MonoBehaviour
+public class TitleMenu : SelectableScreen
 {
     public Button FocusButton;
-    public EventSystem eventSystem;
 
+    void Awake()    
+    {
+        SceneManager.sceneUnloaded += (Scene c) => { base.RemoveFromActiveScreens(this); };
+        base.AddToActiveScreens(this);
+    }
 
-    public void Focus()
+    public override void Activate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Desactivate()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Focus()
     {
         this.eventSystem.SetSelectedGameObject(this.gameObject);
         this.FocusButton.Select();

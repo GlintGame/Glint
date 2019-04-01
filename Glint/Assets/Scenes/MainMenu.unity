@@ -89,7 +89,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -595,12 +595,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: eb25b98edac60d84c88961b315ad0072,
-        type: 3}
     - target: {fileID: 114576449292651712, guid: 4f9604ceadbaad845af9a58574519ecc,
         type: 3}
       propertyPath: fr.Array.size
@@ -727,6 +721,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 27770db61b03cfe44a3a5e143c97a0f3,
         type: 2}
+    - target: {fileID: 114290374370347714, guid: 4f9604ceadbaad845af9a58574519ecc,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eb25b98edac60d84c88961b315ad0072,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f9604ceadbaad845af9a58574519ecc, type: 3}
 --- !u!1 &746858720
@@ -2353,6 +2353,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[0].m_positive
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[0].m_negative
+      value: 113
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[0].m_deadZone
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[0].m_snap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[0].m_type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[1].m_positive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[1].m_negative
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[1].m_deadZone
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[1].m_snap
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225389775548599514, guid: 22dc49682ba69874d894813591880b6b,
+        type: 3}
+      propertyPath: m_controlSchemes.Array.data[0].m_actions.Array.data[3].m_bindings.Array.data[1].m_type
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22dc49682ba69874d894813591880b6b, type: 3}

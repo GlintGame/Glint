@@ -44,14 +44,14 @@ public class CustomSelectableButton : MonoBehaviour, ISelectHandler, IDeselectHa
         }
 
         if(this.isSelected
-            && (InputManager.GetAxis("UI_GPHorizontal") > 0
+            && (InputManager.GetAxis("UI_GPHorizontal") > 0.15
             || InputManager.GetButton("UI_Right")))
         {
             this.Next();
         }
         
         if (this.isSelected
-            && (InputManager.GetAxis("UI_GPHorizontal") < 0
+            && (InputManager.GetAxis("UI_GPHorizontal") < -0.15
             || InputManager.GetButton("UI_Left")))
         {
             this.Previous();

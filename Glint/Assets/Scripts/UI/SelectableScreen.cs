@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public abstract class SelectableScreen : MonoBehaviour
 {
-    protected static List<SelectableScreen> activeScreens = new List<SelectableScreen>();
+    public static List<SelectableScreen> activeScreens = new List<SelectableScreen>();
     public Selectable focusButton;
     public EventSystem eventSystem;
     public bool isActive;

@@ -20,6 +20,7 @@ public class ButtonParam : MonoBehaviour {
     void OnEnable()
     {
         this.buttonText = this.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+        this.UpdateButton();
     }
 
     public void KeyBind()
