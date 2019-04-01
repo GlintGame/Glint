@@ -96,7 +96,7 @@ namespace Characters.Player.Skills
             center += offset;
 
             Collider2D[] collided = Physics2D.OverlapAreaAll(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2);
-
+            Debug.DrawLine(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2, Color.green);
             foreach (Collider2D collider in collided)
             {
                 IHitable target = collider.gameObject.GetComponent<IHitable>();
@@ -109,7 +109,7 @@ namespace Characters.Player.Skills
             yield return new WaitForSeconds(this.MeleTimeBetweenHits);
 
             collided = Physics2D.OverlapAreaAll(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2);
-
+            Debug.DrawLine(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2, Color.green);
             foreach (Collider2D collider in collided)
             {
                 IHitable target = collider.gameObject.GetComponent<IHitable>();
