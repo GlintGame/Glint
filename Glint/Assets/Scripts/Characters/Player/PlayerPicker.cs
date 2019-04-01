@@ -7,16 +7,12 @@ public class PlayerPicker : MonoBehaviour, IPicker
     public class PlayerPickedEvent : UnityEvent<int> { }
     public PlayerPickedEvent onPickup;
 
-    private int pickedNumber = 0;
-
     public void Pick(object picked)
     {
         if(picked is int)
         {
-            this.pickedNumber += (int)picked;
+            PlayerScore.Luciole++;
         }
-
-        this.onPickup.Invoke(this.pickedNumber);
     }
 }
 
