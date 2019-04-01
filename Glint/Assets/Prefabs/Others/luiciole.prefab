@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4421232450781123171}
   - component: {fileID: 4421232450781123174}
   - component: {fileID: 1172586219879553546}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: luiciole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4421232451599514406}
   - component: {fileID: 4421232451599514401}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
