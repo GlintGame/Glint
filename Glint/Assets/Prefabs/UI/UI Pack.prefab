@@ -1639,7 +1639,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: VolumeEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  PlayerPrefsLocation: Glint.Volume
 --- !u!1 &7366610296419018832
 GameObject:
   m_ObjectHideFlags: 0
