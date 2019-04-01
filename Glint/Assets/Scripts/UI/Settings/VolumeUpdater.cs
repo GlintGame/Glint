@@ -38,7 +38,6 @@ public class VolumeUpdater : MonoBehaviour {
         this.maxVolume = this.slider.maxValue;
         this.volume = AudioManager.globalSoundMultiplier;
         this.UpdateSliderGUI();
-        Debug.Log(AudioManager.globalSoundMultiplier);
     }
 
     public void UpdateSliderGUI()
