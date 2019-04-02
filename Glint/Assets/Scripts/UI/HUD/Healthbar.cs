@@ -10,8 +10,7 @@ public class Healthbar : MonoBehaviour
     private SpriteMask maskComponent;
     private bool isDisplayed = false;
 
-    private int maxHealth = 1;
-    private int health = 1;
+    private int maxHealth;
 
     void Awake()
     {
