@@ -1,6 +1,6 @@
-﻿public interface IFadeable
+﻿using System.Collections;
+
+public interface IFadeable
 {
-    float Opacity { get; set; }
-    float StartTime { get; }
-    float Duration { get; }
+    IEnumerator FadeAnimation();
 }

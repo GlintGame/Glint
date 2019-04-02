@@ -22,14 +22,7 @@ public class FadeAnimator : MonoBehaviour
     {
         foreach(IFadeable fadeable in this.fadeables)
         {
-            fadeable.Opacity = 0f;
-            StartCoroutine(this.OneFadeIn(fadeable));
+            StartCoroutine(fadeable.FadeAnimation());
         }
-    }
-
-    public IEnumerator OneFadeIn(IFadeable fadeable)
-    {
-        yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(fadeable.StartTime));
-        StartCoroutine(FadeFunc.DoFadeOpacity((opacity) => fadeable.Opacity = opacity, 0f, 1f, fadeable.Duration));
     }
 }
