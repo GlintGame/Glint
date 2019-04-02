@@ -4,18 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class UISceneManager : MonoBehaviour {
 
+    public delegate void BeforeUnloadDelegate();
     private static UISceneManager instance;
-    private GameObject UIPack;
 
     void Awake()
     {
-        this.UIPack = GameObject.FindGameObjectWithTag("UIPack");
-
-        if (UISceneManager.instance == null)
-        {
-            UISceneManager.instance = this;
-        }
-
         TransitionCanvas.getInstance().FadeIn(0.5f);
     }
 
@@ -26,13 +19,20 @@ public class UISceneManager : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
-        StartCoroutine(this.LoadSceneCoroutine(sceneName));
+        StartCoroutine(this.LoadSceneCoroutine(sceneName, () => { }));
     }
 
-    private IEnumerator LoadSceneCoroutine(string sceneName)
+    public void LoadScene(string sceneName, BeforeUnloadDelegate beforeUnloadDelegate)
+    {
+        StartCoroutine(this.LoadSceneCoroutine(sceneName, beforeUnloadDelegate));
+    }
+
+    private IEnumerator LoadSceneCoroutine(string sceneName, BeforeUnloadDelegate beforeUnloadDelegate)
     {
         TransitionCanvas.getInstance().FadeOut(0.5f);
         yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(0.5f));
+        beforeUnloadDelegate();
+        PlayerScore.Reset();
         SceneManager.LoadScene(sceneName);
     }
 }

@@ -15,6 +15,7 @@ public class LucioleOciliator : MonoBehaviour
     {
         this.Oringin = this.transform.position;
         this.RadCount = Random.Range(0, Mathf.PI);
+        PlayerScore.MaxLuciole += 1;
     }
 
     void FixedUpdate()
