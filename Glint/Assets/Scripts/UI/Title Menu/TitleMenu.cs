@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class TitleMenu : SelectableScreen
 {
-    public Button FocusButton;
-
     void Awake()    
     {
         SceneManager.sceneUnloaded += (Scene c) => { base.RemoveFromActiveScreens(this); };
@@ -25,6 +23,6 @@ public class TitleMenu : SelectableScreen
     public override void Focus()
     {
         this.eventSystem.SetSelectedGameObject(this.gameObject);
-        this.FocusButton.Select();
+        this.focusButton.Select();
     }
 }

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
+using utils;
 
 public class FadeImage : MonoBehaviour, IFadeable
 {
@@ -13,20 +15,19 @@ public class FadeImage : MonoBehaviour, IFadeable
     }
 
     public float startTime;
-    public float StartTime
-    {
-        get { return startTime; }
-    }
 
     public float duration;
-    public float Duration
-    {
-        get { return duration; }
-    }
 
     void Awake()
     {
         this.image = this.GetComponent<Image>();
         this.baseColor = this.image.color;
+    }
+
+    public IEnumerator FadeAnimation()
+    {
+        Opacity = 0;
+        yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(this.startTime));
+        StartCoroutine(FadeFunc.DoFadeOpacity((opacity) => this.Opacity = opacity, 0f, 1f, this.duration));
     }
 }

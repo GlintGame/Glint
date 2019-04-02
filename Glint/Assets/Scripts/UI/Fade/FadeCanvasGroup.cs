@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using utils;
 
 public class FadeCanvasGroup : MonoBehaviour, IFadeable
 {
@@ -11,19 +13,18 @@ public class FadeCanvasGroup : MonoBehaviour, IFadeable
     }
 
     public float startTime;
-    public float StartTime
-    {
-        get { return startTime; }
-    }
 
     public float duration;
-    public float Duration
-    {
-        get { return duration; }
-    }
 
     void Awake()
     {
         this.canvasGroup = this.GetComponent<CanvasGroup>();
+    }
+
+    public IEnumerator FadeAnimation()
+    {
+        Opacity = 0;
+        yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(this.startTime));
+        StartCoroutine(FadeFunc.DoFadeOpacity((opacity) => this.Opacity = opacity, 0f, 1f, this.duration));
     }
 }
