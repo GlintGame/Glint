@@ -2166,6 +2166,18 @@ MonoBehaviour:
     loop: 1
     onlyOnSetScene: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 58f3c8fc679e7f0489543232d4eca627, type: 3}
+    volume: 0.428
+    playDefault: 0
+    loop: 1
+    onlyOnSetScene: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 60e613f064cf130428a157cd520f384a, type: 3}
+    volume: 0.428
+    playDefault: 0
+    loop: 0
+    onlyOnSetScene: 1
+    source: {fileID: 0}
 --- !u!4 &636250235
 Transform:
   m_ObjectHideFlags: 0
@@ -29640,6 +29652,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slashy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 7455681498610014195, guid: 15c13520f7f7dda4686b38181acacf54,
+        type: 3}
+      propertyPath: onPvChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7455681498610014195, guid: 15c13520f7f7dda4686b38181acacf54,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -110.85
+      objectReference: {fileID: 0}
     - target: {fileID: 3257082538371887586, guid: 23b1b2ce91e7c1345a93242aa48ee975,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -29694,16 +29716,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -90.77
-      objectReference: {fileID: 0}
-    - target: {fileID: 7455681498610014195, guid: 15c13520f7f7dda4686b38181acacf54,
-        type: 3}
-      propertyPath: onPvChange.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7455681498610014195, guid: 15c13520f7f7dda4686b38181acacf54,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -110.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23b1b2ce91e7c1345a93242aa48ee975, type: 3}

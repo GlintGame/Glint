@@ -47,6 +47,15 @@ public class PlayerInputsController : MonoBehaviour
         // dead zone
         horizontalMovement = Mathf.Abs(horizontalMovement) > this.HorizontalDeadZone ? horizontalMovement : 0;
 
+        if(horizontalMovement != 0 && Time.timeScale != 0)
+        {
+            AudioManager.Play("Marche");
+        }
+        else
+        {
+            AudioManager.Stop("Marche");
+        }
+
         this.Controller.SetMove(
             horizontalMovement,
             isRunning
@@ -86,6 +95,7 @@ public class PlayerInputsController : MonoBehaviour
 
     public void OnJumping()
     {
+        AudioManager.Play("Saut");
         this.PlayerAnimator.SetBool("PlayerJump", true);
     }
 
