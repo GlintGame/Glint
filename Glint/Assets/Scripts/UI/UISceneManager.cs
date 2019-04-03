@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class UISceneManager : MonoBehaviour {
 
     public delegate void BeforeUnloadDelegate();
-    private static UISceneManager instance;
 
     void Awake()
     {
