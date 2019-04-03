@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour {
     public static AudioManager instance;
     public static float globalSoundMultiplier = 0.9f;
     
-    private void Awake()
+    private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneUnloaded += this.OnNewScene;
@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour {
         
         foreach(Sound sound in this.sounds)
         {
-            sound.Init(this.gameObject.AddComponent<AudioSource>());
+            sound.Init(AudioManager.instance.gameObject.AddComponent<AudioSource>());
             if (sound.playDefault)
             {
                 AudioManager.Play(sound.Name);
