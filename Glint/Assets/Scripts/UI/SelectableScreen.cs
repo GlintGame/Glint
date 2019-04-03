@@ -21,4 +21,10 @@ public abstract class SelectableScreen : MonoBehaviour
 
     protected bool AnotherIsActive(SelectableScreen instance)
     { return SelectableScreen.activeScreens.Count > 1; }
+
+    protected void DedugAll()
+    {
+        foreach (SelectableScreen sel in SelectableScreen.activeScreens)
+            Debug.Log(sel);
+    }
 }

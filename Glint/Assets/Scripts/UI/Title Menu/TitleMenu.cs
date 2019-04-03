@@ -6,18 +6,17 @@ public class TitleMenu : SelectableScreen
 {
     void Awake()    
     {
-        SceneManager.sceneUnloaded += (Scene c) => { base.RemoveFromActiveScreens(this); };
-        base.AddToActiveScreens(this);
+        this.Activate();
     }
 
     public override void Activate()
     {
-        throw new System.NotImplementedException();
+        base.AddToActiveScreens(this);
     }
 
     public override void Desactivate()
     {
-        throw new System.NotImplementedException();
+        base.RemoveFromActiveScreens(this);
     }
 
     public override void Focus()

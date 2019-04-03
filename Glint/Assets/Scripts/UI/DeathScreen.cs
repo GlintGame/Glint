@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using utils;
+﻿using UnityEngine;
 
 public class DeathScreen : SelectableScreen
 {

@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour {
         else
         {
             AudioManager.instance.sounds = AudioManager.instance.sounds.Union(this.sounds).Distinct().ToArray();
+            Destroy(this.gameObject);
         }
         
         foreach(Sound sound in this.sounds)

@@ -11,8 +11,6 @@ public class EndScreen : SelectableScreen
     {
         base.AddToActiveScreens(this);
 
-        Debug.Log("Active");
-
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0f;
         this.canvas.SetActive(true);
