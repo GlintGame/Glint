@@ -57256,7 +57256,7 @@ MonoBehaviour:
   eng:
   - You brought back the light !
   fr:
-  - "You avez ramen\xE9 la lumi\xE8re !"
+  - "Vous avez ramen\xE9 la lumi\xE8re !"
 --- !u!114 &1801524310
 MonoBehaviour:
   m_ObjectHideFlags: 0
