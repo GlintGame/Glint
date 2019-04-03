@@ -92,7 +92,7 @@ namespace Characters.Player.Skills
                 }
 
                 this._currentDashDuration += Time.fixedDeltaTime;
-                yield return null;
+                yield return new WaitForFixedUpdate();
             }
 
             this._isDashing = false;
