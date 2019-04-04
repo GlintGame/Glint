@@ -10487,12 +10487,6 @@ MonoBehaviour:
     loop: 1
     onlyOnSetScene: 1
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 58f3c8fc679e7f0489543232d4eca627, type: 3}
-    volume: 0.428
-    playDefault: 0
-    loop: 1
-    onlyOnSetScene: 1
-    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 60e613f064cf130428a157cd520f384a, type: 3}
     volume: 1
     playDefault: 0
