@@ -234,6 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DieDuration: 1
+  SlashHitBoxOffset: {x: 3, y: 4.5}
+  SlashHitboxSize: {x: 5, y: 8}
+  SlashDamages: 20
 --- !u!95 &5755377859249450258
 Animator:
   serializedVersion: 3

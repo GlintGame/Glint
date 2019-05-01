@@ -74,17 +74,35 @@ public class SlashyAI : MonoBehaviour
         }
     }
 
+    // slash related props
+    public Vector2 SlashHitBoxOffset = new Vector2(3, 4);
+    public Vector2 SlashHitboxSize = new Vector2(5, 6);
+    public int SlashDamages = 15;
+
     public IEnumerator Slash()
     {
         this.state = SlashyStates.Hit;
 
-        this.Animator.SetBool("walking", false);
+        this.Animator.SetTrigger("attack");
 
         yield return new WaitForSeconds(0.5f);
-        // attack !
-        yield return new WaitForSeconds(0.5f);
 
-        this.Animator.SetBool("walking", true);
+        Vector2 center = this.Transform.position;
+        var offset = new Vector2(this.SlashHitBoxOffset.x * this.CharacterController.Direction, this.SlashHitBoxOffset.y);
+        center += offset;
+
+        Collider2D[] collided = Physics2D.OverlapAreaAll(center - this.SlashHitboxSize / 2, center + this.SlashHitboxSize / 2);
+        Debug.DrawLine(center - this.SlashHitboxSize / 2, center + this.SlashHitboxSize / 2, Color.green);
+        foreach (Collider2D collider in collided)
+        {
+            IHitable target = collider.gameObject.GetComponent<IHitable>();
+            if (collider.gameObject != this.gameObject && target != null)
+            {
+                target.TakeDamages(this.SlashDamages, this.Transform.position);
+            }
+        }
+
+        yield return new WaitForSeconds(0.5f);
 
         this.state = SlashyStates.Follow;
     }
