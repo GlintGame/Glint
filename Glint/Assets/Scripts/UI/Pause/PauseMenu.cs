@@ -22,7 +22,7 @@ public class PauseMenu : SelectableScreen {
 
     void Update() {
 
-        base.DedugAll();
+        //base.DedugAll();
 
         if (InputManager.GetButtonDown("UI_Menu")
             && this.isScenePausable

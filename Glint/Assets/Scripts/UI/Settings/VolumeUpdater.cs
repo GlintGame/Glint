@@ -25,7 +25,8 @@ public class VolumeUpdater : MonoBehaviour {
             if (value >= this.maxVolume)
                 value = this.maxVolume;
 
-            this.OnVolumeChange.Invoke(value);
+            AudioManager.UpdateVolume(value);
+            // this.OnVolumeChange.Invoke(value);
             volume = value;
         }
     }

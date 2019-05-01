@@ -23,7 +23,7 @@ public class KeyBinder : MonoBehaviour
     {
         this.buttons = GameObject.FindGameObjectsWithTag("InputButton");
         this.eventSystem = eventSystemGameObject.GetComponent<EventSystem>();
-
+        
         if (!PlayerPrefs.HasKey(this.defaultInputSave))
         {
             InputLoader.PlayerPrefsDelete(this.standardInputSave);

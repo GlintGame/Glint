@@ -24,9 +24,15 @@ public class Sound : IEquatable<Sound> {
     public void Init(AudioSource source)
     {
         this.source = source;
-        source.clip = this.clip;
+
+        this.source.clip = this.clip;
+        this.source.loop = this.loop;
+
         this.UpdateVolume(AudioManager.globalSoundMultiplier);
-        source.loop = this.loop;
+        if(this.playDefault)
+        {
+            this.source.Play();
+        }
     }
 
     public void UpdateVolume(float vol)

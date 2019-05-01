@@ -1,24 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class boxHit : MonoBehaviour, IHitable {
-
+public class BoxHit : MonoBehaviour, IHitable
+{
     public Sprite happy;
     public Sprite sad;
-    public Transform respawn;
+
+    private Transform Transform;
+    private Rigidbody2D Rigidbody;
+
+    private void Awake()
+    {
+        this.Transform = this.GetComponent<Transform>();
+        this.Rigidbody = this.GetComponent<Rigidbody2D>();
+    }
 
     public void TakeDamages(int damages, Vector3 origin)
     {
-        this.gameObject.transform.position = respawn.position;
-        this.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+        int pushDirection = (this.Transform.position.x - origin.x) > 0 ? 1 : -1;
+        Vector2 push = Vector2.right * damages * pushDirection;
+        this.Rigidbody.velocity += push;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
-            this.GetComponent<SpriteRenderer>().sprite = sad;
+            this.GetComponent<SpriteRenderer>().sprite = this.sad;
         }
     }
 
@@ -26,7 +33,7 @@ public class boxHit : MonoBehaviour, IHitable {
     {
         if (collision.gameObject.tag == "Player")
         {
-            this.GetComponent<SpriteRenderer>().sprite = happy;
+            this.GetComponent<SpriteRenderer>().sprite = this.happy;
         }
     }
 }

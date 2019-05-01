@@ -1,88 +1,115 @@
-﻿using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
-using System;
-using System.Linq;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class AudioManager : MonoBehaviour {
-
+public class AudioManager : MonoBehaviour
+{
     public string PlayerPrefsLocation = "Glint.Volume";
 
-    public Sound[] sounds;
+    public List<Sound> sounds;
+    private List<Sound> registeredSounds;
+
     public static AudioManager instance;
     public static float globalSoundMultiplier = 0.9f;
-    
+
     private void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneUnloaded += this.OnNewScene;
 
-        if(AudioManager.instance == null)
+        // singleton logic
+        if (instance == null)
         {
-            AudioManager.instance = this;
+            instance = this;
+            instance.registeredSounds = new List<Sound>();
+
+            DontDestroyOnLoad(this.gameObject);
         }
         else
         {
-            AudioManager.instance.sounds = AudioManager.instance.sounds.Union(this.sounds).Distinct().ToArray();
             Destroy(this.gameObject);
         }
-        
-        foreach(Sound sound in this.sounds)
-        {
-            sound.Init(AudioManager.instance.gameObject.AddComponent<AudioSource>());
-            if (sound.playDefault)
-            {
-                AudioManager.Play(sound.Name);
-            }
-        }
 
+        // update volume
         if (PlayerPrefs.HasKey(this.PlayerPrefsLocation))
         {
-            this.ChangeVolume(PlayerPrefs.GetFloat(this.PlayerPrefsLocation));
+            //this.ChangeVolume(PlayerPrefs.GetFloat(this.PlayerPrefsLocation));
+            UpdateVolume(PlayerPrefs.GetFloat(this.PlayerPrefsLocation));
+        }
+
+        // register only new sounds
+        foreach (Sound sound in this.sounds)
+        {
+            var alreadyExistingSound = instance.registeredSounds.Find(s => s.Equals(sound));
+
+            if (alreadyExistingSound != null)
+            {
+                if(!alreadyExistingSound.source.isPlaying)
+                {
+                    Play(alreadyExistingSound.Name);
+                }
+            }
+            else
+            {
+                instance.registeredSounds.Add(sound);
+                sound.Init(instance.gameObject.AddComponent<AudioSource>());
+            }
         }
     }
 
     public static void Play(string name)
     {
-        Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
+        Sound sound = instance.registeredSounds.Find(s => s.Name == name);
+
         if (sound != null && !sound.source.isPlaying)
         {
-            sound.volume *= AudioManager.globalSoundMultiplier;
             sound.source.Play();
         }
     }
 
     public void PlayFromInstance(string name)
     {
-        AudioManager.Play(name);
+        Play(name);
     }
 
     public static void Stop(string name)
     {
-        Sound sound = Array.Find(AudioManager.instance.sounds, s => s.Name == name);
-        if(sound != null)
+        Sound sound = instance.registeredSounds.Find(s => s.Name == name);
+
+        if (sound != null)
         {
             sound.source.Stop();
         }
     }
 
-    public void ChangeVolume(float vol)
+    //public void ChangeVolume(float vol)
+    //{
+    //    globalSoundMultiplier = vol;
+    //    foreach (Sound sound in instance.registeredSounds)
+    //    {
+    //        sound.UpdateVolume(vol);
+    //    }
+
+    //    PlayerPrefs.SetFloat(this.PlayerPrefsLocation, vol);
+    //}
+
+    public static void UpdateVolume(float vol)
     {
-        AudioManager.globalSoundMultiplier = vol;
-        foreach(Sound sound in this.sounds)
+        globalSoundMultiplier = vol;
+        foreach (Sound sound in instance.registeredSounds)
         {
             sound.UpdateVolume(vol);
         }
-        PlayerPrefs.SetFloat(this.PlayerPrefsLocation, vol);
+
+        PlayerPrefs.SetFloat(instance.PlayerPrefsLocation, vol);
     }
-    
+
     public void OnNewScene(Scene aScene)
     {
         foreach (Sound sound in this.sounds)
         {
             if (sound.onlyOnSetScene)
             {
-                AudioManager.Stop(sound.Name);
+                Stop(sound.Name);
             }
         }
     }
