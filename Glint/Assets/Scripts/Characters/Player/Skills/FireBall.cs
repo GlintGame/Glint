@@ -16,10 +16,12 @@ namespace Characters.Player.Skills
         // needed components
         private PlayerSkills SkillManager;
         private Transform Transform;
+        private Animator Animator;
         private void Awake()
         {
             this.SkillManager = this.GetComponent<PlayerSkills>();
             this.Transform = this.GetComponent<Transform>();
+            this.Animator = this.GetComponent<Animator>();
         }
 
         // availability
@@ -57,7 +59,9 @@ namespace Characters.Player.Skills
             this._isFireBallAttacking = true;
 
             // activation
+            this.Animator.SetTrigger("PlayerFireball");
             yield return new WaitForSeconds(this.FireBallTimeBeforeLaunch);
+
             GameObject fireBall = Instantiate(this.fireBallRef);
             Vector3 origin = this.Transform.position;
             origin.y += 3.5f;
