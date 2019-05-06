@@ -12,9 +12,11 @@ public class FadeAnimator : MonoBehaviour
     {
         foreach(GameObject fadeableObject in this.fadeableObjects)
         {
-            IFadeable fadeable = fadeableObject.GetComponent<IFadeable>();
-            if (fadeable != null)
+            IFadeable[] fadeables = fadeableObject.GetComponents<IFadeable>();
+            foreach (IFadeable fadeable in fadeables)
+            {
                 this.fadeables.Add(fadeable);
+            }
         }
     }
 

@@ -56,6 +56,8 @@ namespace utils
 
                 yield return null;
             }
+
+            opacityDelegate(toOpacity);
         }
     }
 }
