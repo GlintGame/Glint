@@ -106,7 +106,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 5.266667, y: 6.6749997}
+    oldSize: {x: 5.266667, y: 6.6802144}
     newSize: {x: 2.45, y: 4.85}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -234,9 +234,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DieDuration: 1
-  SlashHitBoxOffset: {x: 3, y: 4.5}
-  SlashHitboxSize: {x: 5, y: 8}
-  SlashDamages: 20
+  SlashHitBoxOffset: {x: 4, y: 4.5}
+  SlashHitboxSize: {x: 6, y: 8}
+  SlashDamages: 25
 --- !u!95 &5755377859249450258
 Animator:
   serializedVersion: 3

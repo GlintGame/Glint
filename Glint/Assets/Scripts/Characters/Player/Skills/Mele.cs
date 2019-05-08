@@ -107,6 +107,7 @@ namespace Characters.Player.Skills
 
             yield return new WaitForSeconds(this.MeleTimeBetweenHits);
 
+            center = this.Transform.position;
             collided = Physics2D.OverlapAreaAll(center - this.MeleHitboxSize / 2, center + this.MeleHitboxSize / 2);
             foreach (Collider2D collider in collided)
             {
