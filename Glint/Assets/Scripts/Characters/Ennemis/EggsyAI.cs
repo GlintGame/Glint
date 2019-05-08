@@ -50,6 +50,7 @@ public class EggsyAI : MonoBehaviour
     {
         this.target = target.GetComponent<Transform>();
         this.state = EggsyStates.Run;
+        AudioManager.Play("Eggsy_flee");
         this.Animator.SetBool("has seen player", true);
     }
 
@@ -65,6 +66,7 @@ public class EggsyAI : MonoBehaviour
         this.Animator.SetTrigger("die");
         this.Rigidbody.bodyType = RigidbodyType2D.Static;
         this.Collider.enabled = false;
+        AudioManager.Play("Enemy_die");
         PlayerScore.Kills++;
         StartCoroutine( utils.Coroutine.Do.Wait(this.DieDuration, () => Destroy(this.gameObject) ) );
     }

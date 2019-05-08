@@ -26,6 +26,7 @@ public class SlashyAI : MonoBehaviour
     {
         if (this.state == SlashyStates.Hit) return;
 
+        AudioManager.Play("Slashy_detect");
         this.state = SlashyStates.Follow;
         this.Animator.SetBool("walking", true);
         this.target = target.GetComponent<Transform>();
@@ -33,6 +34,8 @@ public class SlashyAI : MonoBehaviour
 
     public void OnEscape()
     {
+
+        AudioManager.Stop("Slashy_detect");
         this.state = SlashyStates.Idle;
         this.Animator.SetBool("walking", false);
         this.target = null;
@@ -48,6 +51,7 @@ public class SlashyAI : MonoBehaviour
         this.Animator.SetTrigger("die");
         this.Rigidbody.bodyType = RigidbodyType2D.Static;
         this.Collider.enabled = false;
+        AudioManager.Play("Enemy_die");
         PlayerScore.Kills++;
         StartCoroutine(utils.Coroutine.Do.Wait(this.DieDuration, () => Destroy(this.gameObject)));
     }
@@ -81,6 +85,8 @@ public class SlashyAI : MonoBehaviour
 
     public IEnumerator Slash()
     {
+
+        AudioManager.Play("Slashy_hit");
         this.state = SlashyStates.Hit;
 
         this.Animator.SetTrigger("attack");

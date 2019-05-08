@@ -73,6 +73,7 @@ public class CharacterController2D : MonoBehaviour
         if (this.Grounded)
         {
             this.RigidBody.velocity = new Vector2(this.RigidBody.velocity.x, this.JumpForce);
+            AudioManager.Play("Jump");
             this._jumpingInput = true;
         }
     }

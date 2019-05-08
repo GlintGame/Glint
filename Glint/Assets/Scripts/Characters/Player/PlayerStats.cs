@@ -57,6 +57,8 @@ public class PlayerStats : MonoBehaviour, IHitable, IRespawnable {
         if (this.IsInvicible)
             return;
 
+        AudioManager.Play("Player_hited");
+
         int pushDirection = (this.Transform.position.x - origin.x) > 0 ? 1 : -1;
         var push = new Vector2(this.pushForce.x * pushDirection, this.pushForce.y);
         this.Rigidbody.velocity += push;
