@@ -15,11 +15,11 @@ public class Cinematic : MonoBehaviour
     {
         this.videoPlayer = gameObject.GetComponent<VideoPlayer>();
         this.videoPlayer.loopPointReached += (UnityEngine.Video.VideoPlayer vp) => this.sceneManager.LoadScene(nextScene);
-        this.fadeAnimator.AllFadeIn();
     }
 
     void Start()
     {
+        this.fadeAnimator.AllFadeIn();
         this.videoPlayer.Play();
         AudioManager.Play("Cinématique Audio");
     }

@@ -10,7 +10,7 @@ public class FadeAnimator : MonoBehaviour
 
     void Awake()
     {
-        foreach(GameObject fadeableObject in this.fadeableObjects)
+        foreach (GameObject fadeableObject in this.fadeableObjects)
         {
             IFadeable[] fadeables = fadeableObject.GetComponents<IFadeable>();
             foreach (IFadeable fadeable in fadeables)
