@@ -26,7 +26,7 @@ public class SettingsMenu : SelectableScreen
     public override void Desactivate()
     {
         base.RemoveFromActiveScreens(this);
-
+        AudioManager.Play("Correct");
         this.SettingsUI.SetActive(false);
         this.isActive = false;
 

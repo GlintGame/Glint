@@ -1,16 +1,11 @@
 ﻿using UnityEngine.UI;
-using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MenuButton : Button
 {
-    new void Awake()
+    override public void OnSelect(BaseEventData eventData)
     {
-        base.Awake();
-        this.onClick.AddListener(onClickSound);
-    }
-
-    void onClickSound()
-    {
+        base.OnSelect(eventData);
         AudioManager.Play("Bip");
     }
 }

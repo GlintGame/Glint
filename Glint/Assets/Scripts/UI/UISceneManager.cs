@@ -18,6 +18,9 @@ public class UISceneManager : MonoBehaviour {
 
     public void LoadScene(string sceneName)
     {
+        if (sceneName == "Tuto")
+            AudioManager.Play("Strong");
+
         StartCoroutine(this.LoadSceneCoroutine(sceneName, () => { }));
     }
 

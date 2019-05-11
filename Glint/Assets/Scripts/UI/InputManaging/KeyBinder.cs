@@ -61,6 +61,7 @@ public class KeyBinder : MonoBehaviour
 
     public void KeyBind(BindingButton buttonParams, GameObject button)
     {
+        AudioManager.Play("Bip");
         this.eventSystemGameObject.SetActive(false);
 
         ScanFlags scanFlagOut = ScanFlags.Key;

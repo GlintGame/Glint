@@ -19,8 +19,8 @@ public class Cinematic : MonoBehaviour
 
     void Start()
     {
-        this.fadeAnimator.AllFadeIn();
-        this.videoPlayer.Play();
         AudioManager.Play("Cinématique Audio");
+        this.videoPlayer.Play();
+        this.fadeAnimator.AllFadeIn();
     }
 }
