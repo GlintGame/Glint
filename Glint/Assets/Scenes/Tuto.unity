@@ -1820,10 +1820,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1686843112662368, guid: 95b3bcec386fc5048a2c6196b610575f, type: 3}
-      propertyPath: m_Name
-      value: TMP SubMeshUI [Rosario-Regular SDF Material + LiberationSans SDF Atlas]
-      objectReference: {fileID: 0}
     - target: {fileID: 114744088834138978, guid: 95b3bcec386fc5048a2c6196b610575f,
         type: 3}
       propertyPath: keyboardParams
@@ -1836,6 +1832,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6f18451f9ee82fb40a1fe184bb579494,
         type: 2}
+    - target: {fileID: 1686843112662368, guid: 95b3bcec386fc5048a2c6196b610575f, type: 3}
+      propertyPath: m_Name
+      value: TMP SubMeshUI [Rosario-Regular SDF Material + LiberationSans SDF Atlas]
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b3bcec386fc5048a2c6196b610575f, type: 3}
 --- !u!224 &371854211 stripped
@@ -3174,6 +3174,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI Pack
       objectReference: {fileID: 0}
+    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: eventSystem
+      value: 
+      objectReference: {fileID: 707760285}
+    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: isScenePausable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: PauseMenuUI
+      value: 
+      objectReference: {fileID: 671946071}
+    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: FocusButton
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: focusButton
+      value: 
+      objectReference: {fileID: 671946073}
+    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: playerInputsController
+      value: 
+      objectReference: {fileID: 2134090964}
     - target: {fileID: 7512511557264156148, guid: cc7fdc91819c63349916dd7887b1f0f1,
         type: 3}
       propertyPath: eventSystem
@@ -3284,31 +3314,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
-        type: 3}
-      propertyPath: eventSystem
-      value: 
-      objectReference: {fileID: 707760285}
-    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
-        type: 3}
-      propertyPath: isScenePausable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
-        type: 3}
-      propertyPath: PauseMenuUI
-      value: 
-      objectReference: {fileID: 671946071}
-    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
-        type: 3}
-      propertyPath: FocusButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
-        type: 3}
-      propertyPath: focusButton
-      value: 
-      objectReference: {fileID: 671946073}
     - target: {fileID: 7467856262832752773, guid: cc7fdc91819c63349916dd7887b1f0f1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3924,6 +3929,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 9050201925443696130, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4730800267034022440, guid: cc7fdc91819c63349916dd7887b1f0f1,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3978,11 +3988,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 9050201925443696130, guid: cc7fdc91819c63349916dd7887b1f0f1,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4730800266793337386, guid: cc7fdc91819c63349916dd7887b1f0f1,
         type: 3}
@@ -9884,6 +9889,12 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 58ebac9251fe42e41b41f515197f1d97, type: 3}
     volume: 0.1
+    playDefault: 0
+    loop: 0
+    onlyOnSetScene: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9a68d389f4a387d40b47fe48d6904bf7, type: 3}
+    volume: 0.5
     playDefault: 0
     loop: 0
     onlyOnSetScene: 1
@@ -60237,10 +60248,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1686843112662368, guid: 95b3bcec386fc5048a2c6196b610575f, type: 3}
-      propertyPath: m_Name
-      value: TMP SubMeshUI [Rosario-Regular SDF Material + LiberationSans SDF Atlas]
-      objectReference: {fileID: 0}
     - target: {fileID: 114744088834138978, guid: 95b3bcec386fc5048a2c6196b610575f,
         type: 3}
       propertyPath: keyboardParams
@@ -60253,6 +60260,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e412d59cadc030f4ea38db2a0f309cae,
         type: 2}
+    - target: {fileID: 1686843112662368, guid: 95b3bcec386fc5048a2c6196b610575f, type: 3}
+      propertyPath: m_Name
+      value: TMP SubMeshUI [Rosario-Regular SDF Material + LiberationSans SDF Atlas]
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b3bcec386fc5048a2c6196b610575f, type: 3}
 --- !u!224 &2073896764 stripped
@@ -60525,6 +60536,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2122850195}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2134090964 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7455681498610014192, guid: 15c13520f7f7dda4686b38181acacf54,
+    type: 3}
+  m_PrefabInstance: {fileID: 1808939379}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4f86f0a7f35e641b939232864cbc91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2134409409
 GameObject:
   m_ObjectHideFlags: 0

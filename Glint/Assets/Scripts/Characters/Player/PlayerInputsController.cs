@@ -20,26 +20,19 @@ public class PlayerInputsController : MonoBehaviour
         this.PlayerAnimator = this.GetComponent<Animator>();
         this.Dash = this.GetComponent<Dash>();
         this.CharacterSkills = this.GetComponent<ICharacterSkills>();
-
-        PauseMenu.OnPause += this.LockJump;
-        PauseMenu.OnReleaseButton += this.UnlockJump;
-        PauseMenu.OnResumeEscape += this.UnlockJump;
     }
 
     private void Update()
     {
         var inputs = new InputsParameters();
-
-        if (!this._jumpIsLock)
+        
+        if (InputManager.GetButtonDown("jump"))
         {
-            if (InputManager.GetButtonDown("jump"))
-            {
-                this.Controller.StartJump();
-            }
-            else if (InputManager.GetButtonUp("jump"))
-            {
-                this.Controller.EndJump();
-            }
+            this.Controller.StartJump();
+        }
+        else if (InputManager.GetButtonUp("jump"))
+        {
+            this.Controller.EndJump();
         }
 
         bool isRunning = InputManager.GetAxis("run") > 0.9 || InputManager.GetButton("run");

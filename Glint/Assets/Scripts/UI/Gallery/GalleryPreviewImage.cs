@@ -14,16 +14,16 @@ public class GalleryPreviewImage : MonoBehaviour, ISelectHandler
 
     public GameObject Image;
     private Sprite Sprite;
-    private float AspectRation;
+    private float AspectRatio;
 
     void Awake()
     {
         this.Sprite = this.Image.GetComponent<Image>().sprite;
-        this.AspectRation = this.Image.GetComponent<AspectRatioFitter>().aspectRatio;
+        this.AspectRatio = this.Image.GetComponent<AspectRatioFitter>().aspectRatio;
     }
 
     public void OnSelect(BaseEventData eventData)
     {
-        this.onSelect.Invoke(this.Sprite, this.AspectRation);
+        this.onSelect.Invoke(this.Sprite, this.AspectRatio);
     }
 }

@@ -80,8 +80,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8231452cef0f5469927935f2355a83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenInputs: 0.2
-  deadZone: 0.15
+  timeBetweenInputs: 0.3
+  deadZone: 0.25
 --- !u!114 &3827288401193938410
 MonoBehaviour:
   m_ObjectHideFlags: 0

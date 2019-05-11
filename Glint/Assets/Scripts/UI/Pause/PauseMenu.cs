@@ -4,6 +4,7 @@ using Luminosity.IO;
 public class PauseMenu : SelectableScreen {
 
     public bool isScenePausable = false;
+    public PlayerInputsController playerInputsController;
     private bool waitForButtonRelease = false;
 
     public GameObject PauseMenuUI;
@@ -21,8 +22,6 @@ public class PauseMenu : SelectableScreen {
     public static event ReleaseButtonAction OnReleaseButton;
 
     void Update() {
-
-        //base.DedugAll();
 
         if (InputManager.GetButtonDown("UI_Menu")
             && this.isScenePausable
@@ -61,6 +60,9 @@ public class PauseMenu : SelectableScreen {
         this.PauseMenuUI.SetActive(true);
         this.isActive = true;
 
+        if (this.playerInputsController)
+            this.playerInputsController.enabled = false;
+
         Time.timeScale = 0f;
         Time.fixedDeltaTime = 0f;
         
@@ -76,6 +78,9 @@ public class PauseMenu : SelectableScreen {
 
         this.PauseMenuUI.SetActive(false);
         this.isActive = false;
+        
+        if (this.playerInputsController)
+            this.playerInputsController.enabled = true;
 
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02f;

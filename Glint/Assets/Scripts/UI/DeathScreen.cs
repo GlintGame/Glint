@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class DeathScreen : SelectableScreen
 {
     public GameObject canvas;
     public FadeAnimator fadeAnimator;
+    public float timeBeforeFocus = 5f;
 
     public void CheckDeath(int curHealth, int maxHealth)
     {
@@ -22,7 +24,7 @@ public class DeathScreen : SelectableScreen
         this.canvas.SetActive(true);
 
         this.fadeAnimator.AllFadeIn();
-        this.Focus();
+        StartCoroutine(this.doFocus());
     }
 
     public override void Desactivate()
@@ -39,5 +41,11 @@ public class DeathScreen : SelectableScreen
     {
         this.eventSystem.SetSelectedGameObject(this.canvas);
         this.focusButton.Select();
+    }
+
+    private IEnumerator doFocus()
+    {
+        yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(this.timeBeforeFocus));
+        this.Focus();
     }
 }

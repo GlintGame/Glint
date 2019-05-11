@@ -624,6 +624,12 @@ MonoBehaviour:
     loop: 0
     onlyOnSetScene: 1
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9a68d389f4a387d40b47fe48d6904bf7, type: 3}
+    volume: 0.5
+    playDefault: 0
+    loop: 0
+    onlyOnSetScene: 1
+    source: {fileID: 0}
 --- !u!1 &110483681
 GameObject:
   m_ObjectHideFlags: 0
@@ -141561,6 +141567,11 @@ PrefabInstance:
       propertyPath: focusButton
       value: 
       objectReference: {fileID: 1457116091}
+    - target: {fileID: 7366610296699181902, guid: cc7fdc91819c63349916dd7887b1f0f1,
+        type: 3}
+      propertyPath: playerInputsController
+      value: 
+      objectReference: {fileID: 2116870058}
     - target: {fileID: 7512511557264156148, guid: cc7fdc91819c63349916dd7887b1f0f1,
         type: 3}
       propertyPath: eventSystem
@@ -147427,18 +147438,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114744088834138978, guid: 95b3bcec386fc5048a2c6196b610575f,
-        type: 3}
-      propertyPath: keyboardParams
-      value: 
-      objectReference: {fileID: 11400000, guid: ba97a2068cf3ed74f8db2b417b856625,
-        type: 2}
-    - target: {fileID: 114744088834138978, guid: 95b3bcec386fc5048a2c6196b610575f,
-        type: 3}
-      propertyPath: gamepadParams
-      value: 
-      objectReference: {fileID: 11400000, guid: 9b87e9ca0c0e76044a060264534c9b39,
-        type: 2}
     - target: {fileID: 224911174353847008, guid: 95b3bcec386fc5048a2c6196b610575f,
         type: 3}
       propertyPath: m_AnchorMin.x
@@ -147534,6 +147533,18 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114744088834138978, guid: 95b3bcec386fc5048a2c6196b610575f,
+        type: 3}
+      propertyPath: keyboardParams
+      value: 
+      objectReference: {fileID: 11400000, guid: ba97a2068cf3ed74f8db2b417b856625,
+        type: 2}
+    - target: {fileID: 114744088834138978, guid: 95b3bcec386fc5048a2c6196b610575f,
+        type: 3}
+      propertyPath: gamepadParams
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b87e9ca0c0e76044a060264534c9b39,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95b3bcec386fc5048a2c6196b610575f, type: 3}
 --- !u!224 &1871223311 stripped
@@ -149245,6 +149256,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2116870058 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7455681498610014192, guid: 15c13520f7f7dda4686b38181acacf54,
+    type: 3}
+  m_PrefabInstance: {fileID: 344986548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b4f86f0a7f35e641b939232864cbc91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2132176984
 GameObject:
   m_ObjectHideFlags: 0
@@ -149643,6 +149666,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontColor.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4762302018160333901, guid: 07d2c2e2c39459b469ecd0de093dcc39,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1476238640}
+    - target: {fileID: 4762302018160333901, guid: 07d2c2e2c39459b469ecd0de093dcc39,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: LoadScene
       objectReference: {fileID: 0}
     - target: {fileID: 344489568077271511, guid: 07d2c2e2c39459b469ecd0de093dcc39,
         type: 3}

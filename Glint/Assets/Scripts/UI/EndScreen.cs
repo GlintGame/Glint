@@ -1,11 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EndScreen : SelectableScreen
 {
     public GameObject canvas;
     public FadeAnimator fadeAnimator;
+    public float timeBeforeFocus = 5f;
 
     public override void Activate()
     {
@@ -16,7 +16,7 @@ public class EndScreen : SelectableScreen
         this.canvas.SetActive(true);
 
         this.fadeAnimator.AllFadeIn();
-        this.Focus();
+        StartCoroutine(this.doFocus());
     }
 
     public override void Desactivate()
@@ -33,5 +33,11 @@ public class EndScreen : SelectableScreen
     {
         this.eventSystem.SetSelectedGameObject(this.canvas);
         this.focusButton.Select();
+    }
+
+    IEnumerator doFocus()
+    {
+        yield return StartCoroutine(utils.Coroutine.WaitForRealSeconds(this.timeBeforeFocus));
+        this.Focus();
     }
 }

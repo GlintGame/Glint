@@ -16,6 +16,7 @@ public class TestPickup : MonoBehaviour
         if (picker != null)
         {
             picker.Pick(1);
+            AudioManager.Play("Correct");
             this.gameObject.SetActive(false);
         }
     }

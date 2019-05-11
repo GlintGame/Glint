@@ -234,7 +234,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 0}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -468,7 +468,7 @@ PrefabInstance:
     - target: {fileID: 8079837568873829303, guid: 00224fe4f264d1448b6bebab9a57e1cb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 578.6574
+      value: 589.7473
       objectReference: {fileID: 0}
     - target: {fileID: 8079837568873829303, guid: 00224fe4f264d1448b6bebab9a57e1cb,
         type: 3}
@@ -589,7 +589,22 @@ PrefabInstance:
     - target: {fileID: 8079837568873829321, guid: 00224fe4f264d1448b6bebab9a57e1cb,
         type: 3}
       propertyPath: m_AspectRatio
+      value: 1.7777778
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079837568873829321, guid: 00224fe4f264d1448b6bebab9a57e1cb,
+        type: 3}
+      propertyPath: m_AspectMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079837569003277291, guid: 00224fe4f264d1448b6bebab9a57e1cb,
+        type: 3}
+      propertyPath: m_AspectRatio
       value: 1.3722222
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079837569003277291, guid: 00224fe4f264d1448b6bebab9a57e1cb,
+        type: 3}
+      propertyPath: m_AspectMode
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00224fe4f264d1448b6bebab9a57e1cb, type: 3}
@@ -820,6 +835,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 1aba647a4a52f6e498de5e1dcba0152e,
         type: 3}
+    - target: {fileID: 8079837569003277290, guid: 00224fe4f264d1448b6bebab9a57e1cb,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1619078820368987083, guid: 00224fe4f264d1448b6bebab9a57e1cb,
         type: 3}
       propertyPath: onSelect.m_PersistentCalls.m_Calls.Array.size
@@ -1687,7 +1707,7 @@ PrefabInstance:
     - target: {fileID: 8079837569003277291, guid: 00224fe4f264d1448b6bebab9a57e1cb,
         type: 3}
       propertyPath: m_AspectRatio
-      value: 1.372222
+      value: 1.7777778
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00224fe4f264d1448b6bebab9a57e1cb, type: 3}
@@ -2162,7 +2182,7 @@ PrefabInstance:
     - target: {fileID: 8079837568873829303, guid: 00224fe4f264d1448b6bebab9a57e1cb,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 675.7942
+      value: 697.97406
       objectReference: {fileID: 0}
     - target: {fileID: 8079837568873829303, guid: 00224fe4f264d1448b6bebab9a57e1cb,
         type: 3}

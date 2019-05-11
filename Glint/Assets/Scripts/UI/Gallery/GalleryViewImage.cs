@@ -11,6 +11,6 @@ public class GalleryViewImage : MonoBehaviour
     public void UpdateImage(Sprite sprite, float aspectRatio)
     {
         this.AspectRationFitter.aspectRatio = aspectRatio;
-        this.Image.sprite = sprite;
+        this.Image.overrideSprite = sprite;
     }
 }
